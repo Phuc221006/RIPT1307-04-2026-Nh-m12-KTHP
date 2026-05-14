@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "author": "Phuc221006 <pkppxttt2006@gmail.com>",
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build",
+    "postinstall": "umi setup",
+    "setup": "umi setup",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^6.2.3",
+    "antd": "^6.3.7",
+    "umi": "^4.6.54"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.33",
+    "@types/react-dom": "^18.0.11",
+    "typescript": "^5.0.3"
+  }
+}
