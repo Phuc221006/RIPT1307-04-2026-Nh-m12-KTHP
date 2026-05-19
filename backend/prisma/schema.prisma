@@ -4,5 +4,160 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("mysql://root:931495localhost:3306/db_htqlts_2026")
+  url      = env("DATABASE_URL")
+}
+
+model admission_rounds {
+  id           String         @id @db.VarChar(36)
+  title        String         @db.VarChar(100)
+  start_date   DateTime       @db.DateTime(0)
+  end_date     DateTime       @db.DateTime(0)
+  is_active    Boolean?       @default(true)
+  created_at   DateTime?      @default(now()) @db.Timestamp(0)
+  updated_at   DateTime?      @default(now()) @db.Timestamp(0)
+  applications applications[]
+}
+
+model application_files {
+  id             String                      @id @db.VarChar(36)
+  application_id String                      @db.VarChar(36)
+  file_type      application_files_file_type
+  original_name  String                      @db.VarChar(255)
+  file_url       String                      @db.VarChar(255)
+  mime_type      String                      @db.VarChar(100)
+  file_size      Int
+  created_at     DateTime?                   @default(now()) @db.Timestamp(0)
+  applications   applications                @relation(fields: [application_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_files_app")
+
+  @@index([application_id], map: "fk_files_app")
+}
+
+model application_status_logs {
+  id             String                              @id @db.VarChar(36)
+  application_id String                              @db.VarChar(36)
+  changed_by     String?                             @db.VarChar(36)
+  old_status     application_status_logs_old_status?
+  new_status     application_status_logs_new_status
+  note           String?                             @db.Text
+  created_at     DateTime?                           @default(now()) @db.Timestamp(0)
+  applications   applications                        @relation(fields: [application_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_status_logs_app")
+  users          users?                              @relation(fields: [changed_by], references: [id], onUpdate: NoAction, map: "fk_status_logs_user")
+
+  @@index([application_id], map: "fk_status_logs_app")
+  @@index([changed_by], map: "fk_status_logs_user")
+}
+
+model applications {
+  id                      String                    @id @db.VarChar(36)
+  user_id                 String                    @db.VarChar(36)
+  university_id           String                    @db.VarChar(36)
+  major_id                String                    @db.VarChar(36)
+  combination_id          String                    @db.VarChar(36)
+  round_id                String                    @db.VarChar(36)
+  score_subject_1         Decimal?                  @db.Decimal(5, 2)
+  score_subject_2         Decimal?                  @db.Decimal(5, 2)
+  score_subject_3         Decimal?                  @db.Decimal(5, 2)
+  total_score             Decimal                   @db.Decimal(5, 2)
+  priority_object         String?                   @db.VarChar(50)
+  priority_score          Decimal?                  @default(0.00) @db.Decimal(4, 2)
+  status                  applications_status       @default(PENDING)
+  notes                   String?                   @db.Text
+  created_at              DateTime?                 @default(now()) @db.Timestamp(0)
+  updated_at              DateTime?                 @default(now()) @db.Timestamp(0)
+  application_files       application_files[]
+  application_status_logs application_status_logs[]
+  subject_combinations    subject_combinations      @relation(fields: [combination_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_apps_combination")
+  majors                  majors                    @relation(fields: [major_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_apps_major")
+  admission_rounds        admission_rounds          @relation(fields: [round_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_apps_round")
+  universities            universities              @relation(fields: [university_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_apps_university")
+  users                   users                     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_apps_user")
+
+  @@unique([user_id, major_id, combination_id, round_id], map: "user_id")
+  @@index([combination_id], map: "fk_apps_combination")
+  @@index([major_id], map: "fk_apps_major")
+  @@index([round_id], map: "fk_apps_round")
+  @@index([university_id], map: "fk_apps_university")
+}
+
+model majors {
+  id                   String                 @id @db.VarChar(36)
+  university_id        String                 @db.VarChar(36)
+  code                 String                 @db.VarChar(20)
+  name                 String                 @db.VarChar(255)
+  created_at           DateTime?              @default(now()) @db.Timestamp(0)
+  updated_at           DateTime?              @default(now()) @db.Timestamp(0)
+  applications         applications[]
+  universities         universities           @relation(fields: [university_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_majors_university")
+  subject_combinations subject_combinations[]
+
+  @@unique([university_id, code], map: "university_id")
+}
+
+model subject_combinations {
+  id           String         @id @db.VarChar(36)
+  major_id     String         @db.VarChar(36)
+  code         String         @db.VarChar(10)
+  subjects     String         @db.VarChar(255)
+  applications applications[]
+  majors       majors         @relation(fields: [major_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_combinations_major")
+
+  @@unique([major_id, code], map: "major_id")
+}
+
+model universities {
+  id           String         @id @db.VarChar(36)
+  code         String         @unique(map: "code") @db.VarChar(20)
+  name         String         @db.VarChar(255)
+  description  String?        @db.Text
+  created_at   DateTime?      @default(now()) @db.Timestamp(0)
+  updated_at   DateTime?      @default(now()) @db.Timestamp(0)
+  applications applications[]
+  majors       majors[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model users {
+  id                      String                    @id @db.VarChar(36)
+  email                   String                    @unique(map: "email") @db.VarChar(100)
+  password                String                    @db.VarChar(255)
+  full_name               String                    @db.VarChar(100)
+  cccd                    String?                   @unique(map: "cccd") @db.VarChar(20)
+  dob                     DateTime?                 @db.Date
+  phone                   String?                   @db.VarChar(20)
+  address                 String?                   @db.Text
+  role                    users_role                @default(CANDIDATE)
+  created_at              DateTime?                 @default(now()) @db.Timestamp(0)
+  updated_at              DateTime?                 @default(now()) @db.Timestamp(0)
+  application_status_logs application_status_logs[]
+  applications            applications[]
+}
+
+enum application_files_file_type {
+  CCCD
+  HOC_BA
+  GIAY_UU_TIEN
+  OTHER
+}
+
+enum application_status_logs_old_status {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum application_status_logs_new_status {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum users_role {
+  ADMIN
+  CANDIDATE
+}
+
+enum applications_status {
+  PENDING
+  APPROVED
+  REJECTED
 }
