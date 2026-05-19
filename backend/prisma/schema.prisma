@@ -1,0 +1,8 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("mysql://root:931495localhost:3306/db_htqlts_2026")
+}
