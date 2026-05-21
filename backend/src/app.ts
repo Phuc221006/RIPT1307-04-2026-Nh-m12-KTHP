@@ -1,27 +1,33 @@
-import express from "express";
+import express, { Application, Request, Response, NextFunction } from "express";
 import cors from "cors";
-import helmet from "helmet";
-import rateLimit from "express-rate-limit";
+import authRoutes from "./routes/auth_routes.js";
+import path from "path";
+import uploadRoutes from "./routes/upload_routes.js";
+import applicationRoutes from "./routes/application_routes.js";
 
-const app = express();
+const app: Application = express();
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.use(helmet());
-
-app.use(cors());
-
+app.use(cors({ origin: "*" }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  rateLimit({
-    windowMs: 15 * 60 * 1000,
-    limit: 100,
-  }),
-);
+app.get("/health", (req: Request, res: Response) => {
+  res.status(200).json({ status: "OK", message: "Hệ thống chạy ổn định." });
+});
 
-app.get("/", (_req, res) => {
-  res.json({
-    success: true,
-    message: "Online Admission Backend Running",
+// Cắm Module Auth vào hệ thống
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/uploads", uploadRoutes);
+app.use("/api/v1/applications", applicationRoutes);
+
+// Middleware xử lý lỗi (Bắt buộc phải nằm cuối cùng)
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  const statusCode = err.statusCode || 500;
+  res.status(statusCode).json({
+    status: "error",
+    message: err.message || "Lỗi hệ thống nội bộ.",
   });
 });
 
