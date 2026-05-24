@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/src/pages/index.tsx"],"sourcesContent":["import yayJpg from '../assets/yay.jpg';\n\nexport default function HomePage() {\n  return (\n    <div>\n      <h2>Yay! Welcome to umi!</h2>\n      <p>\n        <img src={yayJpg} width=\"388\" />\n      </p>\n      <p>\n        To get started, edit <code>pages/index.tsx</code> and save to reload.\n      </p>\n    </div>\n  );\n}\n"],"names":["HomePage","src","width"],"mappings":";;;;;AAAA;;;AAEe,SAASA;IACtB,qBACE,0JAAC;;0BACC,0JAAC;0BAAG;;;;;;0BACJ,0JAAC;0BACC,cAAA,0JAAC;oBAAIC,KAAK,wHAAM;oBAAEC,OAAM;;;;;;;;;;;0BAE1B,0JAAC;;oBAAE;kCACoB,0JAAC;kCAAK;;;;;;oBAAsB;;;;;;;;;;;;;AAIzD;KAZwBF"}}]
-}

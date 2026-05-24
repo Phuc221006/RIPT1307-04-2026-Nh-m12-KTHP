@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/layouts/index.less?modules [client] (css module)"],"sourcesContent":["__turbopack_context__.v({\n  \"navs\": \"index-less__4x1xXG__navs\",\n});\n"],"names":[],"mappings":"AAAA;AACA;AACA"}},
-    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/src/layouts/index.tsx"],"sourcesContent":["import { Link, Outlet } from 'umi';\nimport styles from './index.less';\n\nexport default function Layout() {\n  return (\n    <div className={styles.navs}>\n      <ul>\n        <li>\n          <Link to=\"/\">Home</Link>\n        </li>\n        <li>\n          <Link to=\"/docs\">Docs</Link>\n        </li>\n        <li>\n          <a href=\"https://github.com/umijs/umi\">Github</a>\n        </li>\n      </ul>\n      <Outlet />\n    </div>\n  );\n}\n"],"names":["Layout","className","navs","to","href"],"mappings":";;;;;AAAA;AACA;;;;AAEe,SAASA;IACtB,qBACE,0JAAC;QAAIC,WAAW,4IAAM,CAACC,IAAI;;0BACzB,0JAAC;;kCACC,0JAAC;kCACC,cAAA,0JAAC,2HAAI;4BAACC,IAAG;sCAAI;;;;;;;;;;;kCAEf,0JAAC;kCACC,cAAA,0JAAC,2HAAI;4BAACA,IAAG;sCAAQ;;;;;;;;;;;kCAEnB,0JAAC;kCACC,cAAA,0JAAC;4BAAEC,MAAK;sCAA+B;;;;;;;;;;;;;;;;;0BAG3C,0JAAC,6HAAM;;;;;;;;;;;AAGb;KAjBwBJ"}}]
-}

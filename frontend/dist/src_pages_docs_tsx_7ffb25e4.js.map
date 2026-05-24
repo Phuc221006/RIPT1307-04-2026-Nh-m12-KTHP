@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/src/pages/docs.tsx"],"sourcesContent":["const DocsPage = () => {\n  return (\n    <div>\n      <p>This is umi docs.</p>\n    </div>\n  );\n};\n\nexport default DocsPage;\n"],"names":["DocsPage"],"mappings":";;;;;;AAAA,MAAMA,WAAW;IACf,qBACE,0JAAC;kBACC,cAAA,0JAAC;sBAAE;;;;;;;;;;;AAGT;KANMA;qCAQSA"}}]
-}
