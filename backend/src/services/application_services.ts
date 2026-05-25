@@ -3,7 +3,7 @@ import { Prisma } from "@prisma/client";
 
 class ApplicationService {
   async submitApplication(userId: string, data: any) {
-    // Transaction giúp lưu nhiều bảng cùng lúc an toàn
+   
     return await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // 1. Tạo bản ghi hồ sơ chính
       const application = await tx.application.create({
@@ -23,7 +23,7 @@ class ApplicationService {
         },
       });
 
-      // 2. Lưu danh sách file đính kèm nếu có
+ 
       if (data.files && data.files.length > 0) {
         const fileData = data.files.map((file: any) => ({
           applicationId: application.id,
@@ -39,6 +39,19 @@ class ApplicationService {
 
       return application;
     });
+  }
+  
+  async updateApplicationStatus(id: string, status: string) {
+    const application = await prisma.application.update({
+      where: { id },
+      data: { status: status },
+      include: { user: true },
+    });
+
+    if (application.user?.email) {
+      await sendStatusEmail(application.user.email, status);
+    }
+    return application;
   }
 }
 
