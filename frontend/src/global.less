@@ -1,24 +1,37 @@
-html, body, #root {
-  min-height: 100%;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background: #f0f2f5;
-  color: #141414;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    'Noto Sans', 'Liberation Sans', sans-serif;
+  background: #0f0c29;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-#root {
-  min-height: 100vh;
+.ant-select-dropdown {
+  background: #1a1535 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
 }
 
-.ant-layout {
-  min-height: 100vh;
+.ant-select-item {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+.ant-select-item:hover {
+  background: rgba(102, 126, 234, 0.15) !important;
+}
+.ant-select-item-option-selected {
+  background: rgba(102, 126, 234, 0.2) !important;
+  color: #a78bfa !important;
 }
 
-.ant-layout-content {
-  padding: 24px;
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.3);
+  border-radius: 3px;
 }
+
+a { text-decoration: none; }

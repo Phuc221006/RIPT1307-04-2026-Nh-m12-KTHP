@@ -8,8 +8,9 @@
     "start": "umi dev"
   },
   "dependencies": {
-    "antd": "^5.14.0",
     "@ant-design/icons": "^5.2.6",
+    "@rc-component/qrcode": "^1.1.1",
+    "antd": "^5.14.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "umi": "^4.3.0"

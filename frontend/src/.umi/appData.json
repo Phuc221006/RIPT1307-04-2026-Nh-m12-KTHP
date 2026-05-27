@@ -1,5 +1,5 @@
 {
-  "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+  "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
   "pkg": {
     "name": "frontend",
     "version": "1.0.0",
@@ -10,8 +10,9 @@
       "start": "umi dev"
     },
     "dependencies": {
-      "antd": "^5.14.0",
       "@ant-design/icons": "^5.2.6",
+      "@rc-component/qrcode": "^1.1.1",
+      "antd": "^5.14.0",
       "react": "^18.3.0",
       "react-dom": "^18.3.0",
       "umi": "^4.3.0"
@@ -23,72 +24,72 @@
       "typescript": "^5.0.0"
     }
   },
-  "pkgPath": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\package.json",
+  "pkgPath": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\package.json",
   "plugins": {
     "./node_modules/@umijs/core/dist/service/servicePlugin": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "preset",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/core/dist/service/servicePlugin.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/core/dist/service/servicePlugin.js",
       "id": "./node_modules/@umijs/core/dist/service/servicePlugin",
       "key": "servicePlugin",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 26
+        "register": 0
       },
       "enableBy": "register"
     },
     "@umijs/preset-umi": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "preset",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/index.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/index.js",
       "id": "@umijs/preset-umi",
       "key": "umi",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 146
+        "register": 6
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/registerMethods": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/registerMethods.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/registerMethods.js",
       "id": "./node_modules/@umijs/preset-umi/dist/registerMethods",
       "key": "registerMethods",
       "config": {},
       "time": {
         "hooks": {
           "onStart": [
-            0
+            1
           ]
         },
-        "register": 105
+        "register": 3
       },
       "enableBy": "register"
     },
     "@umijs/did-you-know": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/did-you-know/dist/plugin.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/did-you-know/dist/plugin.js",
       "id": "@umijs/did-you-know",
       "key": "umijsDidYouKnow",
       "config": {},
       "time": {
         "hooks": {
           "onStart": [
-            5
+            2
           ]
         },
-        "register": 336
+        "register": 2
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/404/404": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/404/404.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/404/404.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/404/404",
       "key": "404",
       "config": {},
@@ -98,57 +99,57 @@
             0
           ]
         },
-        "register": 37
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/aiDev/aiDev": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/aiDev/aiDev.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/aiDev/aiDev.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/aiDev/aiDev",
       "key": "aiDev",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 34
+        "register": 1
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/appData/appData": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/appData/appData.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/appData/appData.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/appData/appData",
       "key": "appData",
       "config": {},
       "time": {
         "hooks": {
           "modifyAppData": [
-            1766
+            14
           ]
         },
-        "register": 384
+        "register": 16
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/appData/umiInfo": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/appData/umiInfo.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/appData/umiInfo.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/appData/umiInfo",
       "key": "umiInfo",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 24
+        "register": 1
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/check/check": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/check/check.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/check/check.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/check/check",
       "key": "check",
       "config": {},
@@ -161,14 +162,14 @@
             0
           ]
         },
-        "register": 29
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/check/babel722": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/check/babel722.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/check/babel722.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/check/babel722",
       "key": "babel722",
       "config": {},
@@ -178,27 +179,27 @@
             0
           ]
         },
-        "register": 31
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/codeSplitting/codeSplitting": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/codeSplitting/codeSplitting.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/codeSplitting/codeSplitting.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/codeSplitting/codeSplitting",
       "key": "codeSplitting",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 35
+        "register": 1
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/configPlugins/configPlugins": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/configPlugins/configPlugins.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/configPlugins/configPlugins.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/configPlugins/configPlugins",
       "key": "configPlugins",
       "config": {},
@@ -208,7 +209,7 @@
             0
           ]
         },
-        "register": 281
+        "register": 6
       },
       "enableBy": "register"
     },
@@ -1038,10 +1039,10 @@
       "config": {
         "default": {
           "umi": "@@/exports",
-          "react": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react",
-          "react-dom": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-dom",
-          "react-router": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-router",
-          "react-router-dom": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-router-dom"
+          "react": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react",
+          "react-dom": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-dom",
+          "react-router": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-router",
+          "react-router-dom": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-router-dom"
         }
       },
       "type": "plugin",
@@ -1052,22 +1053,22 @@
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/crossorigin/crossorigin": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/crossorigin/crossorigin.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/crossorigin/crossorigin.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/crossorigin/crossorigin",
       "key": "crossorigin",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 32
+        "register": 1
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/depsOnDemand/depsOnDemand": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/depsOnDemand/depsOnDemand.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/depsOnDemand/depsOnDemand.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/depsOnDemand/depsOnDemand",
       "key": "depsOnDemand",
       "config": {},
@@ -1077,66 +1078,66 @@
             0
           ]
         },
-        "register": 41
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/devTool/devTool": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/devTool/devTool.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/devTool/devTool.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/devTool/devTool",
       "key": "devTool",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 36
+        "register": 3
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/esbuildHelperChecker/esbuildHelperChecker": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/esbuildHelperChecker/esbuildHelperChecker.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/esbuildHelperChecker/esbuildHelperChecker.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/esbuildHelperChecker/esbuildHelperChecker",
       "key": "esbuildHelperChecker",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 816
+        "register": 65
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/esmi/esmi": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/esmi/esmi.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/esmi/esmi.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/esmi/esmi",
       "key": "esmi",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2029
+        "register": 28
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/exportStatic/exportStatic": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/exportStatic/exportStatic.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/exportStatic/exportStatic.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/exportStatic/exportStatic",
       "key": "exportStatic",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 545
+        "register": 13
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/favicons/favicons": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/favicons/favicons.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/favicons/favicons.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/favicons/favicons",
       "key": "favicons",
       "config": {},
@@ -1146,83 +1147,16 @@
             0
           ]
         },
-        "register": 30
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/helmet/helmet": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/helmet/helmet.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/helmet/helmet.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/helmet/helmet",
       "key": "helmet",
-      "config": {},
-      "time": {
-        "hooks": {},
-        "register": 31
-      },
-      "enableBy": "register"
-    },
-    "./node_modules/@umijs/preset-umi/dist/features/icons/icons": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
-      "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/icons/icons.js",
-      "id": "./node_modules/@umijs/preset-umi/dist/features/icons/icons",
-      "key": "icons",
-      "config": {},
-      "time": {
-        "hooks": {},
-        "register": 42
-      },
-      "enableBy": "config"
-    },
-    "./node_modules/@umijs/preset-umi/dist/features/mock/mock": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
-      "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/mock/mock.js",
-      "id": "./node_modules/@umijs/preset-umi/dist/features/mock/mock",
-      "key": "mock",
-      "config": {},
-      "time": {
-        "hooks": {
-          "onStart": [
-            4
-          ]
-        },
-        "register": 454
-      }
-    },
-    "./node_modules/@umijs/preset-umi/dist/features/mpa/mpa": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
-      "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/mpa/mpa.js",
-      "id": "./node_modules/@umijs/preset-umi/dist/features/mpa/mpa",
-      "key": "mpa",
-      "config": {},
-      "time": {
-        "hooks": {},
-        "register": 51
-      },
-      "enableBy": "config"
-    },
-    "./node_modules/@umijs/preset-umi/dist/features/okam/okam": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
-      "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/okam/okam.js",
-      "id": "./node_modules/@umijs/preset-umi/dist/features/okam/okam",
-      "key": "okam",
-      "config": {},
-      "time": {
-        "hooks": {},
-        "register": 31
-      }
-    },
-    "./node_modules/@umijs/preset-umi/dist/features/overrides/overrides": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
-      "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/overrides/overrides.js",
-      "id": "./node_modules/@umijs/preset-umi/dist/features/overrides/overrides",
-      "key": "overrides",
       "config": {},
       "time": {
         "hooks": {},
@@ -1230,295 +1164,362 @@
       },
       "enableBy": "register"
     },
-    "./node_modules/@umijs/preset-umi/dist/features/phantomDependency/phantomDependency": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+    "./node_modules/@umijs/preset-umi/dist/features/icons/icons": {
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/phantomDependency/phantomDependency.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/icons/icons.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/icons/icons",
+      "key": "icons",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/mock/mock": {
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "type": "plugin",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/mock/mock.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/mock/mock",
+      "key": "mock",
+      "config": {},
+      "time": {
+        "hooks": {
+          "onStart": [
+            2
+          ]
+        },
+        "register": 25
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/mpa/mpa": {
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "type": "plugin",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/mpa/mpa.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/mpa/mpa",
+      "key": "mpa",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "config"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/okam/okam": {
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "type": "plugin",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/okam/okam.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/okam/okam",
+      "key": "okam",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/overrides/overrides": {
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "type": "plugin",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/overrides/overrides.js",
+      "id": "./node_modules/@umijs/preset-umi/dist/features/overrides/overrides",
+      "key": "overrides",
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 0
+      },
+      "enableBy": "register"
+    },
+    "./node_modules/@umijs/preset-umi/dist/features/phantomDependency/phantomDependency": {
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "type": "plugin",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/phantomDependency/phantomDependency.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/phantomDependency/phantomDependency",
       "key": "phantomDependency",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 42
+        "register": 1
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/polyfill/polyfill": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/polyfill/polyfill.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/polyfill/polyfill.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/polyfill/polyfill",
       "key": "polyfill",
       "config": {},
       "time": {
         "hooks": {
           "modifyConfig": [
-            12
+            0
           ]
         },
-        "register": 74
+        "register": 2
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill",
       "key": "publicPathPolyfill",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 24
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/prepare/prepare": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/prepare/prepare.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/prepare/prepare.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/prepare/prepare",
       "key": "prepare",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 55
+        "register": 2
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/routePrefetch/routePrefetch": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/routePrefetch/routePrefetch.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/routePrefetch/routePrefetch.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/routePrefetch/routePrefetch",
       "key": "routePrefetch",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 29
+        "register": 0
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/stagewise/stagewise": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/stagewise/stagewise.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/stagewise/stagewise.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/stagewise/stagewise",
       "key": "stagewise",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 29
+        "register": 0
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/terminal/terminal": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/terminal/terminal.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/terminal/terminal.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/terminal/terminal",
       "key": "terminal",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 34
+        "register": 1
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/tmpFiles/tmpFiles": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/tmpFiles/tmpFiles.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/tmpFiles/tmpFiles.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/tmpFiles/tmpFiles",
       "key": "tmpFiles",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 258
+        "register": 4
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/clientLoader/clientLoader": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/clientLoader/clientLoader.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/clientLoader/clientLoader.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/clientLoader/clientLoader",
       "key": "clientLoader",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 60
+        "register": 1
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps",
       "key": "routeProps",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 41
+        "register": 0
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/ssr/ssr": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/ssr/ssr.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/ssr/ssr.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/ssr/ssr",
       "key": "ssr",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 77
+        "register": 2
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/tmpFiles/configTypes": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/tmpFiles/configTypes.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/tmpFiles/configTypes.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/tmpFiles/configTypes",
       "key": "configTypes",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 112
+        "register": 2
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/transform/transform": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/transform/transform.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/transform/transform.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/transform/transform",
       "key": "transform",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 106
+        "register": 3
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/lowImport/lowImport": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/lowImport/lowImport.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/lowImport/lowImport.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/lowImport/lowImport",
       "key": "lowImport",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 92
+        "register": 3
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/vite/vite": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/vite/vite.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/vite/vite.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/vite/vite",
       "key": "vite",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 26
+        "register": 0
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute",
       "key": "apiRoute",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 231
+        "register": 5
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/monorepo/redirect": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/monorepo/redirect.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/monorepo/redirect.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/monorepo/redirect",
       "key": "monorepoRedirect",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 843
+        "register": 16
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/test/test": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/test/test.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/test/test.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/test/test",
       "key": "test",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 37
+        "register": 1
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent",
       "key": "clickToComponent",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 40
+        "register": 0
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/legacy/legacy": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/legacy/legacy.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/legacy/legacy.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/legacy/legacy",
       "key": "legacy",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 38
+        "register": 2
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/classPropertiesLoose/classPropertiesLoose": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/classPropertiesLoose/classPropertiesLoose.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/classPropertiesLoose/classPropertiesLoose.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/classPropertiesLoose/classPropertiesLoose",
       "key": "classPropertiesLoose",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 26
+        "register": 0
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/webpack/webpack": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/webpack/webpack.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/webpack/webpack.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/webpack/webpack",
       "key": "preset-umi:webpack",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 61
+        "register": 1
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/swc/swc": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/swc/swc.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/swc/swc.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/swc/swc",
       "key": "swc",
       "config": {},
@@ -1528,422 +1529,422 @@
             0
           ]
         },
-        "register": 27
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/features/ui/ui": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/ui/ui.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/ui/ui.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/ui/ui",
       "key": "ui",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 129
+        "register": 3
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/mako/mako": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/mako/mako.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/mako/mako.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/mako/mako",
       "key": "mako",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 33
+        "register": 0
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack",
       "key": "utoopack",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 34
+        "register": 1
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian",
       "key": "hmrGuardian",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 59
+        "register": 3
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad",
       "key": "routePreloadOnLoad",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 331
+        "register": 24
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/forget/forget": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/forget/forget.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/forget/forget.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/forget/forget",
       "key": "forget",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 53
+        "register": 1
       },
       "enableBy": "config"
     },
     "./node_modules/@umijs/preset-umi/dist/features/bundler/bundler": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/bundler/bundler.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/features/bundler/bundler.js",
       "id": "./node_modules/@umijs/preset-umi/dist/features/bundler/bundler",
       "key": "preset-umi:bundler",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 53
+        "register": 1
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/build": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/build.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/build.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/build",
       "key": "build",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 140
+        "register": 3
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/config/config": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/config/config.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/config/config.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/config/config",
       "key": "config",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 483
+        "register": 38
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/dev/dev": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/dev/dev.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/dev/dev.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/dev/dev",
       "key": "dev",
       "config": {},
       "time": {
         "hooks": {
           "modifyAppData": [
-            67
+            19
           ]
         },
-        "register": 1777
+        "register": 21
       }
     },
     "./node_modules/@umijs/preset-umi/dist/commands/help": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/help.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/help.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/help",
       "key": "help",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 27
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/lint": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/lint.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/lint.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/lint",
       "key": "lint",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 24
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/setup": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/setup.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/setup.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/setup",
       "key": "setup",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 22
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/deadcode": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/deadcode.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/deadcode.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/deadcode",
       "key": "deadcode",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 39
+        "register": 1
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/version": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/version.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/version.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/version",
       "key": "version",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 32
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/generators/page": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/page.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/page.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/page",
       "key": "generator:page",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 73
+        "register": 2
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/generators/prettier": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/prettier.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/prettier.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/prettier",
       "key": "generator:prettier",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 35
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/generators/tsconfig": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/tsconfig.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/tsconfig.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/tsconfig",
       "key": "generator:tsconfig",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 34
+        "register": 1
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/generators/jest": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/jest.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/jest.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/jest",
       "key": "generator:jest",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 39
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/generators/tailwindcss": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/tailwindcss.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/tailwindcss.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/tailwindcss",
       "key": "generator:tailwindcss",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 26
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/generators/dva": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/dva.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/dva.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/dva",
       "key": "generator:dva",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 33
+        "register": 1
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/generators/component": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/component.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/component.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/component",
       "key": "generator:component",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 39
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/generators/mock": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/mock.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/mock.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/mock",
       "key": "generator:mock",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 27
+        "register": 1
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/generators/cypress": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/cypress.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/cypress.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/cypress",
       "key": "generator:cypress",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 30
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/generators/api": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/api.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/api.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/api",
       "key": "generator:api",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 31
+        "register": 1
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/generators/precommit": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/precommit.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/generators/precommit.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/generators/precommit",
       "key": "generator:precommit",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 40
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/plugin": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/plugin.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/plugin.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/plugin",
       "key": "command:plugin",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 26
+        "register": 1
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/verify-commit": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/verify-commit.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/verify-commit.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/verify-commit",
       "key": "verifyCommit",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 58
+        "register": 0
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/preview": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/preview.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/preview.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/preview",
       "key": "preview",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 251
+        "register": 20
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/preset-umi/dist/commands/mfsu/mfsu": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/mfsu/mfsu.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/preset-umi/dist/commands/mfsu/mfsu.js",
       "id": "./node_modules/@umijs/preset-umi/dist/commands/mfsu/mfsu",
       "key": "mfsu-cli",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 37
+        "register": 1
       },
       "enableBy": "register"
     },
     "@umijs/plugin-run": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/plugin-run/dist/index.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/plugin-run/dist/index.js",
       "id": "@umijs/plugin-run",
       "key": "run",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 78
+        "register": 2
       },
       "enableBy": "register"
     },
     "./node_modules/@umijs/core/dist/service/generatePlugin": {
-      "cwd": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
+      "cwd": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend",
       "type": "plugin",
-      "path": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/core/dist/service/generatePlugin.js",
+      "path": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/core/dist/service/generatePlugin.js",
       "id": "./node_modules/@umijs/core/dist/service/generatePlugin",
       "key": "generatePlugin",
       "config": {},
       "time": {
         "hooks": {},
-        "register": 28
+        "register": 0
       },
       "enableBy": "register"
     }
@@ -1953,8 +1954,29 @@
   "args": {
     "_": []
   },
-  "userConfig": {},
-  "mainConfigFile": null,
+  "userConfig": {
+    "routes": [
+      {
+        "path": "/",
+        "redirect": "/login"
+      },
+      {
+        "path": "/login",
+        "component": "login/index"
+      },
+      {
+        "path": "/register",
+        "component": "register/index"
+      },
+      {
+        "path": "/dashboard",
+        "component": "dashboard/index"
+      }
+    ],
+    "npmClient": "npm",
+    "title": "Hệ thống Tuyển sinh"
+  },
+  "mainConfigFile": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\.umirc.ts",
   "config": {
     "routeLoader": {
       "moduleType": "esm"
@@ -1974,41 +1996,88 @@
     "autoCSSModules": true,
     "alias": {
       "umi": "@@/exports",
-      "react": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react",
-      "react-dom": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-dom",
-      "react-router": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-router",
-      "react-router-dom": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-router-dom",
-      "@": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src",
-      "@@": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/.umi",
-      "regenerator-runtime": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\@umijs\\preset-umi\\node_modules\\regenerator-runtime"
+      "react": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react",
+      "react-dom": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-dom",
+      "react-router": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-router",
+      "react-router-dom": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-router-dom",
+      "@": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src",
+      "@@": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/.umi",
+      "regenerator-runtime": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\@umijs\\preset-umi\\node_modules\\regenerator-runtime"
     },
+    "routes": [
+      {
+        "path": "/",
+        "redirect": "/login"
+      },
+      {
+        "path": "/login",
+        "component": "login/index"
+      },
+      {
+        "path": "/register",
+        "component": "register/index"
+      },
+      {
+        "path": "/dashboard",
+        "component": "dashboard/index"
+      }
+    ],
+    "npmClient": "npm",
+    "title": "Hệ thống Tuyển sinh",
     "targets": {
       "chrome": 80
     }
   },
   "routes": {
-    "index": {
+    "1": {
       "path": "/",
-      "id": "index",
+      "redirect": "/login",
       "parentId": "@@/global-layout",
-      "file": "index.tsx",
-      "absPath": "/",
-      "__content": "import { Row, Col, Card, Statistic, Space } from 'antd';\r\nimport {\r\n  UsergroupAddOutlined,\r\n  FileSearchOutlined,\r\n  ApartmentOutlined,\r\n  CheckCircleOutlined,\r\n} from '@ant-design/icons';\r\n\r\nexport default function HomePage() {\r\n  return (\r\n    <div>\r\n      <h1>Dashboard Tuyển sinh</h1>\r\n      <Space direction=\"vertical\" size=\"large\" style={{ width: '100%' }}>\r\n        <Row gutter={[16, 16]}>\r\n          <Col xs={24} sm={12} lg={6}>\r\n            <Card>\r\n              <Statistic title=\"Ứng viên mới\" value={1248} prefix={<UsergroupAddOutlined />} />\r\n            </Card>\r\n          </Col>\r\n          <Col xs={24} sm={12} lg={6}>\r\n            <Card>\r\n              <Statistic title=\"Hồ sơ đang xử lý\" value={320} prefix={<FileSearchOutlined />} />\r\n            </Card>\r\n          </Col>\r\n          <Col xs={24} sm={12} lg={6}>\r\n            <Card>\r\n              <Statistic title=\"Ngành học\" value={42} prefix={<ApartmentOutlined />} />\r\n            </Card>\r\n          </Col>\r\n          <Col xs={24} sm={12} lg={6}>\r\n            <Card>\r\n              <Statistic title=\"Tuyển sinh thành công\" value={874} prefix={<CheckCircleOutlined />} />\r\n            </Card>\r\n          </Col>\r\n        </Row>\r\n      </Space>\r\n    </div>\r\n  );\r\n}\r\n",
+      "id": "1",
+      "absPath": "/"
+    },
+    "2": {
+      "path": "/login",
+      "file": "@/pages/login/index.tsx",
+      "parentId": "@@/global-layout",
+      "id": "2",
+      "absPath": "/login",
+      "__content": "import { useState } from 'react';\r\nimport { Form, Input, Button, message, Checkbox } from 'antd';\r\nimport { UserOutlined, LockOutlined } from '@ant-design/icons';\r\nimport { history } from 'umi';\r\nimport { login, setToken } from '../../services/api';\r\nimport styles from './index.less';\r\n\r\nexport default function LoginPage() {\r\n  const [loading, setLoading] = useState(false);\r\n  const [form] = Form.useForm();\r\n\r\n  const onFinish = async (values: any) => {\r\n    setLoading(true);\r\n    try {\r\n      const res = await login(values.email, values.password);\r\n      if (res.status === 'success') {\r\n        setToken(res.data.token);\r\n        if (res.data.user) {\r\n          localStorage.setItem('user', JSON.stringify(res.data.user));\r\n        }\r\n        message.success('Đăng nhập thành công!');\r\n        history.push('/dashboard');\r\n      } else {\r\n        message.error(res.message || 'Email hoặc mật khẩu không đúng.');\r\n      }\r\n    } catch {\r\n      message.error('Không thể kết nối đến máy chủ.');\r\n    } finally {\r\n      setLoading(false);\r\n    }\r\n  };\r\n\r\n  return (\r\n    <div className={styles.container}>\r\n      <div className={styles.background}>\r\n        <div className={styles.blob1} />\r\n        <div className={styles.blob2} />\r\n        <div className={styles.blob3} />\r\n        <div className={styles.grid} />\r\n      </div>\r\n\r\n      <div className={styles.card}>\r\n        <div className={styles.logoArea}>\r\n          <div className={styles.logoIcon}>\r\n            <svg viewBox=\"0 0 48 48\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n              <rect width=\"48\" height=\"48\" rx=\"14\" fill=\"url(#g1)\" />\r\n              <path d=\"M14 34L24 14L34 34\" stroke=\"white\" strokeWidth=\"3\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\r\n              <path d=\"M17.5 27.5H30.5\" stroke=\"white\" strokeWidth=\"3\" strokeLinecap=\"round\" />\r\n              <defs>\r\n                <linearGradient id=\"g1\" x1=\"0\" y1=\"0\" x2=\"48\" y2=\"48\" gradientUnits=\"userSpaceOnUse\">\r\n                  <stop stopColor=\"#667eea\" /><stop offset=\"1\" stopColor=\"#764ba2\" />\r\n                </linearGradient>\r\n              </defs>\r\n            </svg>\r\n          </div>\r\n          <div className={styles.logoText}>\r\n            <span className={styles.logoTitle}>Tuyển Sinh</span>\r\n            <span className={styles.logoSub}>Hệ thống quản lý hồ sơ</span>\r\n          </div>\r\n        </div>\r\n\r\n        <div className={styles.header}>\r\n          <h1 className={styles.title}>Chào mừng trở lại</h1>\r\n          <p className={styles.subtitle}>Đăng nhập để tiếp tục hành trình của bạn</p>\r\n        </div>\r\n\r\n        <Form form={form} onFinish={onFinish} layout=\"vertical\" size=\"large\" className={styles.form}>\r\n          <Form.Item name=\"email\" rules={[\r\n            { required: true, message: 'Vui lòng nhập email!' },\r\n            { type: 'email', message: 'Email không hợp lệ!' },\r\n          ]}>\r\n            <Input prefix={<UserOutlined className={styles.inputIcon} />} placeholder=\"Địa chỉ email\" className={styles.input} />\r\n          </Form.Item>\r\n\r\n          <Form.Item name=\"password\" rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}>\r\n            <Input.Password prefix={<LockOutlined className={styles.inputIcon} />} placeholder=\"Mật khẩu\" className={styles.input} />\r\n          </Form.Item>\r\n\r\n          <div className={styles.formOptions}>\r\n            <Checkbox className={styles.remember}>Ghi nhớ đăng nhập</Checkbox>\r\n            <a className={styles.forgotLink}>Quên mật khẩu?</a>\r\n          </div>\r\n\r\n          <Form.Item style={{ marginTop: 16 }}>\r\n            <Button type=\"primary\" htmlType=\"submit\" loading={loading} className={styles.submitBtn} block>\r\n              {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}\r\n            </Button>\r\n          </Form.Item>\r\n        </Form>\r\n\r\n        <div className={styles.footer}>\r\n          <span>Chưa có tài khoản?</span>\r\n          <a onClick={() => history.push('/register')} className={styles.registerLink}> Đăng ký ngay</a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  );\r\n}",
       "__isJSFile": true,
-      "__absFile": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/pages/index.tsx"
+      "__absFile": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/pages/login/index.tsx"
+    },
+    "3": {
+      "path": "/register",
+      "file": "@/pages/register/index.tsx",
+      "parentId": "@@/global-layout",
+      "id": "3",
+      "absPath": "/register",
+      "__content": "import { useState } from 'react';\r\nimport { Form, Input, Button, message, Steps, Select } from 'antd';\r\nimport { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined, IdcardOutlined } from '@ant-design/icons';\r\nimport { history } from 'umi';\r\nimport { register } from '../../services/api';\r\nimport styles from './index.less';\r\n\r\nconst { Option } = Select;\r\n\r\nconst MAJORS = [\r\n  'Công nghệ thông tin', 'Kỹ thuật phần mềm', 'Khoa học máy tính',\r\n  'An toàn thông tin', 'Hệ thống thông tin', 'Trí tuệ nhân tạo',\r\n  'Kỹ thuật điện tử', 'Quản trị kinh doanh', 'Kế toán', 'Marketing',\r\n];\r\n\r\nexport default function RegisterPage() {\r\n  const [loading, setLoading] = useState(false);\r\n  const [currentStep, setCurrentStep] = useState(0);\r\n  const [form] = Form.useForm();\r\n\r\n  const onFinish = async (values: any) => {\r\n    setLoading(true);\r\n    try {\r\n      const res = await register({\r\n        fullName: values.fullName,\r\n        email: values.email,\r\n        password: values.password,\r\n        studentId: values.studentId,\r\n        phone: values.phone,\r\n      });\r\n      if (res.status === 'success') {\r\n        message.success('Đăng ký thành công! Vui lòng đăng nhập.');\r\n        history.push('/login');\r\n      } else {\r\n        message.error(res.message || 'Đăng ký thất bại.');\r\n      }\r\n    } catch {\r\n      message.error('Không thể kết nối đến máy chủ.');\r\n    } finally {\r\n      setLoading(false);\r\n    }\r\n  };\r\n\r\n  const nextStep = async () => {\r\n    try {\r\n      if (currentStep === 0) await form.validateFields(['fullName', 'studentId', 'major']);\r\n      if (currentStep === 1) await form.validateFields(['email', 'phone']);\r\n      setCurrentStep((s) => s + 1);\r\n    } catch {}\r\n  };\r\n\r\n  return (\r\n    <div className={styles.container}>\r\n      <div className={styles.background}>\r\n        <div className={styles.blob1} />\r\n        <div className={styles.blob2} />\r\n        <div className={styles.grid} />\r\n      </div>\r\n\r\n      <div className={styles.card}>\r\n        <div className={styles.logoArea}>\r\n          <div className={styles.logoIcon}>\r\n            <svg viewBox=\"0 0 48 48\" fill=\"none\">\r\n              <rect width=\"48\" height=\"48\" rx=\"14\" fill=\"url(#g2)\" />\r\n              <path d=\"M14 34L24 14L34 34\" stroke=\"white\" strokeWidth=\"3\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\r\n              <path d=\"M17.5 27.5H30.5\" stroke=\"white\" strokeWidth=\"3\" strokeLinecap=\"round\" />\r\n              <defs>\r\n                <linearGradient id=\"g2\" x1=\"0\" y1=\"0\" x2=\"48\" y2=\"48\" gradientUnits=\"userSpaceOnUse\">\r\n                  <stop stopColor=\"#667eea\" /><stop offset=\"1\" stopColor=\"#764ba2\" />\r\n                </linearGradient>\r\n              </defs>\r\n            </svg>\r\n          </div>\r\n          <div className={styles.logoText}>\r\n            <span className={styles.logoTitle}>Tuyển Sinh</span>\r\n            <span className={styles.logoSub}>Tạo tài khoản mới</span>\r\n          </div>\r\n        </div>\r\n\r\n        <h1 className={styles.title}>Đăng ký tài khoản</h1>\r\n        <p className={styles.subtitle}>Điền thông tin để bắt đầu hành trình tuyển sinh</p>\r\n\r\n        <Steps\r\n          current={currentStep}\r\n          size=\"small\"\r\n          className={styles.steps}\r\n          items={[{ title: 'Cá nhân' }, { title: 'Liên hệ' }, { title: 'Bảo mật' }]}\r\n        />\r\n\r\n        <Form form={form} onFinish={onFinish} layout=\"vertical\" size=\"large\" className={styles.form}>\r\n          {/* Step 0 */}\r\n          <div style={{ display: currentStep === 0 ? 'block' : 'none' }}>\r\n            <Form.Item name=\"fullName\" label=\"Họ và tên\" rules={[{ required: true, message: 'Vui lòng nhập họ tên!' }]}>\r\n              <Input prefix={<UserOutlined className={styles.inputIcon} />} placeholder=\"Nguyễn Văn A\" className={styles.input} />\r\n            </Form.Item>\r\n            \r\n            <Form.Item name=\"major\" label=\"Ngành đăng ký\" rules={[{ required: true, message: 'Vui lòng chọn ngành!' }]}>\r\n              <Select placeholder=\"Chọn ngành học\" className={styles.select}>\r\n                {MAJORS.map((m) => <Option key={m} value={m}>{m}</Option>)}\r\n              </Select>\r\n            </Form.Item>\r\n          </div>\r\n\r\n          {/* Step 1 */}\r\n          <div style={{ display: currentStep === 1 ? 'block' : 'none' }}>\r\n            <Form.Item name=\"email\" label=\"Email\" rules={[\r\n              { required: true, message: 'Vui lòng nhập email!' },\r\n              { type: 'email', message: 'Email không hợp lệ!' },\r\n            ]}>\r\n              <Input prefix={<MailOutlined className={styles.inputIcon} />} placeholder=\"example@email.com\" className={styles.input} />\r\n            </Form.Item>\r\n            <Form.Item name=\"phone\" label=\"Số điện thoại\" rules={[\r\n              { required: true, message: 'Vui lòng nhập SĐT!' },\r\n              { pattern: /^[0-9]{10,11}$/, message: 'SĐT không hợp lệ!' },\r\n            ]}>\r\n              <Input prefix={<PhoneOutlined className={styles.inputIcon} />} placeholder=\"0912345678\" className={styles.input} />\r\n            </Form.Item>\r\n          </div>\r\n\r\n          {/* Step 2 */}\r\n          <div style={{ display: currentStep === 2 ? 'block' : 'none' }}>\r\n            <Form.Item name=\"password\" label=\"Mật khẩu\" rules={[\r\n              { required: true, message: 'Vui lòng nhập mật khẩu!' },\r\n              { min: 6, message: 'Tối thiểu 6 ký tự!' },\r\n            ]}>\r\n              <Input.Password prefix={<LockOutlined className={styles.inputIcon} />} placeholder=\"Tối thiểu 6 ký tự\" className={styles.input} />\r\n            </Form.Item>\r\n            <Form.Item name=\"confirmPassword\" label=\"Xác nhận mật khẩu\"\r\n              dependencies={['password']}\r\n              rules={[\r\n                { required: true, message: 'Vui lòng xác nhận mật khẩu!' },\r\n                ({ getFieldValue }) => ({\r\n                  validator(_, value) {\r\n                    if (!value || getFieldValue('password') === value) return Promise.resolve();\r\n                    return Promise.reject(new Error('Mật khẩu không khớp!'));\r\n                  },\r\n                }),\r\n              ]}\r\n            >\r\n              <Input.Password prefix={<LockOutlined className={styles.inputIcon} />} placeholder=\"Nhập lại mật khẩu\" className={styles.input} />\r\n            </Form.Item>\r\n          </div>\r\n\r\n          <div className={styles.btnGroup}>\r\n            {currentStep > 0 && (\r\n              <Button onClick={() => setCurrentStep((s) => s - 1)} className={styles.backBtn}>← Quay lại</Button>\r\n            )}\r\n            {currentStep < 2 ? (\r\n              <Button onClick={nextStep} className={styles.nextBtn}>Tiếp theo →</Button>\r\n            ) : (\r\n              <Button type=\"primary\" htmlType=\"submit\" loading={loading} className={styles.submitBtn}>\r\n                {loading ? 'Đang đăng ký...' : '✓ Hoàn tất đăng ký'}\r\n              </Button>\r\n            )}\r\n          </div>\r\n        </Form>\r\n\r\n        <div className={styles.footer}>\r\n          <span>Đã có tài khoản?</span>\r\n          <a onClick={() => history.push('/login')} className={styles.loginLink}> Đăng nhập</a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  );\r\n}",
+      "__isJSFile": true,
+      "__absFile": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/pages/register/index.tsx"
+    },
+    "4": {
+      "path": "/dashboard",
+      "file": "@/pages/dashboard/index.tsx",
+      "parentId": "@@/global-layout",
+      "id": "4",
+      "absPath": "/dashboard",
+      "__content": "import { useState, useEffect } from 'react';\r\nimport {\r\n  Layout, Menu, Card, Table, Tag, Button, Form, Input,\r\n  Select, Upload, message, Statistic, Row, Col, Avatar, Badge, Divider, Empty, Spin,\r\n} from 'antd';\r\nimport {\r\n  UserOutlined, FileTextOutlined, UploadOutlined, LogoutOutlined,\r\n  CheckCircleOutlined, ClockCircleOutlined, CloseCircleOutlined,\r\n  BellOutlined, HomeOutlined, PlusOutlined, FileDoneOutlined,\r\n} from '@ant-design/icons';\r\nimport { history } from 'umi';\r\nimport { submitApplication, getMyApplications, uploadDocument, removeToken } from '../../services/api';\r\nimport styles from './index.less';\r\n\r\nconst { Sider, Content, Header } = Layout;\r\nconst { Option } = Select;\r\n\r\nconst MAJORS = [\r\n  'Công nghệ thông tin', 'Kỹ thuật phần mềm', 'Khoa học máy tính',\r\n  'An toàn thông tin', 'Hệ thống thông tin', 'Trí tuệ nhân tạo',\r\n  'Kỹ thuật điện tử', 'Quản trị kinh doanh', 'Kế toán', 'Marketing',\r\n];\r\n\r\nconst STATUS: Record<string, { color: string; icon: any; label: string }> = {\r\n  pending:  { color: 'warning', icon: <ClockCircleOutlined />,  label: 'Đang xử lý' },\r\n  approved: { color: 'success', icon: <CheckCircleOutlined />,  label: 'Đã duyệt' },\r\n  rejected: { color: 'error',   icon: <CloseCircleOutlined />,  label: 'Từ chối' },\r\n};\r\n\r\nconst MOCK_DATA = [\r\n  { id: 1, major: 'Công nghệ thông tin', createdAt: '2024-03-15', status: 'approved', documentUrl: '' },\r\n  { id: 2, major: 'Kỹ thuật phần mềm',  createdAt: '2024-03-20', status: 'pending',  documentUrl: '' },\r\n];\r\n\r\nexport default function DashboardPage() {\r\n  const [tab, setTab] = useState('overview');\r\n  const [apps, setApps] = useState<any[]>([]);\r\n  const [loading, setLoading] = useState(false);\r\n  const [submitLoading, setSubmitLoading] = useState(false);\r\n  const [uploadedFile, setUploadedFile] = useState<any>(null);\r\n  const [uploadLoading, setUploadLoading] = useState(false);\r\n  const [form] = Form.useForm();\r\n\r\n  const user = (() => {\r\n    try { return JSON.parse(localStorage.getItem('user') || '{}'); } catch { return {}; }\r\n  })();\r\n\r\n  const fetchApps = async () => {\r\n    setLoading(true);\r\n    try {\r\n      const res = await getMyApplications();\r\n      if (res.status === 'success') setApps(res.data || []);\r\n      else setApps(MOCK_DATA);\r\n    } catch {\r\n      setApps(MOCK_DATA);\r\n    } finally {\r\n      setLoading(false);\r\n    }\r\n  };\r\n\r\n  useEffect(() => { fetchApps(); }, []);\r\n\r\n  const handleUpload = async (file: File) => {\r\n    setUploadLoading(true);\r\n    try {\r\n      const res = await uploadDocument(file);\r\n      if (res.status === 'success') {\r\n        setUploadedFile(res.data);\r\n        message.success('Tải file lên thành công!');\r\n      } else message.error(res.message || 'Tải file thất bại.');\r\n    } catch {\r\n      message.error('Lỗi kết nối.');\r\n    } finally {\r\n      setUploadLoading(false);\r\n    }\r\n    return false;\r\n  };\r\n\r\n  const handleSubmit = async (values: any) => {\r\n    if (!uploadedFile) { message.warning('Vui lòng tải lên hồ sơ!'); return; }\r\n    setSubmitLoading(true);\r\n    try {\r\n      const res = await submitApplication({ ...values, documentUrl: uploadedFile.fileUrl });\r\n      if (res.status === 'success') {\r\n        message.success('Nộp hồ sơ thành công!');\r\n        form.resetFields(); setUploadedFile(null); fetchApps(); setTab('history');\r\n      } else message.error(res.message || 'Nộp hồ sơ thất bại.');\r\n    } catch {\r\n      message.error('Lỗi kết nối.');\r\n    } finally {\r\n      setSubmitLoading(false);\r\n    }\r\n  };\r\n\r\n  const approved = apps.filter(a => a.status === 'approved').length;\r\n  const pending  = apps.filter(a => a.status === 'pending').length;\r\n  const rejected = apps.filter(a => a.status === 'rejected').length;\r\n\r\n  const columns = [\r\n    { title: 'STT', width: 60, render: (_: any, __: any, i: number) => <span className={styles.muted}>{i + 1}</span> },\r\n    { title: 'Ngành đăng ký', dataIndex: 'major', render: (v: string) => <strong style={{ color: '#fff' }}>{v}</strong> },\r\n    {\r\n      title: 'Ngày nộp', dataIndex: 'createdAt',\r\n      render: (v: string) => <span className={styles.muted}>{new Date(v).toLocaleDateString('vi-VN')}</span>,\r\n    },\r\n    {\r\n      title: 'Trạng thái', dataIndex: 'status',\r\n      render: (s: string) => {\r\n        const c = STATUS[s] || STATUS.pending;\r\n        return <Tag icon={c.icon} color={c.color}>{c.label}</Tag>;\r\n      },\r\n    },\r\n    {\r\n      title: 'Hồ sơ', dataIndex: 'documentUrl',\r\n      render: (url: string) => url\r\n        ? <a href={`http://localhost:3000${url}`} target=\"_blank\" rel=\"noreferrer\" className={styles.link}>Xem ↗</a>\r\n        : <span className={styles.muted}>—</span>,\r\n    },\r\n  ];\r\n\r\n  return (\r\n    <Layout className={styles.layout}>\r\n      <Sider width={240} className={styles.sider}>\r\n        <div className={styles.brand}>\r\n          <div className={styles.brandIcon}>\r\n            <svg viewBox=\"0 0 36 36\" fill=\"none\">\r\n              <rect width=\"36\" height=\"36\" rx=\"10\" fill=\"url(#dg)\" />\r\n              <path d=\"M10 26L18 10L26 26\" stroke=\"white\" strokeWidth=\"2.5\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\r\n              <path d=\"M13 20.5H23\" stroke=\"white\" strokeWidth=\"2.5\" strokeLinecap=\"round\" />\r\n              <defs>\r\n                <linearGradient id=\"dg\" x1=\"0\" y1=\"0\" x2=\"36\" y2=\"36\" gradientUnits=\"userSpaceOnUse\">\r\n                  <stop stopColor=\"#667eea\" /><stop offset=\"1\" stopColor=\"#764ba2\" />\r\n                </linearGradient>\r\n              </defs>\r\n            </svg>\r\n          </div>\r\n          <div>\r\n            <div className={styles.brandName}>Tuyển Sinh</div>\r\n            <div className={styles.brandSub}>Cổng thông tin</div>\r\n          </div>\r\n        </div>\r\n\r\n        <Divider className={styles.divider} />\r\n\r\n        <div className={styles.userInfo}>\r\n          <Avatar size={40} icon={<UserOutlined />} className={styles.avatar} />\r\n          <div>\r\n            <div className={styles.userName}>{user.fullName || 'Sinh viên'}</div>\r\n            <div className={styles.userId}>MSSV: {user.studentId || '---'}</div>\r\n          </div>\r\n        </div>\r\n\r\n        <Menu\r\n          mode=\"inline\"\r\n          selectedKeys={[tab]}\r\n          onClick={({ key }) => setTab(key)}\r\n          className={styles.menu}\r\n          items={[\r\n            { key: 'overview', icon: <HomeOutlined />,     label: 'Tổng quan' },\r\n            { key: 'apply',    icon: <PlusOutlined />,     label: 'Nộp hồ sơ' },\r\n            { key: 'history',  icon: <FileTextOutlined />, label: 'Lịch sử nộp' },\r\n            { key: 'profile',  icon: <UserOutlined />,     label: 'Hồ sơ cá nhân' },\r\n          ]}\r\n        />\r\n\r\n        <div className={styles.logout}>\r\n          <Button icon={<LogoutOutlined />} block className={styles.logoutBtn}\r\n            onClick={() => { removeToken(); history.push('/login'); }}>\r\n            Đăng xuất\r\n          </Button>\r\n        </div>\r\n      </Sider>\r\n\r\n      <Layout>\r\n        <Header className={styles.header}>\r\n          <span className={styles.pageTitle}>\r\n            {{ overview: 'Tổng quan', apply: 'Nộp hồ sơ xét tuyển', history: 'Lịch sử nộp hồ sơ', profile: 'Hồ sơ cá nhân' }[tab]}\r\n          </span>\r\n          <div className={styles.headerRight}>\r\n            <Badge count={pending} size=\"small\">\r\n              <Button icon={<BellOutlined />} className={styles.iconBtn} />\r\n            </Badge>\r\n            <Avatar icon={<UserOutlined />} className={styles.avatar} />\r\n          </div>\r\n        </Header>\r\n\r\n        <Content className={styles.content}>\r\n\r\n          {/* OVERVIEW */}\r\n          {tab === 'overview' && (\r\n            <>\r\n              <div className={styles.banner}>\r\n                <div>\r\n                  <h2 className={styles.bannerTitle}>Xin chào, {user.fullName || 'bạn'}! 👋</h2>\r\n                  <p className={styles.bannerSub}>Theo dõi tình trạng hồ sơ xét tuyển của bạn tại đây.</p>\r\n                </div>\r\n                <Button type=\"primary\" icon={<PlusOutlined />} className={styles.bannerBtn} onClick={() => setTab('apply')}>\r\n                  Nộp hồ sơ mới\r\n                </Button>\r\n              </div>\r\n\r\n              <Row gutter={[20, 20]} style={{ marginBottom: 24 }}>\r\n                {[\r\n                  { label: 'Tổng hồ sơ', val: apps.length, icon: <FileDoneOutlined />, color: '#fff' },\r\n                  { label: 'Đã duyệt',   val: approved,    icon: <CheckCircleOutlined />, color: '#4ade80' },\r\n                  { label: 'Đang xử lý', val: pending,     icon: <ClockCircleOutlined />, color: '#fbbf24' },\r\n                  { label: 'Từ chối',    val: rejected,    icon: <CloseCircleOutlined />, color: '#f87171' },\r\n                ].map((s) => (\r\n                  <Col xs={24} sm={12} lg={6} key={s.label}>\r\n                    <Card className={styles.statCard}>\r\n                      <div className={styles.statIconWrap}>{s.icon}</div>\r\n                      <Statistic title={s.label} value={s.val} valueStyle={{ color: s.color, fontSize: 30, fontWeight: 700 }} />\r\n                    </Card>\r\n                  </Col>\r\n                ))}\r\n              </Row>\r\n\r\n              <Card className={styles.card} title={<span className={styles.cardTitle}>Hồ sơ gần đây</span>}>\r\n                {loading ? <div className={styles.center}><Spin /></div> : (\r\n                  <Table dataSource={apps.slice(0, 3)} columns={columns} pagination={false} rowKey=\"id\" className={styles.table}\r\n                    locale={{ emptyText: <Empty description={<span className={styles.muted}>Chưa có hồ sơ</span>} /> }} />\r\n                )}\r\n              </Card>\r\n            </>\r\n          )}\r\n\r\n          {/* APPLY */}\r\n          {tab === 'apply' && (\r\n            <Card className={styles.card} title={<span className={styles.cardTitle}>📋 Nộp hồ sơ xét tuyển</span>}>\r\n              <Form form={form} layout=\"vertical\" onFinish={handleSubmit} className={styles.applyForm}>\r\n                <Row gutter={24}>\r\n                  <Col xs={24} md={12}>\r\n                    <Form.Item name=\"major\" label=\"Ngành đăng ký\" rules={[{ required: true, message: 'Vui lòng chọn ngành!' }]}>\r\n                      <Select placeholder=\"Chọn ngành học\" className={styles.formSelect}>\r\n                        {MAJORS.map(m => <Option key={m} value={m}>{m}</Option>)}\r\n                      </Select>\r\n                    </Form.Item>\r\n                  </Col>\r\n                  <Col xs={24} md={12}>\r\n                    <Form.Item name=\"priority\" label=\"Nguyện vọng\" rules={[{ required: true, message: 'Vui lòng chọn!' }]}>\r\n                      <Select placeholder=\"Chọn nguyện vọng\" className={styles.formSelect}>\r\n                        <Option value=\"1\">Nguyện vọng 1</Option>\r\n                        <Option value=\"2\">Nguyện vọng 2</Option>\r\n                        <Option value=\"3\">Nguyện vọng 3</Option>\r\n                      </Select>\r\n                    </Form.Item>\r\n                  </Col>\r\n                </Row>\r\n                <Form.Item name=\"gpa\" label=\"Điểm trung bình (GPA)\">\r\n                  <Input placeholder=\"VD: 8.5\" className={styles.formInput} />\r\n                </Form.Item>\r\n                <Form.Item name=\"note\" label=\"Ghi chú thêm\">\r\n                  <Input.TextArea rows={3} placeholder=\"Thông tin bổ sung (nếu có)...\" className={styles.formInput} />\r\n                </Form.Item>\r\n                <Form.Item label=\"Tải lên hồ sơ (PDF/DOC)\" required>\r\n                  <Upload accept=\".pdf,.doc,.docx\" beforeUpload={handleUpload} showUploadList={false} maxCount={1}>\r\n                    <Button icon={<UploadOutlined />} className={styles.uploadBtn} loading={uploadLoading}>\r\n                      {uploadedFile ? `✓ ${uploadedFile.originalName}` : 'Chọn file hồ sơ'}\r\n                    </Button>\r\n                  </Upload>\r\n                  {uploadedFile && (\r\n                    <div className={styles.uploadedInfo}>\r\n                      <CheckCircleOutlined style={{ color: '#4ade80' }} />\r\n                      <span>Đã tải: <strong>{uploadedFile.originalName}</strong></span>\r\n                    </div>\r\n                  )}\r\n                </Form.Item>\r\n                <Button type=\"primary\" htmlType=\"submit\" loading={submitLoading} className={styles.submitBtn} block>\r\n                  {submitLoading ? 'Đang nộp...' : 'Nộp hồ sơ xét tuyển'}\r\n                </Button>\r\n              </Form>\r\n            </Card>\r\n          )}\r\n\r\n          {/* HISTORY */}\r\n          {tab === 'history' && (\r\n            <Card className={styles.card}\r\n              title={<span className={styles.cardTitle}>📁 Lịch sử nộp hồ sơ</span>}\r\n              extra={<Button type=\"primary\" icon={<PlusOutlined />} className={styles.addBtn} onClick={() => setTab('apply')}>Nộp thêm</Button>}\r\n            >\r\n              {loading ? <div className={styles.center}><Spin /></div> : (\r\n                <Table dataSource={apps} columns={columns} rowKey=\"id\" className={styles.table}\r\n                  pagination={{ pageSize: 8, showTotal: t => `Tổng ${t} hồ sơ` }}\r\n                  locale={{ emptyText: <Empty description={<span className={styles.muted}>Chưa có hồ sơ</span>} /> }}\r\n                />\r\n              )}\r\n            </Card>\r\n          )}\r\n\r\n          {/* PROFILE */}\r\n          {tab === 'profile' && (\r\n            <Card className={styles.card} title={<span className={styles.cardTitle}>👤 Hồ sơ cá nhân</span>}>\r\n              <div className={styles.profileTop}>\r\n                <Avatar size={80} icon={<UserOutlined />} className={styles.profileAvatar} />\r\n                <div>\r\n                  <h2 className={styles.profileName}>{user.fullName || 'Sinh viên'}</h2>\r\n                  <p className={styles.profileId}>MSSV: {user.studentId || '---'}</p>\r\n                  <Tag color=\"purple\">Thí sinh</Tag>\r\n                </div>\r\n              </div>\r\n              <Divider className={styles.divider} />\r\n              <Row gutter={[20, 16]}>\r\n                {[\r\n                  { label: 'Họ và tên', val: user.fullName || '---' },\r\n                  { label: 'Email',     val: user.email    || '---' },\r\n                  { label: 'MSSV',      val: user.studentId || '---' },\r\n                  { label: 'SĐT',       val: user.phone    || '---' },\r\n                ].map(f => (\r\n                  <Col xs={24} md={12} key={f.label}>\r\n                    <div className={styles.profileField}>\r\n                      <span className={styles.fieldLabel}>{f.label}</span>\r\n                      <span className={styles.fieldVal}>{f.val}</span>\r\n                    </div>\r\n                  </Col>\r\n                ))}\r\n              </Row>\r\n              <Divider className={styles.divider} />\r\n              <Row gutter={[16, 16]}>\r\n                {[\r\n                  { label: 'Tổng hồ sơ',  val: apps.length, cls: '' },\r\n                  { label: 'Đã duyệt',    val: approved,    cls: styles.green },\r\n                  { label: 'Đang xử lý',  val: pending,     cls: styles.yellow },\r\n                  { label: 'Từ chối',     val: rejected,    cls: styles.red },\r\n                ].map(s => (\r\n                  <Col xs={12} md={6} key={s.label}>\r\n                    <div className={styles.pStat}>\r\n                      <span className={`${styles.pNum} ${s.cls}`}>{s.val}</span>\r\n                      <span className={styles.pLabel}>{s.label}</span>\r\n                    </div>\r\n                  </Col>\r\n                ))}\r\n              </Row>\r\n            </Card>\r\n          )}\r\n        </Content>\r\n      </Layout>\r\n    </Layout>\r\n  );\r\n}",
+      "__isJSFile": true,
+      "__absFile": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/pages/dashboard/index.tsx"
     },
     "@@/global-layout": {
       "id": "@@/global-layout",
       "path": "/",
-      "file": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/layouts/index.tsx",
+      "file": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/layouts/index.tsx",
       "absPath": "/",
       "isLayout": true,
-      "__absFile": "C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/layouts/index.tsx"
+      "__absFile": "C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/layouts/index.tsx"
     }
   },
   "apiRoutes": {},
   "hasSrcDir": true,
-  "npmClient": "cnpm",
+  "npmClient": "npm",
   "umi": {
     "version": "4.6.55",
     "name": "Umi",
@@ -2023,21 +2092,21 @@
   },
   "react": {
     "version": "18.3.1",
-    "path": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react"
+    "path": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react"
   },
   "react-dom": {
     "version": "18.3.1",
-    "path": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-dom"
+    "path": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\node_modules\\react-dom"
   },
   "appJS": {
-    "path": "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\src\\app.tsx",
+    "path": "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\src\\app.tsx",
     "exports": [
       "rootContainer"
     ]
   },
   "locale": "en-US",
   "globalCSS": [
-    "C:\\web_ts_dai_hoc\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\src\\global.less"
+    "C:\\Users\\huy\\RIPT1307-04-2026-Nh-m12-KTHP\\frontend\\src\\global.less"
   ],
   "globalJS": [],
   "overridesCSS": [],
@@ -2053,5 +2122,5 @@
   "faviconFiles": [],
   "port": 8000,
   "host": "0.0.0.0",
-  "ip": "192.168.65.1"
+  "ip": "192.168.1.19"
 }

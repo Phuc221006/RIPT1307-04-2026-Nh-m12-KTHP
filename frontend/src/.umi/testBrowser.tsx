@@ -3,14 +3,14 @@
 // DO NOT CHANGE IT MANUALLY!
 import React, { useEffect, useState } from 'react';
 import { ApplyPluginsType } from 'umi';
-import { renderClient, RenderClientOpts } from 'C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/renderer-react';
+import { renderClient, RenderClientOpts } from 'C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/node_modules/@umijs/renderer-react';
 import { createHistory } from './core/history';
 import { createPluginManager } from './core/plugin';
 import { getRoutes } from './core/route';
 import type { Location } from 'history';
 
 
-import 'C:/web_ts_dai_hoc/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/global.less';
+import 'C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/global.less';
 const publicPath = '/';
 const runtimePublicPath = false;
 
