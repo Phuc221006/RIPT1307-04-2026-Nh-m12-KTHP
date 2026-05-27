@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { Form, Input, Button, message, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { history } from 'umi';
+import { useNavigate } from 'react-router-dom';
 import { login, setToken } from '../../services/api';
 import styles from './index.less';
 
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
-
+  const navigate = useNavigate();
   const onFinish = async (values: any) => {
     setLoading(true);
     try {
@@ -19,7 +19,7 @@ export default function LoginPage() {
           localStorage.setItem('user', JSON.stringify(res.data.user));
         }
         message.success('Đăng nhập thành công!');
-        history.push('/dashboard');
+        navigate('/dashboard');
       } else {
         message.error(res.message || 'Email hoặc mật khẩu không đúng.');
       }
@@ -90,7 +90,7 @@ export default function LoginPage() {
 
         <div className={styles.footer}>
           <span>Chưa có tài khoản?</span>
-          <a onClick={() => history.push('/register')} className={styles.registerLink}> Đăng ký ngay</a>
+          <a onClick={() => navigate('/register')} className={styles.registerLink}> Đăng ký ngay</a>
         </div>
       </div>
     </div>

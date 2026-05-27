@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form, Input, Button, message, Steps, Select } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined, IdcardOutlined } from '@ant-design/icons';
-import { history } from 'umi';
+import { useNavigate } from 'react-router-dom';
 import { register } from '../../services/api';
 import styles from './index.less';
 
@@ -17,7 +17,7 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [form] = Form.useForm();
-
+  const navigate = useNavigate();
   const onFinish = async (values: any) => {
     setLoading(true);
     try {
@@ -30,7 +30,7 @@ export default function RegisterPage() {
       });
       if (res.status === 'success') {
         message.success('Đăng ký thành công! Vui lòng đăng nhập.');
-        history.push('/login');
+        navigate('/login');
       } else {
         message.error(res.message || 'Đăng ký thất bại.');
       }
@@ -157,7 +157,7 @@ export default function RegisterPage() {
 
         <div className={styles.footer}>
           <span>Đã có tài khoản?</span>
-          <a onClick={() => history.push('/login')} className={styles.loginLink}> Đăng nhập</a>
+          <a onClick={() => navigate('/login')} className={styles.loginLink}> Đăng nhập</a>
         </div>
       </div>
     </div>

@@ -8,10 +8,10 @@ import {
   CheckCircleOutlined, ClockCircleOutlined, CloseCircleOutlined,
   BellOutlined, HomeOutlined, PlusOutlined, FileDoneOutlined,
 } from '@ant-design/icons';
-import { history } from 'umi';
+import {useNavigate} from 'react-router-dom';
 import { submitApplication, getMyApplications, uploadDocument, removeToken } from '../../services/api';
 import styles from './index.less';
-
+const navigate = useNavigate();
 const { Sider, Content, Header } = Layout;
 const { Option } = Select;
 
@@ -165,7 +165,7 @@ export default function DashboardPage() {
 
         <div className={styles.logout}>
           <Button icon={<LogoutOutlined />} block className={styles.logoutBtn}
-            onClick={() => { removeToken(); history.push('/login'); }}>
+            onClick={() => { removeToken(); navigate('/login'); }}>
             Đăng xuất
           </Button>
         </div>
