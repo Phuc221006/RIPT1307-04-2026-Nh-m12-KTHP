@@ -11,7 +11,6 @@ import {
 import {useNavigate} from 'react-router-dom';
 import { submitApplication, getMyApplications, uploadDocument, removeToken } from '../../services/api';
 import styles from './index.less';
-const navigate = useNavigate();
 const { Sider, Content, Header } = Layout;
 const { Option } = Select;
 
@@ -33,6 +32,7 @@ const MOCK_DATA = [
 ];
 
 export default function DashboardPage() {
+  const navigate = useNavigate();
   const [tab, setTab] = useState('overview');
   const [apps, setApps] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);

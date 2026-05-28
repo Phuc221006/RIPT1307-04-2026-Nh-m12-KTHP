@@ -85,6 +85,7 @@
   padding: 28px 32px;
   min-height: calc(100vh - 64px);
   background: #0d0d1a;
+  width: calc(100% - 240px);
 }
 
 /* BANNER */
@@ -123,6 +124,7 @@
   background: rgba(255,255,255,0.03) !important;
   border: 1px solid rgba(255,255,255,0.08) !important;
   border-radius: 16px !important;
+  margin:0;
 }
 .card :global(.ant-card-head) {
   background: transparent; border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -243,3 +245,6 @@
 .red    { color: #f87171 !important; }
 
 .center { display: flex; justify-content: center; padding: 40px; }
+.content > * {
+  width: 100%;
+}
