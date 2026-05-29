@@ -1,22 +1,22 @@
-const BASE_URL = 'http://localhost:3000/api/v1';
+const BASE_URL = "http://localhost:5000/api/v1";
 
 function getToken() {
-  return localStorage.getItem('token');
+  return localStorage.getItem("token");
 }
 
 export function setToken(token: string) {
-  localStorage.setItem('token', token);
+  localStorage.setItem("token", token);
 }
 
 export function removeToken() {
-  localStorage.removeItem('token');
-  localStorage.removeItem('user');
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
 }
 
 export async function login(email: string, password: string) {
   const res = await fetch(`${BASE_URL}/auth/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
   });
   return res.json();
@@ -37,22 +37,22 @@ export async function register(data: {
   // 2. Gộp mã sinh viên vừa tự sinh vào dữ liệu, đè lên giá trị trống từ giao diện truyền vào
   const finalData = {
     ...data,
-    studentId: autoStudentId
+    studentId: autoStudentId,
   };
 
   // 3. Gửi cục dữ liệu đã có sẵn mã sinh viên ẩn lên cho Backend
   const res = await fetch(`${BASE_URL}/auth/register`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(finalData),
   });
   return res.json();
 }
 export async function submitApplication(data: any) {
   const res = await fetch(`${BASE_URL}/applications`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `Bearer ${getToken()}`,
     },
     body: JSON.stringify(data),
@@ -69,9 +69,9 @@ export async function getMyApplications() {
 
 export async function uploadDocument(file: File) {
   const formData = new FormData();
-  formData.append('file', file);
+  formData.append("file", file);
   const res = await fetch(`${BASE_URL}/uploads/documents`, {
-    method: 'POST',
+    method: "POST",
     headers: { Authorization: `Bearer ${getToken()}` },
     body: formData,
   });

@@ -7,4 +7,7 @@ const router = Router();
 // Phải đăng nhập mới được nộp hồ sơ
 router.post("/", authenticate, ApplicationController.create);
 
+// THÊM DÒNG NÀY: Mở cửa cho Frontend lấy lịch sử hồ sơ
+router.get("/me", authenticate, ApplicationController.getMyApplications);
+
 export default router;

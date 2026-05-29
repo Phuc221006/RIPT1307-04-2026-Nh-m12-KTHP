@@ -12,7 +12,7 @@ export async function getRoutes() {
 '2': React.lazy(() => import(/* webpackChunkName: "p__login__index" */'@/pages/login/index.tsx')),
 '3': React.lazy(() => import(/* webpackChunkName: "p__register__index" */'@/pages/register/index.tsx')),
 '4': React.lazy(() => import(/* webpackChunkName: "p__dashboard__index" */'@/pages/dashboard/index.tsx')),
-'@@/global-layout': React.lazy(() => import(/* webpackChunkName: "layouts__index" */'C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/layouts/index.tsx')),
+'@@/global-layout': React.lazy(() => import(/* webpackChunkName: "layouts__index" */'C:/Users/Kien-PC/OneDrive/Desktop/Dự Án LTW_2026/HTQLTS_2026_2/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/layouts/index.tsx')),
 },
   };
 }
