@@ -1,13 +1,17 @@
 import { Router } from "express";
 import ApplicationController from "../controllers/application_controller.js";
-import { authenticate } from "../middlewares/auth_middleware.js";
+import { updateStatus } from "../controllers/status_controller.js";
+import { authenticate, authorize } from "../middlewares/auth_middleware.js";
 
 const router = Router();
 
-// Phải đăng nhập mới được nộp hồ sơ
+// API tạo hồ sơ (Yêu cầu đăng nhập)
 router.post("/", authenticate, ApplicationController.create);
 
-// THÊM DÒNG NÀY: Mở cửa cho Frontend lấy lịch sử hồ sơ
+// API của Kiên: Mở cửa cho Frontend lấy lịch sử hồ sơ
 router.get("/me", authenticate, ApplicationController.getMyApplications);
+
+// API của Trường: Admin duyệt/cập nhật trạng thái hồ sơ
+router.patch("/:id/status", authenticate, authorize("ADMIN"), updateStatus);
 
 export default router;

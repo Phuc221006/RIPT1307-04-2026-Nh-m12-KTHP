@@ -3,11 +3,12 @@ import ApplicationService from "../services/application_services.js";
 import { AuthenticatedRequest } from "../middlewares/auth_middleware.js";
 
 class ApplicationController {
-  async create(
+  // Code của Trường: Dùng arrow function cho hàm create
+  create = async (
     req: AuthenticatedRequest,
     res: Response,
     next: NextFunction,
-  ): Promise<void> {
+  ): Promise<void> => {
     try {
       const userId = req.user!.id;
 
@@ -24,9 +25,9 @@ class ApplicationController {
     } catch (error: any) {
       res.status(400).json({ status: "error", message: error.message });
     }
-  }
+  }; // Đóng ngoặc chuẩn theo code của Trường
 
-  // THÊM HÀM NÀY: Xử lý luồng lấy danh sách hồ sơ của thí sinh
+  // Code của Kiên: Thêm luồng lấy danh sách hồ sơ
   async getMyApplications(
     req: AuthenticatedRequest,
     res: Response,
