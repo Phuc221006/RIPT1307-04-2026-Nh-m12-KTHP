@@ -1,10 +1,15 @@
 import { useState } from 'react';
+<<<<<<< HEAD
 import { Form, Input, Button, message, Steps, Select } from 'antd';
+=======
+import { Form, Input, Button, message, Steps } from 'antd';
+>>>>>>> origin/suadashboard
 import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined, IdcardOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../services/api';
 import styles from './index.less';
 
+<<<<<<< HEAD
 const { Option } = Select;
 
 const MAJORS = [
@@ -13,11 +18,17 @@ const MAJORS = [
   'Kỹ thuật điện tử', 'Quản trị kinh doanh', 'Kế toán', 'Marketing',
 ];
 
+=======
+>>>>>>> origin/suadashboard
 export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [form] = Form.useForm();
   const navigate = useNavigate();
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/suadashboard
   const onFinish = async (values: any) => {
     setLoading(true);
     try {
@@ -25,7 +36,11 @@ export default function RegisterPage() {
         fullName: values.fullName,
         email: values.email,
         password: values.password,
+<<<<<<< HEAD
         studentId: values.studentId,
+=======
+        dateOfBirth: values.dateOfBirth,
+>>>>>>> origin/suadashboard
         phone: values.phone,
       });
       if (res.status === 'success') {
@@ -43,7 +58,11 @@ export default function RegisterPage() {
 
   const nextStep = async () => {
     try {
+<<<<<<< HEAD
       if (currentStep === 0) await form.validateFields(['fullName', 'studentId', 'major']);
+=======
+      if (currentStep === 0) await form.validateFields(['fullName', 'dateOfBirth']);
+>>>>>>> origin/suadashboard
       if (currentStep === 1) await form.validateFields(['email', 'phone']);
       setCurrentStep((s) => s + 1);
     } catch {}
@@ -93,11 +112,16 @@ export default function RegisterPage() {
             <Form.Item name="fullName" label="Họ và tên" rules={[{ required: true, message: 'Vui lòng nhập họ tên!' }]}>
               <Input prefix={<UserOutlined className={styles.inputIcon} />} placeholder="Nguyễn Văn A" className={styles.input} />
             </Form.Item>
+<<<<<<< HEAD
             
             <Form.Item name="major" label="Ngành đăng ký" rules={[{ required: true, message: 'Vui lòng chọn ngành!' }]}>
               <Select placeholder="Chọn ngành học" className={styles.select}>
                 {MAJORS.map((m) => <Option key={m} value={m}>{m}</Option>)}
               </Select>
+=======
+            <Form.Item name="dateOfBirth" label="Ngày sinh" rules={[{ required: true, message: 'Vui lòng nhập ngày sinh!' }]}>
+              <Input prefix={<IdcardOutlined className={styles.inputIcon} />} placeholder="VD: 01/01/2000" className={styles.input} />
+>>>>>>> origin/suadashboard
             </Form.Item>
           </div>
 

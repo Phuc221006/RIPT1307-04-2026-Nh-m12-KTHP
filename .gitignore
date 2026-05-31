@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+node_modules
+dist
+=======
+>>>>>>> origin/suadashboard
 node_modules/
 frontend/node_modules/
 backend/node_modules/
@@ -5,4 +12,8 @@ frontend/src/.umi
 frontend/src/.umi-production
 dist/
 uploads/
+<<<<<<< HEAD
+=======
+>>>>>>> e0afa8c399fefd4c52a64ba1b011a0ed66a046bf
+>>>>>>> origin/suadashboard
 .env

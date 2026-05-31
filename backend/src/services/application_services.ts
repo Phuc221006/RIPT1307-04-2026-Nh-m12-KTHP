@@ -6,7 +6,7 @@ import crypto from "crypto";
 import { sendStatusEmail } from "./email_service.js";
 
 class ApplicationService {
-  // 1. Luồng nộp hồ sơ 
+  // 1. Luồng nộp hồ sơ
   async submitApplication(userId: string, data: any) {
     return await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const application = await tx.applications.create({
