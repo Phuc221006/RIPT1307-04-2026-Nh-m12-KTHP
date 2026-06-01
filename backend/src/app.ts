@@ -22,10 +22,7 @@ app.get("/health", (req: Request, res: Response) => {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/uploads", uploadRoutes);
 app.use("/api/v1/applications", applicationRoutes);
-<<<<<<< HEAD
 app.use("/api/v1/education", educationRoutes); // <--- Dòng thêm mới
-=======
->>>>>>> origin/suadashboard
 
 // Middleware xử lý lỗi (Bắt buộc phải nằm cuối cùng)
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {

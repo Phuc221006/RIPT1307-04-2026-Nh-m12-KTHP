@@ -1,30 +1,23 @@
-<<<<<<< HEAD
 import { useState } from "react";
 import { Form, Input, Button, message, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { login, setToken } from "../../services/api";
 import styles from "./index.less";
-=======
-import { useState } from 'react';
-import { Form, Input, Button, message, Checkbox } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
-import { login, setToken } from '../../services/api';
-import styles from './index.less';
->>>>>>> origin/suadashboard
 
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
   const navigate = useNavigate();
+
   const onFinish = async (values: any) => {
     setLoading(true);
     try {
       const res = await login(values.email, values.password);
-<<<<<<< HEAD
       if (res.status === "success") {
-        setToken(res.data.accessToken); // <-- Sửa đúng tên biến Backend trả về
+        // GIỮ NGUYÊN BẢN VÁ CỦA BẠN: Phải là accessToken mới khớp Backend
+        setToken(res.data.accessToken);
+
         if (res.data.user) {
           localStorage.setItem("user", JSON.stringify(res.data.user));
         }
@@ -35,20 +28,6 @@ export default function LoginPage() {
       }
     } catch {
       message.error("Không thể kết nối đến máy chủ.");
-=======
-      if (res.status === 'success') {
-        setToken(res.data.token);
-        if (res.data.user) {
-          localStorage.setItem('user', JSON.stringify(res.data.user));
-        }
-        message.success('Đăng nhập thành công!');
-        navigate('/dashboard');
-      } else {
-        message.error(res.message || 'Email hoặc mật khẩu không đúng.');
-      }
-    } catch {
-      message.error('Không thể kết nối đến máy chủ.');
->>>>>>> origin/suadashboard
     } finally {
       setLoading(false);
     }
@@ -66,7 +45,6 @@ export default function LoginPage() {
       <div className={styles.card}>
         <div className={styles.logoArea}>
           <div className={styles.logoIcon}>
-<<<<<<< HEAD
             <svg
               viewBox="0 0 48 48"
               fill="none"
@@ -97,15 +75,6 @@ export default function LoginPage() {
                 >
                   <stop stopColor="#667eea" />
                   <stop offset="1" stopColor="#764ba2" />
-=======
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="48" height="48" rx="14" fill="url(#g1)" />
-              <path d="M14 34L24 14L34 34" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M17.5 27.5H30.5" stroke="white" strokeWidth="3" strokeLinecap="round" />
-              <defs>
-                <linearGradient id="g1" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#667eea" /><stop offset="1" stopColor="#764ba2" />
->>>>>>> origin/suadashboard
                 </linearGradient>
               </defs>
             </svg>
@@ -118,7 +87,6 @@ export default function LoginPage() {
 
         <div className={styles.header}>
           <h1 className={styles.title}>Chào mừng trở lại</h1>
-<<<<<<< HEAD
           <p className={styles.subtitle}>
             Đăng nhập để tiếp tục hành trình của bạn
           </p>
@@ -154,21 +122,6 @@ export default function LoginPage() {
               placeholder="Mật khẩu"
               className={styles.input}
             />
-=======
-          <p className={styles.subtitle}>Đăng nhập để tiếp tục hành trình của bạn</p>
-        </div>
-
-        <Form form={form} onFinish={onFinish} layout="vertical" size="large" className={styles.form}>
-          <Form.Item name="email" rules={[
-            { required: true, message: 'Vui lòng nhập email!' },
-            { type: 'email', message: 'Email không hợp lệ!' },
-          ]}>
-            <Input prefix={<UserOutlined className={styles.inputIcon} />} placeholder="Địa chỉ email" className={styles.input} />
-          </Form.Item>
-
-          <Form.Item name="password" rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}>
-            <Input.Password prefix={<LockOutlined className={styles.inputIcon} />} placeholder="Mật khẩu" className={styles.input} />
->>>>>>> origin/suadashboard
           </Form.Item>
 
           <div className={styles.formOptions}>
@@ -177,7 +130,6 @@ export default function LoginPage() {
           </div>
 
           <Form.Item style={{ marginTop: 16 }}>
-<<<<<<< HEAD
             <Button
               type="primary"
               htmlType="submit"
@@ -186,17 +138,12 @@ export default function LoginPage() {
               block
             >
               {loading ? "Đang đăng nhập..." : "Đăng nhập"}
-=======
-            <Button type="primary" htmlType="submit" loading={loading} className={styles.submitBtn} block>
-              {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
->>>>>>> origin/suadashboard
             </Button>
           </Form.Item>
         </Form>
 
         <div className={styles.footer}>
           <span>Chưa có tài khoản?</span>
-<<<<<<< HEAD
           <a
             onClick={() => navigate("/register")}
             className={styles.registerLink}
@@ -204,15 +151,8 @@ export default function LoginPage() {
             {" "}
             Đăng ký ngay
           </a>
-=======
-          <a onClick={() => navigate('/register')} className={styles.registerLink}> Đăng ký ngay</a>
->>>>>>> origin/suadashboard
         </div>
       </div>
     </div>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/suadashboard

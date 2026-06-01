@@ -3,15 +3,7 @@ import ApplicationService from "../services/application_services.js";
 import { AuthenticatedRequest } from "../middlewares/auth_middleware.js";
 
 class ApplicationController {
-<<<<<<< HEAD
-  // Code của Trường: Dùng arrow function cho hàm create
-  create = async (
-    req: AuthenticatedRequest,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> => {
-    try {
-=======
+  // Luồng nộp hồ sơ
   async create(
     req: AuthenticatedRequest,
     res: Response,
@@ -19,7 +11,6 @@ class ApplicationController {
   ): Promise<void> {
     try {
       // Lấy ID của thí sinh từ Token (đã được middleware authenticate nhúng vào)
->>>>>>> origin/suadashboard
       const userId = req.user!.id;
 
       const result = await ApplicationService.submitApplication(
@@ -35,10 +26,9 @@ class ApplicationController {
     } catch (error: any) {
       res.status(400).json({ status: "error", message: error.message });
     }
-<<<<<<< HEAD
-  }; // Đóng ngoặc chuẩn theo code của Trường
+  }
 
-  // Code của Kiên: Thêm luồng lấy danh sách hồ sơ
+  // Luồng lấy danh sách hồ sơ của thí sinh
   async getMyApplications(
     req: AuthenticatedRequest,
     res: Response,
@@ -58,8 +48,6 @@ class ApplicationController {
     } catch (error: any) {
       res.status(400).json({ status: "error", message: error.message });
     }
-=======
->>>>>>> origin/suadashboard
   }
 }
 

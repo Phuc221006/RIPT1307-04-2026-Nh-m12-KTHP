@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -36,8 +36,7 @@ export default function Dashboard() {
     id: localStorage.getItem("studentId") || "TS000",
     major: localStorage.getItem("userMajor") || "Công nghệ thông tin",
     createdAt:
-      localStorage.getItem("createdAt") ||
-      new Date().toLocaleString("vi-VN"),
+      localStorage.getItem("createdAt") || new Date().toLocaleString("vi-VN"),
 
     status:
       submissions.length > 0
@@ -68,10 +67,7 @@ export default function Dashboard() {
 
     setSubmissions(updated);
 
-    localStorage.setItem(
-      "submissions",
-      JSON.stringify(updated)
-    );
+    localStorage.setItem("submissions", JSON.stringify(updated));
 
     setForm({
       type: "",
@@ -85,11 +81,9 @@ export default function Dashboard() {
   const getBadgeClass = (status: string) => {
     if (status.includes("Chờ")) return "badge pending";
 
-    if (status.includes("Duyệt"))
-      return "badge approved";
+    if (status.includes("Duyệt")) return "badge approved";
 
-    if (status.includes("Từ chối"))
-      return "badge rejected";
+    if (status.includes("Từ chối")) return "badge rejected";
 
     return "badge";
   };
@@ -99,9 +93,7 @@ export default function Dashboard() {
       <Sidebar active={active} setActive={setActive} />
 
       <div className="dashboard-content">
-        <h1 className="header-title">
-          HỆ THỐNG QUẢN LÝ HỒ SƠ THÍ SINH
-        </h1>
+        <h1 className="header-title">HỆ THỐNG QUẢN LÝ HỒ SƠ THÍ SINH</h1>
 
         {/* ================= HOME ================= */}
         {active === "home" && (
@@ -147,9 +139,7 @@ export default function Dashboard() {
               <h2>Thông báo mới</h2>
 
               {submissions.length === 0 ? (
-                <p className="gray-text">
-                  Bạn chưa nộp hồ sơ nào.
-                </p>
+                <p className="gray-text">Bạn chưa nộp hồ sơ nào.</p>
               ) : (
                 <div
                   style={{
@@ -163,15 +153,7 @@ export default function Dashboard() {
                       background: "#f3f4f6",
                     }}
                   >
-                    <b>
-                      Hồ sơ "
-                      {
-                        submissions[
-                          submissions.length - 1
-                        ].type
-                      }
-                      "
-                    </b>
+                    <b>Hồ sơ "{submissions[submissions.length - 1].type}"</b>
 
                     <p
                       style={{
@@ -184,16 +166,10 @@ export default function Dashboard() {
 
                     <span
                       className={getBadgeClass(
-                        submissions[
-                          submissions.length - 1
-                        ].status
+                        submissions[submissions.length - 1].status,
                       )}
                     >
-                      {
-                        submissions[
-                          submissions.length - 1
-                        ].status
-                      }
+                      {submissions[submissions.length - 1].status}
                     </span>
                   </div>
                 </div>
@@ -247,11 +223,7 @@ export default function Dashboard() {
                 marginTop: 25,
               }}
             >
-              <span
-                className={getBadgeClass(user.status)}
-              >
-                {user.status}
-              </span>
+              <span className={getBadgeClass(user.status)}>{user.status}</span>
 
               <p
                 style={{
@@ -259,8 +231,7 @@ export default function Dashboard() {
                   color: "#6b7280",
                 }}
               >
-                Admin sẽ xét duyệt hồ sơ và cập nhật
-                trạng thái tại đây.
+                Admin sẽ xét duyệt hồ sơ và cập nhật trạng thái tại đây.
               </p>
             </div>
           </div>
@@ -296,9 +267,7 @@ export default function Dashboard() {
                 }
               />
 
-              <button onClick={handleSubmit}>
-                Nộp hồ sơ
-              </button>
+              <button onClick={handleSubmit}>Nộp hồ sơ</button>
             </div>
 
             {/* BẢNG */}
@@ -327,29 +296,23 @@ export default function Dashboard() {
                   </thead>
 
                   <tbody>
-                    {submissions.map(
-                      (item, index) => (
-                        <tr key={item.id}>
-                          <td>{index + 1}</td>
+                    {submissions.map((item, index) => (
+                      <tr key={item.id}>
+                        <td>{index + 1}</td>
 
-                          <td>{item.date}</td>
+                        <td>{item.date}</td>
 
-                          <td>{item.type}</td>
+                        <td>{item.type}</td>
 
-                          <td>
-                            <span
-                              className={getBadgeClass(
-                                item.status
-                              )}
-                            >
-                              {item.status}
-                            </span>
-                          </td>
+                        <td>
+                          <span className={getBadgeClass(item.status)}>
+                            {item.status}
+                          </span>
+                        </td>
 
-                          <td>{item.note}</td>
-                        </tr>
-                      )
-                    )}
+                        <td>{item.note}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               )}
