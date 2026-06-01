@@ -840,7 +840,11 @@ export default function DashboardPage() {
                     {user.fullName || "Sinh viên"}
                   </h2>
                   <p className={styles.profileId}>{user.email || "---"}</p>
-                  <Tag color="purple">Thí sinh</Tag>
+                  {user.role === "ADMIN" ? (
+                    <Tag color="red">Quản trị viên</Tag>
+                  ) : (
+                    <Tag color="purple">Thí sinh</Tag>
+                  )}
                 </div>
               </div>
               <Divider className={styles.divider} />

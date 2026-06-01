@@ -26,12 +26,12 @@ export async function register(data: {
   fullName: string;
   email: string;
   password: string;
-  studentId: string; // Giữ nguyên định nghĩa kiểu dữ liệu để tránh lỗi compile ở giao diện
+  studentId: string;
   phone: string;
 }) {
-  // 1. Tự sinh mã sinh viên ngẫu nhiên (Ví dụ: SV20264859)
-  const year = new Date().getFullYear(); // Lấy năm hiện tại
-  const randomNumber = Math.floor(1000 + Math.random() * 9000); // Sinh 4 số ngẫu nhiên từ 1000 đến 9999
+  // 1. Tự sinh mã sinh viên ngẫu nhiên
+  const year = new Date().getFullYear();
+  const randomNumber = Math.floor(1000 + Math.random() * 9000);
   const autoStudentId = `SV${year}${randomNumber}`;
 
   // 2. Gộp mã sinh viên vừa tự sinh vào dữ liệu, đè lên giá trị trống từ giao diện truyền vào
