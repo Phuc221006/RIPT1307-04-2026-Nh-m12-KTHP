@@ -4,7 +4,7 @@
 import React from 'react';
 
 export async function getRoutes() {
-  const routes = {"1":{"path":"/","redirect":"/login","parentId":"@@/global-layout","id":"1"},"2":{"path":"/login","parentId":"@@/global-layout","id":"2"},"3":{"path":"/register","parentId":"@@/global-layout","id":"3"},"4":{"path":"/dashboard","parentId":"@@/global-layout","id":"4"},"@@/global-layout":{"id":"@@/global-layout","path":"/","isLayout":true}} as const;
+  const routes = {"1":{"path":"/","redirect":"/login","parentId":"@@/global-layout","id":"1"},"2":{"path":"/login","parentId":"@@/global-layout","id":"2"},"3":{"path":"/register","parentId":"@@/global-layout","id":"3"},"4":{"path":"/dashboard","parentId":"@@/global-layout","id":"4"},"5":{"path":"/admin/thong-ke","layout":false,"id":"5"},"6":{"path":"/admin/ho-so","layout":false,"id":"6"},"7":{"path":"/admin/danh-muc","layout":false,"id":"7"},"@@/global-layout":{"id":"@@/global-layout","path":"/","isLayout":true}} as const;
   return {
     routes,
     routeComponents: {
@@ -12,6 +12,9 @@ export async function getRoutes() {
 '2': React.lazy(() => import(/* webpackChunkName: "p__login__index" */'@/pages/login/index.tsx')),
 '3': React.lazy(() => import(/* webpackChunkName: "p__register__index" */'@/pages/register/index.tsx')),
 '4': React.lazy(() => import(/* webpackChunkName: "p__dashboard__index" */'@/pages/dashboard/index.tsx')),
+'5': React.lazy(() => import(/* webpackChunkName: "p__admin__thong-ke__index" */'@/pages/admin/thong-ke/index.tsx')),
+'6': React.lazy(() => import(/* webpackChunkName: "p__admin__ho-so__index" */'@/pages/admin/ho-so/index.tsx')),
+'7': React.lazy(() => import(/* webpackChunkName: "p__admin__danh-muc__index" */'@/pages/admin/danh-muc/index.tsx')),
 '@@/global-layout': React.lazy(() => import(/* webpackChunkName: "layouts__index" */'C:/Users/huy/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/layouts/index.tsx')),
 },
   };

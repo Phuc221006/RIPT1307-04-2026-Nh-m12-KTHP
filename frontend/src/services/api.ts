@@ -1,5 +1,5 @@
 const BASE_URL = 'http://localhost:3000/api/v1';
-
+const ADMIN_URL = 'http://localhost:3000/api/admin'
 function getToken() {
   return localStorage.getItem('token');
 }
@@ -59,7 +59,34 @@ export async function submitApplication(data: any) {
   });
   return res.json();
 }
+const getAdminToken = () => localStorage.getItem('token');
 
+export async function getAdminStatistics() {
+  const res = await fetch(`${BASE_URL}/admin/statistics`, {
+    headers: { Authorization: `Bearer ${getAdminToken()}` },
+  });
+  return res.json();
+}
+
+export async function getAdminApplications(params: any = {}) {
+  const query = new URLSearchParams(params).toString();
+  const res = await fetch(`${BASE_URL}/admin/applications?${query}`, {
+    headers: { Authorization: `Bearer ${getAdminToken()}` },
+  });
+  return res.json();
+}
+
+export async function updateApplicationStatus(id: string, status: string) {
+  const res = await fetch(`${BASE_URL}/admin/applications/${id}/status`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getAdminToken()}`,
+    },
+    body: JSON.stringify({ status }),
+  });
+  return res.json();
+}
 export async function getMyApplications() {
   const res = await fetch(`${BASE_URL}/applications/me`, {
     headers: { Authorization: `Bearer ${getToken()}` },
@@ -75,5 +102,28 @@ export async function uploadDocument(file: File) {
     headers: { Authorization: `Bearer ${getToken()}` },
     body: formData,
   });
+  return res.json();
+}
+export async function getUniversities() {
+  const res = await fetch(
+    `${BASE_URL}/admin/universities`
+  );
+
+  return res.json();
+}
+
+export async function getMajors() {
+  const res = await fetch(
+    `${BASE_URL}/admin/majors`
+  );
+
+  return res.json();
+}
+
+export async function getCombinations() {
+  const res = await fetch(
+    `${BASE_URL}/admin/combinations`
+  );
+
   return res.json();
 }

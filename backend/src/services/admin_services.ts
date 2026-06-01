@@ -50,7 +50,32 @@ class AdminService {
 
     return { data, total, page, limit };
   }
+    async getUniversities() {
+  return await prisma.universities.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+}
 
+async getMajors() {
+  return await prisma.majors.findMany({
+    include: {
+      universities: true,
+    },
+    orderBy: {
+      name: "asc",
+    },
+  });
+}
+
+async getCombinations() {
+  return await prisma.subject_combinations.findMany({
+    include: {
+      majors: true,
+    },
+  });
+}
   async updateApplicationStatus(id: string, status: string) {
     return await prisma.applications.update({
       where: { id },

@@ -25,9 +25,9 @@ export default function AdminLayout({ children, title }: Props) {
   })();
 
   const menuItems = [
-    { key: '/admin/thongke', icon: <BarChartOutlined />, label: 'Thống kê' },
-    { key: '/admin/danhmuc', icon: <AppstoreOutlined />, label: 'Quản lý Danh mục' },
-    { key: '/admin/hoso',    icon: <FileTextOutlined />, label: 'Quản lý Hồ sơ' },
+    { key: '/admin/thong-ke', icon: <BarChartOutlined />, label: 'Thống kê' },
+    { key: '/admin/danh-muc', icon: <AppstoreOutlined />, label: 'Quản lý Danh mục' },
+    { key: '/admin/ho-so',    icon: <FileTextOutlined />, label: 'Quản lý Hồ sơ' },
   ];
 
   return (

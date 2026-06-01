@@ -9,17 +9,22 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
   const navigate = useNavigate();
+
   const onFinish = async (values: any) => {
     setLoading(true);
     try {
       const res = await login(values.email, values.password);
       if (res.status === 'success') {
-        setToken(res.data.token);
+        setToken(res.data.accessToken || res.data.token);
         if (res.data.user) {
           localStorage.setItem('user', JSON.stringify(res.data.user));
         }
         message.success('Đăng nhập thành công!');
-        navigate('/dashboard');
+        if (res.data.user?.role === 'ADMIN') {
+          window.location.href = '/admin/thong-ke';
+        } else {
+          window.location.href = '/dashboard';
+        }
       } else {
         message.error(res.message || 'Email hoặc mật khẩu không đúng.');
       }

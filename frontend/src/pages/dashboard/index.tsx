@@ -7,29 +7,47 @@ import {
   UserOutlined, FileTextOutlined, UploadOutlined, LogoutOutlined,
   CheckCircleOutlined, ClockCircleOutlined, CloseCircleOutlined,
   BellOutlined, HomeOutlined, PlusOutlined, FileDoneOutlined,
+  InboxOutlined,
 } from '@ant-design/icons';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { submitApplication, getMyApplications, uploadDocument, removeToken } from '../../services/api';
 import styles from './index.less';
+
 const { Sider, Content, Header } = Layout;
 const { Option } = Select;
+const { Dragger } = Upload;
 
-const MAJORS = [
+const TRUONG = [
+  'Đại học Bách Khoa Hà Nội', 'Đại học Quốc gia Hà Nội', 'Đại học Kinh tế Quốc dân',
+  'Đại học Ngoại thương', 'Đại học Y Hà Nội', 'Đại học Bách Khoa TP.HCM',
+  'Đại học Quốc gia TP.HCM', 'Đại học Cần Thơ', 'Đại học Đà Nẵng',
+];
+
+const NGANH = [
   'Công nghệ thông tin', 'Kỹ thuật phần mềm', 'Khoa học máy tính',
   'An toàn thông tin', 'Hệ thống thông tin', 'Trí tuệ nhân tạo',
   'Kỹ thuật điện tử', 'Quản trị kinh doanh', 'Kế toán', 'Marketing',
+  'Y đa khoa', 'Dược học', 'Luật', 'Ngôn ngữ Anh',
+];
+
+const TO_HOP = [
+  'A00 (Toán, Lý, Hóa)', 'A01 (Toán, Lý, Anh)', 'B00 (Toán, Hóa, Sinh)',
+  'C00 (Văn, Sử, Địa)', 'D01 (Toán, Văn, Anh)', 'D07 (Toán, Hóa, Anh)',
+];
+
+const DOI_TUONG = [
+  'Không có ưu tiên', 'Ưu tiên 1 (Khu vực 1)', 'Ưu tiên 2 (Khu vực 2)',
+  'Ưu tiên 3 (Khu vực 3)', 'Đối tượng ưu tiên 1', 'Đối tượng ưu tiên 2',
 ];
 
 const STATUS: Record<string, { color: string; icon: any; label: string }> = {
-  pending:  { color: 'warning', icon: <ClockCircleOutlined />,  label: 'Đang xử lý' },
-  approved: { color: 'success', icon: <CheckCircleOutlined />,  label: 'Đã duyệt' },
-  rejected: { color: 'error',   icon: <CloseCircleOutlined />,  label: 'Từ chối' },
+  pending:  { color: 'warning', icon: <ClockCircleOutlined />, label: 'Chờ duyệt' },
+  PENDING:  { color: 'warning', icon: <ClockCircleOutlined />, label: 'Chờ duyệt' },
+  approved: { color: 'success', icon: <CheckCircleOutlined />, label: 'Đã duyệt' },
+  APPROVED: { color: 'success', icon: <CheckCircleOutlined />, label: 'Đã duyệt' },
+  rejected: { color: 'error',   icon: <CloseCircleOutlined />, label: 'Từ chối' },
+  REJECTED: { color: 'error',   icon: <CloseCircleOutlined />, label: 'Từ chối' },
 };
-
-const MOCK_DATA = [
-  { id: 1, major: 'Công nghệ thông tin', createdAt: '2024-03-15', status: 'approved', documentUrl: '' },
-  { id: 2, major: 'Kỹ thuật phần mềm',  createdAt: '2024-03-20', status: 'pending',  documentUrl: '' },
-];
 
 export default function DashboardPage() {
   const navigate = useNavigate();
@@ -37,7 +55,7 @@ export default function DashboardPage() {
   const [apps, setApps] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
-  const [uploadedFile, setUploadedFile] = useState<any>(null);
+  const [uploadedFiles, setUploadedFiles] = useState<any[]>([]);
   const [uploadLoading, setUploadLoading] = useState(false);
   const [form] = Form.useForm();
 
@@ -50,9 +68,9 @@ export default function DashboardPage() {
     try {
       const res = await getMyApplications();
       if (res.status === 'success') setApps(res.data || []);
-      else setApps(MOCK_DATA);
+      else setApps([]);
     } catch {
-      setApps(MOCK_DATA);
+      setApps([]);
     } finally {
       setLoading(false);
     }
@@ -65,9 +83,17 @@ export default function DashboardPage() {
     try {
       const res = await uploadDocument(file);
       if (res.status === 'success') {
-        setUploadedFile(res.data);
-        message.success('Tải file lên thành công!');
-      } else message.error(res.message || 'Tải file thất bại.');
+        setUploadedFiles(prev => [...prev, {
+          originalName: res.data.originalName,
+          fileUrl: res.data.fileUrl,
+          mimeType: file.type,
+          fileSize: file.size,
+          fileType: file.type.includes('pdf') ? 'PDF' : 'IMAGE',
+        }]);
+        message.success(`Tải lên "${file.name}" thành công!`);
+      } else {
+        message.error(res.message || 'Tải file thất bại.');
+      }
     } catch {
       message.error('Lỗi kết nối.');
     } finally {
@@ -77,14 +103,40 @@ export default function DashboardPage() {
   };
 
   const handleSubmit = async (values: any) => {
-    if (!uploadedFile) { message.warning('Vui lòng tải lên hồ sơ!'); return; }
+    if (uploadedFiles.length === 0) {
+      message.warning('Vui lòng tải lên ít nhất 1 minh chứng!');
+      return;
+    }
     setSubmitLoading(true);
     try {
-      const res = await submitApplication({ ...values, documentUrl: uploadedFile.fileUrl });
+      const totalScore =
+        parseFloat(values.score1 || 0) +
+        parseFloat(values.score2 || 0) +
+        parseFloat(values.score3 || 0);
+
+      const res = await submitApplication({
+        universityId: values.university,
+        majorId: values.major,
+        combinationId: values.combination,
+        roundId: values.priority,
+        scoreSubject1: parseFloat(values.score1),
+        scoreSubject2: parseFloat(values.score2),
+        scoreSubject3: parseFloat(values.score3),
+        totalScore: totalScore,
+        priorityObject: values.priorityType || 'Không có ưu tiên',
+        priorityScore: 0,
+        files: uploadedFiles,
+      });
+
       if (res.status === 'success') {
         message.success('Nộp hồ sơ thành công!');
-        form.resetFields(); setUploadedFile(null); fetchApps(); setTab('history');
-      } else message.error(res.message || 'Nộp hồ sơ thất bại.');
+        form.resetFields();
+        setUploadedFiles([]);
+        fetchApps();
+        setTab('history');
+      } else {
+        message.error(res.message || 'Nộp hồ sơ thất bại.');
+      }
     } catch {
       message.error('Lỗi kết nối.');
     } finally {
@@ -92,13 +144,14 @@ export default function DashboardPage() {
     }
   };
 
-  const approved = apps.filter(a => a.status === 'approved').length;
-  const pending  = apps.filter(a => a.status === 'pending').length;
-  const rejected = apps.filter(a => a.status === 'rejected').length;
+  const approved = apps.filter(a => a.status === 'approved' || a.status === 'APPROVED').length;
+  const pending  = apps.filter(a => a.status === 'pending'  || a.status === 'PENDING').length;
+  const rejected = apps.filter(a => a.status === 'rejected' || a.status === 'REJECTED').length;
 
   const columns = [
     { title: 'STT', width: 60, render: (_: any, __: any, i: number) => <span className={styles.muted}>{i + 1}</span> },
-    { title: 'Ngành đăng ký', dataIndex: 'major', render: (v: string) => <strong style={{ color: '#fff' }}>{v}</strong> },
+    { title: 'Trường', dataIndex: 'universityId', render: (v: string) => <span style={{ color: '#fff' }}>{v || '---'}</span> },
+    { title: 'Ngành đăng ký', dataIndex: 'majorId', render: (v: string) => <strong style={{ color: '#fff' }}>{v}</strong> },
     {
       title: 'Ngày nộp', dataIndex: 'createdAt',
       render: (v: string) => <span className={styles.muted}>{new Date(v).toLocaleDateString('vi-VN')}</span>,
@@ -106,14 +159,14 @@ export default function DashboardPage() {
     {
       title: 'Trạng thái', dataIndex: 'status',
       render: (s: string) => {
-        const c = STATUS[s] || STATUS.pending;
+        const c = STATUS[s] || STATUS.PENDING;
         return <Tag icon={c.icon} color={c.color}>{c.label}</Tag>;
       },
     },
     {
-      title: 'Hồ sơ', dataIndex: 'documentUrl',
-      render: (url: string) => url
-        ? <a href={`http://localhost:3000${url}`} target="_blank" rel="noreferrer" className={styles.link}>Xem ↗</a>
+      title: 'Hồ sơ', dataIndex: 'applicationFiles',
+      render: (files: any[]) => files && files.length > 0
+        ? <a href={`http://localhost:3000${files[0].fileUrl}`} target="_blank" rel="noreferrer" className={styles.link}>Xem ↗</a>
         : <span className={styles.muted}>—</span>,
     },
   ];
@@ -146,7 +199,7 @@ export default function DashboardPage() {
           <Avatar size={40} icon={<UserOutlined />} className={styles.avatar} />
           <div>
             <div className={styles.userName}>{user.fullName || 'Sinh viên'}</div>
-            <div className={styles.userId}>MSSV: {user.studentId || '---'}</div>
+            <div className={styles.userId}>{user.email || '---'}</div>
           </div>
         </div>
 
@@ -203,7 +256,7 @@ export default function DashboardPage() {
                 {[
                   { label: 'Tổng hồ sơ', val: apps.length, icon: <FileDoneOutlined />, color: '#fff' },
                   { label: 'Đã duyệt',   val: approved,    icon: <CheckCircleOutlined />, color: '#4ade80' },
-                  { label: 'Đang xử lý', val: pending,     icon: <ClockCircleOutlined />, color: '#fbbf24' },
+                  { label: 'Chờ duyệt',  val: pending,     icon: <ClockCircleOutlined />, color: '#fbbf24' },
                   { label: 'Từ chối',    val: rejected,    icon: <CloseCircleOutlined />, color: '#f87171' },
                 ].map((s) => (
                   <Col xs={24} sm={12} lg={6} key={s.label}>
@@ -218,7 +271,7 @@ export default function DashboardPage() {
               <Card className={styles.card} title={<span className={styles.cardTitle}>Hồ sơ gần đây</span>}>
                 {loading ? <div className={styles.center}><Spin /></div> : (
                   <Table dataSource={apps.slice(0, 3)} columns={columns} pagination={false} rowKey="id" className={styles.table}
-                    locale={{ emptyText: <Empty description={<span className={styles.muted}>Chưa có hồ sơ</span>} /> }} />
+                    locale={{ emptyText: <Empty description={<span className={styles.muted}>Chưa có hồ sơ. Hãy nộp hồ sơ đầu tiên!</span>} /> }} />
                 )}
               </Card>
             </>
@@ -228,11 +281,30 @@ export default function DashboardPage() {
           {tab === 'apply' && (
             <Card className={styles.card} title={<span className={styles.cardTitle}>📋 Nộp hồ sơ xét tuyển</span>}>
               <Form form={form} layout="vertical" onFinish={handleSubmit} className={styles.applyForm}>
+
+                <div className={styles.sectionTitle}>🏫 Thông tin xét tuyển</div>
                 <Row gutter={24}>
                   <Col xs={24} md={12}>
+                    <Form.Item name="university" label="Trường đăng ký" rules={[{ required: true, message: 'Vui lòng chọn trường!' }]}>
+                      <Select placeholder="Chọn trường đại học" className={styles.formSelect} showSearch>
+                        {TRUONG.map(t => <Option key={t} value={t}>{t}</Option>)}
+                      </Select>
+                    </Form.Item>
+                  </Col>
+                  <Col xs={24} md={12}>
                     <Form.Item name="major" label="Ngành đăng ký" rules={[{ required: true, message: 'Vui lòng chọn ngành!' }]}>
-                      <Select placeholder="Chọn ngành học" className={styles.formSelect}>
-                        {MAJORS.map(m => <Option key={m} value={m}>{m}</Option>)}
+                      <Select placeholder="Chọn ngành học" className={styles.formSelect} showSearch>
+                        {NGANH.map(n => <Option key={n} value={n}>{n}</Option>)}
+                      </Select>
+                    </Form.Item>
+                  </Col>
+                </Row>
+
+                <Row gutter={24}>
+                  <Col xs={24} md={12}>
+                    <Form.Item name="combination" label="Tổ hợp xét tuyển" rules={[{ required: true, message: 'Vui lòng chọn tổ hợp!' }]}>
+                      <Select placeholder="Chọn tổ hợp môn" className={styles.formSelect}>
+                        {TO_HOP.map(t => <Option key={t} value={t}>{t}</Option>)}
                       </Select>
                     </Form.Item>
                   </Col>
@@ -246,27 +318,84 @@ export default function DashboardPage() {
                     </Form.Item>
                   </Col>
                 </Row>
-                <Form.Item name="gpa" label="Điểm trung bình (GPA)">
-                  <Input placeholder="VD: 8.5" className={styles.formInput} />
-                </Form.Item>
+
+                <div className={styles.sectionTitle}>📊 Thông tin điểm thi</div>
+                <Row gutter={24}>
+                  <Col xs={24} md={8}>
+                    <Form.Item name="score1" label="Điểm môn 1" rules={[{ required: true, message: 'Nhập điểm!' }]}>
+                      <Input placeholder="VD: 8.5" className={styles.formInput} type="number" min={0} max={10} step={0.1} />
+                    </Form.Item>
+                  </Col>
+                  <Col xs={24} md={8}>
+                    <Form.Item name="score2" label="Điểm môn 2" rules={[{ required: true, message: 'Nhập điểm!' }]}>
+                      <Input placeholder="VD: 7.0" className={styles.formInput} type="number" min={0} max={10} step={0.1} />
+                    </Form.Item>
+                  </Col>
+                  <Col xs={24} md={8}>
+                    <Form.Item name="score3" label="Điểm môn 3" rules={[{ required: true, message: 'Nhập điểm!' }]}>
+                      <Input placeholder="VD: 9.0" className={styles.formInput} type="number" min={0} max={10} step={0.1} />
+                    </Form.Item>
+                  </Col>
+                </Row>
+
+                <Row gutter={24}>
+                  <Col xs={24} md={12}>
+                    <Form.Item name="priorityType" label="Đối tượng ưu tiên">
+                      <Select placeholder="Chọn đối tượng ưu tiên" className={styles.formSelect}>
+                        {DOI_TUONG.map(d => <Option key={d} value={d}>{d}</Option>)}
+                      </Select>
+                    </Form.Item>
+                  </Col>
+                  <Col xs={24} md={12}>
+                    <Form.Item name="gpa" label="Điểm học bạ THPT (GPA)">
+                      <Input placeholder="VD: 8.5" className={styles.formInput} />
+                    </Form.Item>
+                  </Col>
+                </Row>
+
                 <Form.Item name="note" label="Ghi chú thêm">
-                  <Input.TextArea rows={3} placeholder="Thông tin bổ sung (nếu có)..." className={styles.formInput} />
+                  <Input.TextArea rows={2} placeholder="Thông tin bổ sung (nếu có)..." className={styles.formInput} />
                 </Form.Item>
-                <Form.Item label="Tải lên hồ sơ (PDF/DOC)" required>
-                  <Upload accept=".pdf,.doc,.docx" beforeUpload={handleUpload} showUploadList={false} maxCount={1}>
-                    <Button icon={<UploadOutlined />} className={styles.uploadBtn} loading={uploadLoading}>
-                      {uploadedFile ? `✓ ${uploadedFile.originalName}` : 'Chọn file hồ sơ'}
-                    </Button>
-                  </Upload>
-                  {uploadedFile && (
-                    <div className={styles.uploadedInfo}>
-                      <CheckCircleOutlined style={{ color: '#4ade80' }} />
-                      <span>Đã tải: <strong>{uploadedFile.originalName}</strong></span>
-                    </div>
-                  )}
+
+                <div className={styles.sectionTitle}>📎 Tải lên minh chứng</div>
+                <p className={styles.uploadHint}>Chấp nhận: PDF, JPEG, PNG — Ảnh chụp học bạ, CCCD, chứng chỉ...</p>
+
+                <Form.Item>
+                  <Dragger
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    beforeUpload={handleUpload}
+                    showUploadList={false}
+                    multiple
+                    className={styles.dragger}
+                    disabled={uploadLoading}
+                  >
+                    <p className="ant-upload-drag-icon">
+                      <InboxOutlined style={{ color: '#667eea', fontSize: 40 }} />
+                    </p>
+                    <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 14 }}>
+                      Kéo thả file vào đây hoặc <span style={{ color: '#a78bfa' }}>click để chọn</span>
+                    </p>
+                    <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12 }}>
+                      PDF, JPEG, PNG — Học bạ, CCCD, minh chứng ưu tiên
+                    </p>
+                  </Dragger>
                 </Form.Item>
+
+                {uploadedFiles.length > 0 && (
+                  <div className={styles.fileList}>
+                    {uploadedFiles.map((f, i) => (
+                      <div key={i} className={styles.fileItem}>
+                        <CheckCircleOutlined style={{ color: '#4ade80' }} />
+                        <span style={{ flex: 1, color: 'rgba(255,255,255,0.7)', fontSize: 13 }}>{f.originalName}</span>
+                        <a href={`http://localhost:3000${f.fileUrl}`} target="_blank" rel="noreferrer" className={styles.link}>Xem</a>
+                        <span className={styles.removeFile} onClick={() => setUploadedFiles(prev => prev.filter((_, idx) => idx !== i))}>✕</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 <Button type="primary" htmlType="submit" loading={submitLoading} className={styles.submitBtn} block>
-                  {submitLoading ? 'Đang nộp...' : 'Nộp hồ sơ xét tuyển'}
+                  {submitLoading ? 'Đang gửi hồ sơ...' : '📤 Gửi hồ sơ đăng ký'}
                 </Button>
               </Form>
             </Card>
@@ -281,7 +410,7 @@ export default function DashboardPage() {
               {loading ? <div className={styles.center}><Spin /></div> : (
                 <Table dataSource={apps} columns={columns} rowKey="id" className={styles.table}
                   pagination={{ pageSize: 8, showTotal: t => `Tổng ${t} hồ sơ` }}
-                  locale={{ emptyText: <Empty description={<span className={styles.muted}>Chưa có hồ sơ</span>} /> }}
+                  locale={{ emptyText: <Empty description={<span className={styles.muted}>Chưa có hồ sơ nào</span>} /> }}
                 />
               )}
             </Card>
@@ -294,17 +423,17 @@ export default function DashboardPage() {
                 <Avatar size={80} icon={<UserOutlined />} className={styles.profileAvatar} />
                 <div>
                   <h2 className={styles.profileName}>{user.fullName || 'Sinh viên'}</h2>
-                  <p className={styles.profileId}>MSSV: {user.studentId || '---'}</p>
+                  <p className={styles.profileId}>{user.email || '---'}</p>
                   <Tag color="purple">Thí sinh</Tag>
                 </div>
               </div>
               <Divider className={styles.divider} />
               <Row gutter={[20, 16]}>
                 {[
-                  { label: 'Họ và tên', val: user.fullName || '---' },
-                  { label: 'Email',     val: user.email    || '---' },
-                  { label: 'MSSV',      val: user.studentId || '---' },
-                  { label: 'SĐT',       val: user.phone    || '---' },
+                  { label: 'Họ và tên',  val: user.fullName    || '---' },
+                  { label: 'Email',      val: user.email       || '---' },
+                  { label: 'SĐT',        val: user.phone       || '---' },
+                  { label: 'Ngày sinh',  val: user.dateOfBirth || '---' },
                 ].map(f => (
                   <Col xs={24} md={12} key={f.label}>
                     <div className={styles.profileField}>
@@ -317,10 +446,10 @@ export default function DashboardPage() {
               <Divider className={styles.divider} />
               <Row gutter={[16, 16]}>
                 {[
-                  { label: 'Tổng hồ sơ',  val: apps.length, cls: '' },
-                  { label: 'Đã duyệt',    val: approved,    cls: styles.green },
-                  { label: 'Đang xử lý',  val: pending,     cls: styles.yellow },
-                  { label: 'Từ chối',     val: rejected,    cls: styles.red },
+                  { label: 'Tổng hồ sơ', val: apps.length, cls: '' },
+                  { label: 'Đã duyệt',   val: approved,    cls: styles.green },
+                  { label: 'Chờ duyệt',  val: pending,     cls: styles.yellow },
+                  { label: 'Từ chối',    val: rejected,    cls: styles.red },
                 ].map(s => (
                   <Col xs={12} md={6} key={s.label}>
                     <div className={styles.pStat}>

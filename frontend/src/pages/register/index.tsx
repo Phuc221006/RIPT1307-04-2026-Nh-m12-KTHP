@@ -1,23 +1,16 @@
 import { useState } from 'react';
-import { Form, Input, Button, message, Steps, Select } from 'antd';
+import { Form, Input, Button, message, Steps } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined, IdcardOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../services/api';
 import styles from './index.less';
-
-const { Option } = Select;
-
-const MAJORS = [
-  'Công nghệ thông tin', 'Kỹ thuật phần mềm', 'Khoa học máy tính',
-  'An toàn thông tin', 'Hệ thống thông tin', 'Trí tuệ nhân tạo',
-  'Kỹ thuật điện tử', 'Quản trị kinh doanh', 'Kế toán', 'Marketing',
-];
 
 export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [form] = Form.useForm();
   const navigate = useNavigate();
+
   const onFinish = async (values: any) => {
     setLoading(true);
     try {
@@ -25,7 +18,7 @@ export default function RegisterPage() {
         fullName: values.fullName,
         email: values.email,
         password: values.password,
-        studentId: values.studentId,
+        dateOfBirth: values.dateOfBirth,
         phone: values.phone,
       });
       if (res.status === 'success') {
@@ -43,7 +36,7 @@ export default function RegisterPage() {
 
   const nextStep = async () => {
     try {
-      if (currentStep === 0) await form.validateFields(['fullName', 'studentId', 'major']);
+      if (currentStep === 0) await form.validateFields(['fullName', 'dateOfBirth']);
       if (currentStep === 1) await form.validateFields(['email', 'phone']);
       setCurrentStep((s) => s + 1);
     } catch {}
@@ -93,11 +86,8 @@ export default function RegisterPage() {
             <Form.Item name="fullName" label="Họ và tên" rules={[{ required: true, message: 'Vui lòng nhập họ tên!' }]}>
               <Input prefix={<UserOutlined className={styles.inputIcon} />} placeholder="Nguyễn Văn A" className={styles.input} />
             </Form.Item>
-            
-            <Form.Item name="major" label="Ngành đăng ký" rules={[{ required: true, message: 'Vui lòng chọn ngành!' }]}>
-              <Select placeholder="Chọn ngành học" className={styles.select}>
-                {MAJORS.map((m) => <Option key={m} value={m}>{m}</Option>)}
-              </Select>
+            <Form.Item name="dateOfBirth" label="Ngày sinh" rules={[{ required: true, message: 'Vui lòng nhập ngày sinh!' }]}>
+              <Input prefix={<IdcardOutlined className={styles.inputIcon} />} placeholder="VD: 01/01/2000" className={styles.input} />
             </Form.Item>
           </div>
 
