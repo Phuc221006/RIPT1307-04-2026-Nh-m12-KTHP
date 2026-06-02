@@ -25,9 +25,9 @@ export default function RegisterPage() {
         email: values.email,
         password: values.password,
         phone: values.phone,
-        studentId: "", // Để trống, file api.ts sẽ tự động sinh mã ngẫu nhiên!
+        studentId: "", // Giữ nguyên logic tự động sinh mã ngẫu nhiên của bạn!
         dateOfBirth: values.dateOfBirth,
-      } as any); // Ép kiểu để tránh TypeScript bắt bẻ vụ dateOfBirth
+      } as any);
 
       if (res.status === "success") {
         message.success("Đăng ký thành công! Vui lòng đăng nhập.");

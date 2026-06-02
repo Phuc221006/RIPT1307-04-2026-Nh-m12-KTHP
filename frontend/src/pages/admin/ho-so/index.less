@@ -1,0 +1,52 @@
+.page {}
+.pageHeader { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.pageTitle { font-size: 22px; font-weight: 700; color: #1a1a2e; margin: 0; }
+
+.filterCard {
+  border-radius: 12px !important;
+  border: 1px solid #f0f0f0 !important;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+}
+.filterLabel { display: block; font-size: 12px; font-weight: 600; color: #666; margin-bottom: 6px; }
+.filterInput { border-radius: 8px !important; }
+.searchBtn { border-radius: 8px !important; background: linear-gradient(135deg, #667eea, #764ba2) !important; border: none !important; margin-top: 18px; }
+
+.tableCard {
+  border-radius: 12px !important;
+  border: 1px solid #f0f0f0 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+}
+.table :global(.ant-table-thead > tr > th) {
+  background: #f8f9ff !important;
+  font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #666;
+}
+
+.code { font-family: monospace; font-weight: 600; color: #667eea; font-size: 13px; }
+.name { font-weight: 600; color: #1a1a2e; }
+.date { color: #888; font-size: 13px; }
+
+.viewBtn {
+  border-radius: 6px !important;
+  border-color: #667eea !important;
+  color: #667eea !important;
+  font-size: 12px;
+}
+
+.modal :global(.ant-modal-content) { border-radius: 16px; }
+.modalTitle { font-size: 16px; font-weight: 700; color: #1a1a2e; }
+.modalContent { padding: 8px 0; }
+.desc { border-radius: 8px; }
+
+.fileSection { margin-top: 16px; }
+.fileSection h4 { font-size: 13px; font-weight: 600; color: #333; margin-bottom: 8px; }
+.fileLink {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px; border-radius: 8px;
+  background: #f8f9ff; border: 1px solid #e8e8ff;
+  color: #667eea; font-size: 13px; margin-bottom: 6px;
+  &:hover { background: #ede9fe; }
+}
+
+.actionBtns { display: flex; gap: 12px; margin-top: 20px; justify-content: flex-end; }
+.approveBtn { background: linear-gradient(135deg, #4ade80, #22c55e) !important; border: none !important; border-radius: 8px !important; }

@@ -19,6 +19,8 @@ import {
   Divider,
   Empty,
   Spin,
+  Popover, // <-- Thêm Popover
+  List, // <-- Thêm List
 } from "antd";
 import {
   UserOutlined,
@@ -75,6 +77,7 @@ const TO_HOP = [
   { id: "B00", name: "B00 (Toán, Hóa, Sinh)" },
   { id: "D01", name: "D01 (Toán, Văn, Anh)" },
 ];
+
 const LOAI_GIAY_TO = [
   { id: "CCCD", name: "Căn cước công dân" },
   { id: "HOC_BA", name: "Học bạ THPT" },
@@ -217,7 +220,6 @@ export default function DashboardPage() {
     }
   };
 
-  // Hàm cập nhật loại file khi người dùng chọn Dropdown
   const handleFileTypeChange = (index: number, newType: string) => {
     setUploadedFiles((prev) => {
       const updatedFiles = [...prev];
@@ -277,7 +279,95 @@ export default function DashboardPage() {
         );
       },
     },
+    {
+      title: "Hồ sơ",
+      dataIndex: "application_files",
+      render: (_: any, record: any) => {
+        const files = record.application_files || record.applicationFiles;
+        return files && files.length > 0 ? (
+          <a
+            href={`http://localhost:5000${files[0].file_url || files[0].fileUrl}`}
+            target="_blank"
+            rel="noreferrer"
+            className={styles.link}
+          >
+            Xem ↗
+          </a>
+        ) : (
+          <span className={styles.muted}>—</span>
+        );
+      },
+    },
   ];
+
+  // ==========================================
+  // KHỐI GIAO DIỆN THÔNG BÁO (NOTIFICATION)
+  // ==========================================
+  const notificationContent = (
+    <div style={{ width: 320, maxHeight: 400, overflowY: "auto" }}>
+      {apps.length === 0 ? (
+        <Empty
+          description="Bạn chưa có thông báo nào"
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+        />
+      ) : (
+        <List
+          itemLayout="horizontal"
+          dataSource={apps}
+          renderItem={(app) => {
+            let statusText = "";
+            let color = "";
+            if (app.status === "APPROVED" || app.status === "approved") {
+              statusText = "đã được duyệt thành công";
+              color = "#4ade80"; // Xanh lá
+            } else if (app.status === "REJECTED" || app.status === "rejected") {
+              statusText = "đã bị từ chối";
+              color = "#f87171"; // Đỏ
+            } else {
+              statusText = "đang trong quá trình chờ duyệt";
+              color = "#fbbf24"; // Vàng
+            }
+
+            return (
+              <List.Item
+                style={{
+                  padding: "12px 16px",
+                  cursor: "pointer",
+                  borderBottom: "1px solid #f0f0f0",
+                }}
+              >
+                <List.Item.Meta
+                  avatar={
+                    <BellOutlined
+                      style={{ color, fontSize: 18, marginTop: 4 }}
+                    />
+                  }
+                  title={
+                    <span
+                      style={{
+                        fontSize: 14,
+                        fontWeight: 600,
+                        color: "#1f2937",
+                      }}
+                    >
+                      Cập nhật hồ sơ
+                    </span>
+                  }
+                  description={
+                    <span style={{ fontSize: 13, color: "#4b5563" }}>
+                      Hồ sơ xét tuyển vào ngành{" "}
+                      <strong>{app.major_id || app.majorId}</strong> của bạn{" "}
+                      {statusText}.
+                    </span>
+                  }
+                />
+              </List.Item>
+            );
+          }}
+        />
+      )}
+    </div>
+  );
 
   return (
     <Layout className={styles.layout}>
@@ -377,9 +467,24 @@ export default function DashboardPage() {
             }
           </span>
           <div className={styles.headerRight}>
-            <Badge count={pending} size="small">
-              <Button icon={<BellOutlined />} className={styles.iconBtn} />
-            </Badge>
+            {/* TÍCH HỢP POPOVER VÀO NÚT CHUÔNG */}
+            <Popover
+              placement="bottomRight"
+              title={
+                <span style={{ fontWeight: "bold" }}>🔔 Thông báo của bạn</span>
+              }
+              content={notificationContent}
+              trigger="click"
+            >
+              <Badge
+                count={apps.length}
+                size="small"
+                style={{ cursor: "pointer" }}
+              >
+                <Button icon={<BellOutlined />} className={styles.iconBtn} />
+              </Badge>
+            </Popover>
+
             <Avatar icon={<UserOutlined />} className={styles.avatar} />
           </div>
         </Header>

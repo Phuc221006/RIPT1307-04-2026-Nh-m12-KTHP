@@ -41,19 +41,29 @@ class AuthService {
   }
 
   async loginUser(data: any) {
-    const { email, password } = data;
+  const { email, password } = data;
 
-    // Tìm user trong bảng 'users'
-    const user = await prisma.users.findUnique({ where: { email } });
-    if (!user) {
-      throw new Error("Tài khoản hoặc mật khẩu không chính xác.");
-    }
+  const user = await prisma.users.findUnique({
+    where: { email },
+  });
 
-    // So sánh mật khẩu
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      throw new Error("Tài khoản hoặc mật khẩu không chính xác.");
-    }
+  console.log("========== LOGIN ==========");
+  console.log("EMAIL:", email);
+  console.log("USER FOUND:", user);
+
+  if (!user) {
+    throw new Error("Không tìm thấy tài khoản.");
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  console.log("PASSWORD INPUT:", password);
+  console.log("PASSWORD DB:", user.password);
+  console.log("MATCH:", isMatch);
+
+  if (!isMatch) {
+    throw new Error("Sai mật khẩu.");
+  }
 
     /// 3. Ký phát Token JWT
     const secretKey: Secret = process.env.JWT_SECRET || "fallback_secret_key";

@@ -14,15 +14,23 @@ export default function LoginPage() {
     setLoading(true);
     try {
       const res = await login(values.email, values.password);
+
       if (res.status === "success") {
-        // GIỮ NGUYÊN BẢN VÁ CỦA BẠN: Phải là accessToken mới khớp Backend
-        setToken(res.data.accessToken);
+        // Lấy token (hỗ trợ cả 2 chuẩn trả về để không bị lỗi)
+        setToken(res.data.accessToken || res.data.token);
 
         if (res.data.user) {
           localStorage.setItem("user", JSON.stringify(res.data.user));
         }
+
         message.success("Đăng nhập thành công!");
-        navigate("/dashboard");
+
+        // Logic phân luồng: Admin đi đường Admin, Thí sinh đi đường Thí sinh
+        if (res.data.user?.role === "ADMIN") {
+          navigate("/admin/thong-ke");
+        } else {
+          navigate("/dashboard");
+        }
       } else {
         message.error(res.message || "Email hoặc mật khẩu không đúng.");
       }
