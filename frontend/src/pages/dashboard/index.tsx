@@ -20,7 +20,7 @@ import {
   Empty,
   Spin,
   Popover, // <-- Thêm Popover
-  List, // <-- Thêm List
+  List,    // <-- Thêm List
 } from "antd";
 import {
   UserOutlined,
@@ -329,35 +329,13 @@ export default function DashboardPage() {
             }
 
             return (
-              <List.Item
-                style={{
-                  padding: "12px 16px",
-                  cursor: "pointer",
-                  borderBottom: "1px solid #f0f0f0",
-                }}
-              >
+              <List.Item style={{ padding: "12px 16px", cursor: "pointer", borderBottom: "1px solid #f0f0f0" }}>
                 <List.Item.Meta
-                  avatar={
-                    <BellOutlined
-                      style={{ color, fontSize: 18, marginTop: 4 }}
-                    />
-                  }
-                  title={
-                    <span
-                      style={{
-                        fontSize: 14,
-                        fontWeight: 600,
-                        color: "#1f2937",
-                      }}
-                    >
-                      Cập nhật hồ sơ
-                    </span>
-                  }
+                  avatar={<BellOutlined style={{ color, fontSize: 18, marginTop: 4 }} />}
+                  title={<span style={{ fontSize: 14, fontWeight: 600, color: '#1f2937' }}>Cập nhật hồ sơ</span>}
                   description={
-                    <span style={{ fontSize: 13, color: "#4b5563" }}>
-                      Hồ sơ xét tuyển vào ngành{" "}
-                      <strong>{app.major_id || app.majorId}</strong> của bạn{" "}
-                      {statusText}.
+                    <span style={{ fontSize: 13, color: '#4b5563' }}>
+                      Hồ sơ xét tuyển vào ngành <strong>{app.major_id || app.majorId}</strong> của bạn {statusText}.
                     </span>
                   }
                 />
@@ -467,20 +445,15 @@ export default function DashboardPage() {
             }
           </span>
           <div className={styles.headerRight}>
+            
             {/* TÍCH HỢP POPOVER VÀO NÚT CHUÔNG */}
-            <Popover
-              placement="bottomRight"
-              title={
-                <span style={{ fontWeight: "bold" }}>🔔 Thông báo của bạn</span>
-              }
-              content={notificationContent}
+            <Popover 
+              placement="bottomRight" 
+              title={<span style={{ fontWeight: 'bold' }}>🔔 Thông báo của bạn</span>} 
+              content={notificationContent} 
               trigger="click"
             >
-              <Badge
-                count={apps.length}
-                size="small"
-                style={{ cursor: "pointer" }}
-              >
+              <Badge count={apps.length} size="small" style={{ cursor: 'pointer' }}>
                 <Button icon={<BellOutlined />} className={styles.iconBtn} />
               </Badge>
             </Popover>
