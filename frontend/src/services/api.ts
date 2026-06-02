@@ -13,11 +13,11 @@ export function removeToken() {
   localStorage.removeItem('user');
 }
 
-export async function login(email: string, password: string) {
+export async function login(email: string, password: string, role?: 'candidate' | 'admin') {
   const res = await fetch(`${BASE_URL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email, password, role: role || 'candidate' }),
   });
   return res.json();
 }
@@ -26,8 +26,10 @@ export async function register(data: {
   fullName: string;
   email: string;
   password: string;
-  studentId: string; // Giữ nguyên định nghĩa kiểu dữ liệu để tránh lỗi compile ở giao diện
   phone: string;
+  studentId?: string;
+  major?: string;
+  dob?: string;
 }) {
   // 1. Tự sinh mã sinh viên ngẫu nhiên (Ví dụ: SV20264859)
   const year = new Date().getFullYear(); // Lấy năm hiện tại
