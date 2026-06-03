@@ -49,6 +49,26 @@ class ApplicationController {
       res.status(400).json({ status: "error", message: error.message });
     }
   }
+
+  async getStats(req: any, res: Response, next: NextFunction): Promise<void> {
+    try {
+      // Lấy userId từ middleware authenticate nhúng vào
+      const userId = req.user!.id;
+
+      // Gọi sang Service đếm số lượng hồ sơ
+      const stats = await ApplicationService.getDashboardStats(userId);
+
+      res.status(200).json({
+        status: "success",
+        data: stats,
+      });
+    } catch (error: any) {
+      res.status(500).json({
+        status: "error",
+        message: error.message || "Lỗi khi lấy số liệu thống kê.",
+      });
+    }
+  }
 }
 
 export default new ApplicationController();

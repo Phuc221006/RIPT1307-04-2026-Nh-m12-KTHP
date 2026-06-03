@@ -39,6 +39,7 @@ class ApplicationService {
           file_url: file.fileUrl,
           mime_type: file.mimeType,
           file_size: file.fileSize,
+          file_type_enum: file.fileType || "OTHER",
         }));
         await tx.application_files.createMany({ data: fileData });
       } else if (data.documentUrl) {
@@ -73,18 +74,40 @@ class ApplicationService {
     const application = await prisma.applications.update({
       where: { id },
       data: { status: status as any },
-      // 2. ĐÃ MỞ KHÓA: Lấy thông tin user để lấy email.
-      // (Lưu ý: Nếu Prisma báo lỗi đỏ chữ 'users' ở đây, hãy thử đổi lại thành 'user')
       include: { users: true },
     });
 
-    // 3. ĐÃ MỞ KHÓA: Gọi hàm gửi mail nếu lấy được email của user
+    // Gọi hàm gửi mail nếu lấy được email của user
     if (application.users?.email) {
       await sendStatusEmail(application.users.email, status);
     }
 
     return application;
   }
-}
+
+  // 4. Hàm của Kiên: Lấy số liệu 4 ô thống kê Dashboard (ĐÃ ĐỒNG BỘ DB ĐỂ HẾT LỖI)
+  async getDashboardStats(userId: string) {
+    // Đã sửa thành applications và user_id cho đúng schema của ông
+    const [total, pending, approved, rejected] = await Promise.all([
+      prisma.applications.count({ where: { user_id: userId } }),
+      prisma.applications.count({
+        where: { user_id: userId, status: "PENDING" },
+      }),
+      prisma.applications.count({
+        where: { user_id: userId, status: "APPROVED" },
+      }),
+      prisma.applications.count({
+        where: { user_id: userId, status: "REJECTED" },
+      }),
+    ]);
+
+    return {
+      totalApplications: total,
+      pendingApplications: pending,
+      approvedApplications: approved,
+      rejectedApplications: rejected,
+    };
+  }
+} // <-- 🔹 ĐÃ THÊM: Dấu đóng ngoặc nhọn kết thúc Class ở đây
 
 export default new ApplicationService();
