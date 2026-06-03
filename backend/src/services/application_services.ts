@@ -1,46 +1,100 @@
-import prisma from "../configs/prisma.js";
 import { Prisma } from "@prisma/client";
+import prisma from "../configs/prisma.js";
 import crypto from "crypto";
 
 class ApplicationService {
   async submitApplication(userId: string, data: any) {
-    // Transaction giúp lưu nhiều bảng cùng lúc an toàn
-    return await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-      // 1. Tạo bản ghi hồ sơ chính
-      const application = await tx.applications.create({
-        data: {
-          id: crypto.randomUUID(),
-          user_id: userId,
-          university_id: data.universityId,
-          major_id: data.majorId,
-          combination_id: data.combinationId,
-          round_id: data.roundId,
-          score_subject_1: data.scoreSubject1,
-          score_subject_2: data.scoreSubject2,
-          score_subject_3: data.scoreSubject3,
-          total_score: data.totalScore,
-          priority_object: data.priorityObject,
-          priority_score: data.priorityScore,
-          status: "PENDING",
-        },
-      });
+    const {
+      universityId,
+      majorId,
+      combinationId,
+      roundId,
+      scoreSubject1,
+      scoreSubject2,
+      scoreSubject3,
+      totalScore,
+      priorityObject,
+      priorityScore,
+      gpa, // Bật lại GPA vì Database đã có cột gpa rồi!
+      note,
+      files,
+    } = data;
 
-      // 2. Lưu danh sách file đính kèm nếu có
-      if (data.files && data.files.length > 0) {
-        const fileData = data.files.map((file: any) => ({
-          application_id: application.id,
-          file_type: file.fileType,
-          original_name: file.originalName,
-          file_url: file.fileUrl,
-          mime_type: file.mimeType,
-          file_size: file.fileSize,
-        }));
+    const result = await prisma.$transaction(
+      async (tx: Prisma.TransactionClient) => {
+        // 1. KIỂM TRA TRÙNG LẶP: Chỉ chặn nếu nộp trùng cả Ngành, Tổ hợp và Nguyện vọng
+        const existingApp = await tx.applications.findFirst({
+          where: {
+            user_id: userId,
+            major_id: majorId,
+            combination_id: combinationId,
+            round_id: roundId,
+          },
+        });
 
-        await tx.application_files.createMany({ data: fileData });
-      }
+        if (existingApp) {
+          throw new Error(
+            "Bạn đã nộp một hồ sơ xét tuyển y hệt như thế này trước đó rồi.",
+          );
+        }
 
-      return application;
+        // 2. Tạo hồ sơ mới khớp hoàn toàn các tên cột trong Schema
+        const newApp = await tx.applications.create({
+          data: {
+            id: crypto.randomUUID(),
+            user_id: userId,
+            university_id: universityId,
+            major_id: majorId,
+            combination_id: combinationId,
+            round_id: roundId,
+            score_subject_1: parseFloat(scoreSubject1) || 0,
+            score_subject_2: parseFloat(scoreSubject2) || 0,
+            score_subject_3: parseFloat(scoreSubject3) || 0,
+            total_score: parseFloat(totalScore) || 0,
+            priority_object: priorityObject,
+            priority_score: parseFloat(priorityScore) || 0,
+            gpa: parseFloat(gpa) || 0, // Lưu gpa mượt mà
+            notes: note || "",
+            status: "PENDING",
+          },
+        });
+
+        // 3. Lưu mảng file minh chứng
+        if (files && files.length > 0) {
+          const fileRecords = files.map((file: any) => ({
+            id: crypto.randomUUID(),
+            application_id: newApp.id,
+            file_url: file.fileUrl,
+            file_type: file.fileType || "OTHER", // Khớp với enum CCCD, HOC_BA, GIAY_UU_TIEN, OTHER
+            original_name: file.originalName || "unnamed_file", // Thêm trường bắt buộc của schema
+            mime_type: file.mimeType || "application/octet-stream", // Thêm trường bắt buộc của schema
+            file_size: parseInt(file.fileSize) || 0, // Thêm trường bắt buộc của schema
+          }));
+
+          await tx.application_files.createMany({
+            data: fileRecords,
+          });
+        }
+
+        return newApp;
+      },
+    );
+
+    return result;
+  }
+
+  async getMyApplications(userId: string) {
+    const applications = await prisma.applications.findMany({
+      where: { user_id: userId },
+      include: {
+        application_files: true,
+      },
+      orderBy: {
+        created_at: "desc",
+      },
     });
+
+    return applications;
   }
 }
 
