@@ -19,13 +19,12 @@ import {
   Divider,
   Empty,
   Spin,
-  Popover, // <-- Thêm Popover
-  List, // <-- Thêm List
+  Popover,
+  List,
 } from "antd";
 import {
   UserOutlined,
   FileTextOutlined,
-  UploadOutlined,
   LogoutOutlined,
   CheckCircleOutlined,
   ClockCircleOutlined,
@@ -42,41 +41,16 @@ import {
   getMyApplications,
   uploadDocument,
   removeToken,
+  getUniversities,
+  getMajors,
+  getCombinations,
+  getDashboardStats,
 } from "../../services/api";
 import styles from "./index.less";
 
 const { Sider, Content, Header } = Layout;
 const { Option } = Select;
 const { Dragger } = Upload;
-
-const TRUONG = [
-  { id: "UNI_PTIT", name: "Học viện Công nghệ Bưu chính Viễn thông" },
-  { id: "UNI_GTVT", name: "Đại học Giao thông Vận tải" },
-  { id: "UNI_KT", name: "Đại học Kiến Trúc" },
-  { id: "UNI_XD", name: "Đại học Xây dựng" },
-  { id: "UNI_QGHN", name: "Đại học Quốc gia Hà Nội" },
-  { id: "UNI_NEU", name: "Đại học Kinh tế Quốc dân" },
-  { id: "UNI_FTU", name: "Đại học Ngoại thương" },
-  { id: "UNI_YHN", name: "Đại học Y Hà Nội" },
-  { id: "UNI_BKHCM", name: "Đại học Bách Khoa TP.HCM" },
-  { id: "UNI_BKHN", name: "Đại học Bách Khoa Hà Nội" },
-];
-
-const NGANH = [
-  { id: "MAJ_IT", name: "Công nghệ thông tin" },
-  { id: "MAJ_SE", name: "Kỹ thuật phần mềm" },
-  { id: "MAJ_CS", name: "Khoa học máy tính" },
-  { id: "MAJ_IS", name: "An toàn thông tin" },
-  { id: "MAJ_BA", name: "Quản trị kinh doanh" },
-  { id: "MAJ_MKT", name: "Marketing" },
-];
-
-const TO_HOP = [
-  { id: "A00", name: "A00 (Toán, Lý, Hóa)" },
-  { id: "A01", name: "A01 (Toán, Lý, Anh)" },
-  { id: "B00", name: "B00 (Toán, Hóa, Sinh)" },
-  { id: "D01", name: "D01 (Toán, Văn, Anh)" },
-];
 
 const LOAI_GIAY_TO = [
   { id: "CCCD", name: "Căn cước công dân" },
@@ -126,6 +100,16 @@ export default function DashboardPage() {
   const [uploadLoading, setUploadLoading] = useState(false);
   const [form] = Form.useForm();
 
+  const [stats, setStats] = useState<any>({
+    totalApplications: 0,
+    pendingApplications: 0,
+    approvedApplications: 0,
+    rejectedApplications: 0,
+  });
+  const [universities, setUniversities] = useState<any[]>([]);
+  const [majors, setMajors] = useState<any[]>([]);
+  const [combinations, setCombinations] = useState<any[]>([]);
+
   const user = (() => {
     try {
       return JSON.parse(localStorage.getItem("user") || "{}");
@@ -147,8 +131,36 @@ export default function DashboardPage() {
     }
   };
 
+  const fetchStats = async () => {
+    try {
+      const res = await getDashboardStats();
+      if (res.status === "success") setStats(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const fetchEducationData = async () => {
+    try {
+      const [resUni, resMajor, resCombo] = await Promise.all([
+        getUniversities(),
+        getMajors(),
+        getCombinations(),
+      ]);
+      setUniversities(Array.isArray(resUni) ? resUni : resUni?.data || []);
+      setMajors(Array.isArray(resMajor) ? resMajor : resMajor?.data || []);
+      setCombinations(
+        Array.isArray(resCombo) ? resCombo : resCombo?.data || [],
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
     fetchApps();
+    fetchStats();
+    fetchEducationData();
   }, []);
 
   const handleUpload = async (file: File) => {
@@ -199,7 +211,7 @@ export default function DashboardPage() {
         scoreSubject2: parseFloat(values.score2),
         scoreSubject3: parseFloat(values.score3),
         totalScore: totalScore,
-        priorityObject: values.priorityType || "Không có ưu tiên",
+        priorityObject: values.priorityType || "NONE",
         priorityScore: 0,
         files: uploadedFiles,
       });
@@ -209,6 +221,7 @@ export default function DashboardPage() {
         form.resetFields();
         setUploadedFiles([]);
         fetchApps();
+        fetchStats();
         setTab("history");
       } else {
         message.error(res.message || "Nộp hồ sơ thất bại.");
@@ -228,16 +241,6 @@ export default function DashboardPage() {
     });
   };
 
-  const approved = apps.filter(
-    (a) => a.status === "approved" || a.status === "APPROVED",
-  ).length;
-  const pending = apps.filter(
-    (a) => a.status === "pending" || a.status === "PENDING",
-  ).length;
-  const rejected = apps.filter(
-    (a) => a.status === "rejected" || a.status === "REJECTED",
-  ).length;
-
   const columns = [
     {
       title: "STT",
@@ -249,14 +252,22 @@ export default function DashboardPage() {
     {
       title: "Trường",
       dataIndex: "university_id",
-      render: (v: string) => (
-        <span style={{ color: "#fff" }}>{v || "---"}</span>
-      ),
+      render: (v: string) => {
+        const item = universities.find((u) => u.id === v || u.code === v);
+        return (
+          <span style={{ color: "#fff" }}>{item ? item.name : v || "---"}</span>
+        );
+      },
     },
     {
       title: "Ngành đăng ký",
       dataIndex: "major_id",
-      render: (v: string) => <strong style={{ color: "#fff" }}>{v}</strong>,
+      render: (v: string) => {
+        const item = majors.find((m) => m.id === v || m.code === v);
+        return (
+          <strong style={{ color: "#fff" }}>{item ? item.name : v}</strong>
+        );
+      },
     },
     {
       title: "Ngày nộp",
@@ -300,9 +311,6 @@ export default function DashboardPage() {
     },
   ];
 
-  // ==========================================
-  // KHỐI GIAO DIỆN THÔNG BÁO (NOTIFICATION)
-  // ==========================================
   const notificationContent = (
     <div style={{ width: 320, maxHeight: 400, overflowY: "auto" }}>
       {apps.length === 0 ? (
@@ -319,13 +327,13 @@ export default function DashboardPage() {
             let color = "";
             if (app.status === "APPROVED" || app.status === "approved") {
               statusText = "đã được duyệt thành công";
-              color = "#4ade80"; // Xanh lá
+              color = "#4ade80";
             } else if (app.status === "REJECTED" || app.status === "rejected") {
               statusText = "đã bị từ chối";
-              color = "#f87171"; // Đỏ
+              color = "#f87171";
             } else {
               statusText = "đang trong quá trình chờ duyệt";
-              color = "#fbbf24"; // Vàng
+              color = "#fbbf24";
             }
 
             return (
@@ -388,6 +396,7 @@ export default function DashboardPage() {
                 stroke="white"
                 strokeWidth="2.5"
                 strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <defs>
                 <linearGradient
@@ -467,7 +476,6 @@ export default function DashboardPage() {
             }
           </span>
           <div className={styles.headerRight}>
-            {/* TÍCH HỢP POPOVER VÀO NÚT CHUÔNG */}
             <Popover
               placement="bottomRight"
               title={
@@ -484,7 +492,6 @@ export default function DashboardPage() {
                 <Button icon={<BellOutlined />} className={styles.iconBtn} />
               </Badge>
             </Popover>
-
             <Avatar icon={<UserOutlined />} className={styles.avatar} />
           </div>
         </Header>
@@ -516,25 +523,25 @@ export default function DashboardPage() {
                 {[
                   {
                     label: "Tổng hồ sơ",
-                    val: apps.length,
+                    val: stats.totalApplications || 0,
                     icon: <FileDoneOutlined />,
                     color: "#fff",
                   },
                   {
                     label: "Đã duyệt",
-                    val: approved,
+                    val: stats.approvedApplications || 0,
                     icon: <CheckCircleOutlined />,
                     color: "#4ade80",
                   },
                   {
                     label: "Chờ duyệt",
-                    val: pending,
+                    val: stats.pendingApplications || 0,
                     icon: <ClockCircleOutlined />,
                     color: "#fbbf24",
                   },
                   {
                     label: "Từ chối",
-                    val: rejected,
+                    val: stats.rejectedApplications || 0,
                     icon: <CloseCircleOutlined />,
                     color: "#f87171",
                   },
@@ -618,9 +625,14 @@ export default function DashboardPage() {
                         placeholder="Chọn trường đại học"
                         className={styles.formSelect}
                         showSearch
+                        filterOption={(input, option) =>
+                          ((option?.children as any) ?? "")
+                            .toLowerCase()
+                            .includes(input.toLowerCase())
+                        }
                       >
-                        {TRUONG.map((t) => (
-                          <Option key={t.id} value={t.id}>
+                        {universities.map((t) => (
+                          <Option key={t.id} value={t.id || t.code}>
                             {t.name}
                           </Option>
                         ))}
@@ -639,9 +651,14 @@ export default function DashboardPage() {
                         placeholder="Chọn ngành học"
                         className={styles.formSelect}
                         showSearch
+                        filterOption={(input, option) =>
+                          ((option?.children as any) ?? "")
+                            .toLowerCase()
+                            .includes(input.toLowerCase())
+                        }
                       >
-                        {NGANH.map((n) => (
-                          <Option key={n.id} value={n.id}>
+                        {majors.map((n) => (
+                          <Option key={n.id} value={n.id || n.code}>
                             {n.name}
                           </Option>
                         ))}
@@ -663,9 +680,9 @@ export default function DashboardPage() {
                         placeholder="Chọn tổ hợp môn"
                         className={styles.formSelect}
                       >
-                        {TO_HOP.map((t) => (
-                          <Option key={t.id} value={t.id}>
-                            {t.name}
+                        {combinations.map((t) => (
+                          <Option key={t.id} value={t.id || t.code}>
+                            {t.name || t.code}
                           </Option>
                         ))}
                       </Select>
@@ -809,8 +826,6 @@ export default function DashboardPage() {
                     {uploadedFiles.map((f, i) => (
                       <div key={i} className={styles.fileItem}>
                         <CheckCircleOutlined style={{ color: "#4ade80" }} />
-
-                        {/* 1. Tên file gốc */}
                         <span
                           style={{
                             flex: 1,
@@ -825,8 +840,6 @@ export default function DashboardPage() {
                         >
                           {f.originalName}
                         </span>
-
-                        {/* 2. Dropdown phân loại giấy tờ */}
                         <Select
                           value={f.fileType}
                           onChange={(val) => handleFileTypeChange(i, val)}
@@ -840,8 +853,6 @@ export default function DashboardPage() {
                             </Option>
                           ))}
                         </Select>
-
-                        {/* 3. Nút Xem file */}
                         <a
                           href={`http://localhost:5000${f.fileUrl}`}
                           target="_blank"
@@ -850,8 +861,6 @@ export default function DashboardPage() {
                         >
                           Xem
                         </a>
-
-                        {/* 4. Nút Xóa file */}
                         <span
                           className={styles.removeFile}
                           onClick={() =>
@@ -971,10 +980,26 @@ export default function DashboardPage() {
               <Divider className={styles.divider} />
               <Row gutter={[16, 16]}>
                 {[
-                  { label: "Tổng hồ sơ", val: apps.length, cls: "" },
-                  { label: "Đã duyệt", val: approved, cls: styles.green },
-                  { label: "Chờ duyệt", val: pending, cls: styles.yellow },
-                  { label: "Từ chối", val: rejected, cls: styles.red },
+                  {
+                    label: "Tổng hồ sơ",
+                    val: stats.totalApplications || 0,
+                    cls: "",
+                  },
+                  {
+                    label: "Đã duyệt",
+                    val: stats.approvedApplications || 0,
+                    cls: styles.green,
+                  },
+                  {
+                    label: "Chờ duyệt",
+                    val: stats.pendingApplications || 0,
+                    cls: styles.yellow,
+                  },
+                  {
+                    label: "Từ chối",
+                    val: stats.rejectedApplications || 0,
+                    cls: styles.red,
+                  },
                 ].map((s) => (
                   <Col xs={12} md={6} key={s.label}>
                     <div className={styles.pStat}>

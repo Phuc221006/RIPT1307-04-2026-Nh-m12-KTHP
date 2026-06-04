@@ -107,18 +107,40 @@ export async function uploadDocument(file: File) {
   });
   return res.json();
 }
+export const getDashboardStats = async () => {
+  const response = await fetch(
+    "http://localhost:5000/api/v1/applications/stats",
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`, // Đảm bảo lấy đúng key token nhóm ông lưu khi login
+        "Content-Type": "application/json",
+      },
+    },
+  );
+  return response.json();
+};
 
-export async function getUniversities() {
-  const res = await fetch(`${BASE_URL}/admin/universities`);
-  return res.json();
-}
+export const getUniversities = async () => {
+  const response = await fetch(
+    "http://localhost:5000/api/v1/education/universities",
+    { method: "GET" },
+  );
+  return response.json();
+};
 
-export async function getMajors() {
-  const res = await fetch(`${BASE_URL}/admin/majors`);
-  return res.json();
-}
+export const getMajors = async () => {
+  const response = await fetch(
+    "http://localhost:5000/api/v1/education/majors",
+    { method: "GET" },
+  );
+  return response.json();
+};
 
-export async function getCombinations() {
-  const res = await fetch(`${BASE_URL}/admin/combinations`);
-  return res.json();
-}
+export const getCombinations = async () => {
+  const response = await fetch(
+    "http://localhost:5000/api/v1/education/combinations",
+    { method: "GET" },
+  );
+  return response.json();
+};

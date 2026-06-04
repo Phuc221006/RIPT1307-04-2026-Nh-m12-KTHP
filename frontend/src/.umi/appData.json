@@ -36,7 +36,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -49,7 +49,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 25
+        "register": 100
       },
       "enableBy": "register"
     },
@@ -66,7 +66,7 @@
             0
           ]
         },
-        "register": 7
+        "register": 202
       },
       "enableBy": "register"
     },
@@ -80,10 +80,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            5
+            7
           ]
         },
-        "register": 5
+        "register": 371
       },
       "enableBy": "register"
     },
@@ -98,14 +98,10 @@
         "hooks": {
           "modifyRoutes": [
             0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 1
+        "register": 45
       },
       "enableBy": "register"
     },
@@ -119,18 +115,18 @@
       "time": {
         "hooks": {
           "onDevCompileDone": [
-            47,
-            15,
-            54,
-            10,
-            5,
-            2,
+            55,
             6,
+            4,
+            7,
+            4,
+            4,
             3,
-            4
+            2,
+            3
           ]
         },
-        "register": 2
+        "register": 9
       },
       "enableBy": "register"
     },
@@ -144,18 +140,14 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            37
+            438
           ],
           "onGenerateFiles": [
-            4,
-            17,
-            12,
-            17,
-            11,
-            20
+            6,
+            34
           ]
         },
-        "register": 55
+        "register": 715
       },
       "enableBy": "register"
     },
@@ -170,14 +162,10 @@
         "hooks": {
           "addEntryCode": [
             0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 1
+        "register": 6
       },
       "enableBy": "register"
     },
@@ -199,32 +187,16 @@
           "onPrepareBuildSuccess": [
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+            1
           ],
           "onCheckCode": [
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
             1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -238,7 +210,7 @@
             0
           ]
         },
-        "register": 3
+        "register": 53
       },
       "enableBy": "register"
     },
@@ -255,7 +227,7 @@
             0
           ]
         },
-        "register": 2
+        "register": 48
       },
       "enableBy": "register"
     },
@@ -268,7 +240,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 5
       },
       "enableBy": "config"
     },
@@ -282,10 +254,10 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            1
+            0
           ]
         },
-        "register": 31
+        "register": 329
       },
       "enableBy": "register"
     },
@@ -1137,7 +1109,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 50
       },
       "enableBy": "config"
     },
@@ -1151,10 +1123,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            1
+            0
           ]
         },
-        "register": 2
+        "register": 53
       },
       "enableBy": "register"
     },
@@ -1168,10 +1140,10 @@
       "time": {
         "hooks": {
           "addBeforeMiddlewares": [
-            15
+            23
           ]
         },
-        "register": 2
+        "register": 7
       },
       "enableBy": "register"
     },
@@ -1184,7 +1156,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 116
+        "register": 1161
       },
       "enableBy": "register"
     },
@@ -1197,7 +1169,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 79
+        "register": 2816
       },
       "enableBy": "config"
     },
@@ -1210,7 +1182,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 30
+        "register": 972
       },
       "enableBy": "config"
     },
@@ -1224,10 +1196,10 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            0
+            1
           ],
           "addBeforeMiddlewares": [
-            0
+            1
           ],
           "modifyHTMLFavicon": [
             0,
@@ -1235,35 +1207,13 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0,
             0,
             0
           ]
         },
-        "register": 1
+        "register": 50
       },
       "enableBy": "register"
     },
@@ -1277,23 +1227,15 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            4,
-            3,
-            4,
-            3,
-            3,
-            2
+            29,
+            60
           ],
           "addRuntimePlugin": [
             0,
-            0,
-            0,
-            0,
-            0,
-            1
+            0
           ]
         },
-        "register": 2
+        "register": 52
       },
       "enableBy": "register"
     },
@@ -1306,7 +1248,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 7
+        "register": 66
       },
       "enableBy": "config"
     },
@@ -1320,13 +1262,13 @@
       "time": {
         "hooks": {
           "onStart": [
-            3
+            2
           ],
           "addBeforeMiddlewares": [
-            3
+            4
           ]
         },
-        "register": 67
+        "register": 901
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/mpa/mpa": {
@@ -1338,7 +1280,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 60
       },
       "enableBy": "config"
     },
@@ -1351,7 +1293,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 41
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/overrides/overrides": {
@@ -1365,28 +1307,16 @@
         "hooks": {
           "onGenerateFiles": [
             0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "addEntryImports": [
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -1399,7 +1329,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 6
       },
       "enableBy": "config"
     },
@@ -1413,32 +1343,20 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            0
+            3
           ],
           "onGenerateFiles": [
-            118,
-            60,
-            51,
-            59,
-            45,
-            50
+            398,
+            132
           ],
           "addPolyfillImports": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
             0
           ]
         },
-        "register": 4
+        "register": 63
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill": {
@@ -1454,18 +1372,10 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 1
+        "register": 5
       },
       "enableBy": "register"
     },
@@ -1479,15 +1389,11 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            191,
-            0,
-            0,
-            0,
-            0,
+            368,
             0
           ]
         },
-        "register": 3
+        "register": 85
       },
       "enableBy": "register"
     },
@@ -1500,7 +1406,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 40
       },
       "enableBy": "config"
     },
@@ -1513,7 +1419,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 51
       },
       "enableBy": "config"
     },
@@ -1527,18 +1433,14 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            1,
-            1,
-            0,
-            1,
-            1,
-            1
+            3,
+            42
           ],
           "addBeforeMiddlewares": [
             0
           ]
         },
-        "register": 2
+        "register": 55
       },
       "enableBy": "register"
     },
@@ -1552,21 +1454,13 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            38,
-            14,
-            24,
-            3,
-            40,
-            4,
-            33,
-            4,
-            17,
-            3,
-            21,
-            2
+            168,
+            36,
+            393,
+            112
           ]
         },
-        "register": 9
+        "register": 254
       },
       "enableBy": "register"
     },
@@ -1579,7 +1473,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 61
       },
       "enableBy": "config"
     },
@@ -1592,7 +1486,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 45
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/ssr/ssr": {
@@ -1604,7 +1498,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 8
+        "register": 67
       },
       "enableBy": "config"
     },
@@ -1618,15 +1512,11 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            670,
-            30,
-            20,
-            19,
-            13,
-            13
+            2436,
+            100
           ]
         },
-        "register": 4
+        "register": 44
       },
       "enableBy": "register"
     },
@@ -1643,7 +1533,7 @@
             0
           ]
         },
-        "register": 7
+        "register": 166
       },
       "enableBy": "register"
     },
@@ -1656,7 +1546,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 8
+        "register": 48
       },
       "enableBy": "config"
     },
@@ -1669,7 +1559,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 43
       },
       "enableBy": "config"
     },
@@ -1682,7 +1572,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 15
+        "register": 192
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/monorepo/redirect": {
@@ -1694,7 +1584,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 27
+        "register": 1194
       },
       "enableBy": "config"
     },
@@ -1708,15 +1598,11 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            16,
-            2,
-            2,
-            2,
-            2,
-            1
+            55,
+            5
           ]
         },
-        "register": 2
+        "register": 69
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent": {
@@ -1728,7 +1614,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 6
       },
       "enableBy": "config"
     },
@@ -1741,7 +1627,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 8
       },
       "enableBy": "config"
     },
@@ -1754,7 +1640,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -1767,7 +1653,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 55
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/swc/swc": {
@@ -1783,7 +1669,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 50
       },
       "enableBy": "register"
     },
@@ -1796,7 +1682,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 7
+        "register": 259
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/mako/mako": {
@@ -1808,7 +1694,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 56
       },
       "enableBy": "config"
     },
@@ -1821,7 +1707,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 5
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian": {
@@ -1833,7 +1719,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 12
+        "register": 104
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad": {
@@ -1846,40 +1732,18 @@
       "time": {
         "hooks": {
           "addHTMLHeadScripts": [
-            41,
-            9,
+            48,
             0,
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
             0,
             0,
             0,
             0
           ]
         },
-        "register": 38
+        "register": 455
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/forget/forget": {
@@ -1891,7 +1755,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 30
       },
       "enableBy": "config"
     },
@@ -1905,10 +1769,10 @@
       "time": {
         "hooks": {
           "modifyUniBundler": [
-            1016
+            17764
           ]
         },
-        "register": 4
+        "register": 50
       },
       "enableBy": "register"
     },
@@ -1921,7 +1785,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 11
+        "register": 316
       },
       "enableBy": "register"
     },
@@ -1934,7 +1798,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 96
+        "register": 551
       },
       "enableBy": "register"
     },
@@ -1948,10 +1812,10 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            28
+            48
           ]
         },
-        "register": 93
+        "register": 1957
       }
     },
     "./node_modules/@umijs/preset-umi/dist/commands/help": {
@@ -1963,7 +1827,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -1976,7 +1840,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -1989,7 +1853,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 40
       },
       "enableBy": "register"
     },
@@ -2002,7 +1866,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 64
       },
       "enableBy": "register"
     },
@@ -2015,7 +1879,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 44
       },
       "enableBy": "register"
     },
@@ -2028,7 +1892,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 69
       },
       "enableBy": "register"
     },
@@ -2041,7 +1905,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 49
       },
       "enableBy": "register"
     },
@@ -2054,7 +1918,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 55
       },
       "enableBy": "register"
     },
@@ -2067,7 +1931,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 6
       },
       "enableBy": "register"
     },
@@ -2080,7 +1944,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 48
       },
       "enableBy": "register"
     },
@@ -2093,7 +1957,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 6
       },
       "enableBy": "register"
     },
@@ -2106,7 +1970,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 5
       },
       "enableBy": "register"
     },
@@ -2119,7 +1983,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 45
       },
       "enableBy": "register"
     },
@@ -2132,7 +1996,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 6
       },
       "enableBy": "register"
     },
@@ -2145,7 +2009,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 57
       },
       "enableBy": "register"
     },
@@ -2158,7 +2022,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 5
       },
       "enableBy": "register"
     },
@@ -2171,7 +2035,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 49
       },
       "enableBy": "register"
     },
@@ -2184,7 +2048,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 87
       },
       "enableBy": "register"
     },
@@ -2197,7 +2061,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 28
+        "register": 497
       },
       "enableBy": "register"
     },
@@ -2210,7 +2074,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 118
       },
       "enableBy": "register"
     },
@@ -2223,7 +2087,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 113
       },
       "enableBy": "register"
     },
@@ -2236,7 +2100,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 6
       },
       "enableBy": "register"
     }
@@ -2384,7 +2248,7 @@
       "parentId": "@@/global-layout",
       "id": "4",
       "absPath": "/dashboard",
-      "__content": "import { useState, useEffect } from \"react\";\r\nimport {\r\n  Layout,\r\n  Menu,\r\n  Card,\r\n  Table,\r\n  Tag,\r\n  Button,\r\n  Form,\r\n  Input,\r\n  Select,\r\n  Upload,\r\n  message,\r\n  Statistic,\r\n  Row,\r\n  Col,\r\n  Avatar,\r\n  Badge,\r\n  Divider,\r\n  Empty,\r\n  Spin,\r\n} from \"antd\";\r\nimport {\r\n  UserOutlined,\r\n  FileTextOutlined,\r\n  UploadOutlined,\r\n  LogoutOutlined,\r\n  CheckCircleOutlined,\r\n  ClockCircleOutlined,\r\n  CloseCircleOutlined,\r\n  BellOutlined,\r\n  HomeOutlined,\r\n  PlusOutlined,\r\n  FileDoneOutlined,\r\n  InboxOutlined,\r\n} from \"@ant-design/icons\";\r\nimport { useNavigate } from \"react-router-dom\";\r\nimport {\r\n  submitApplication,\r\n  getMyApplications,\r\n  uploadDocument,\r\n  removeToken,\r\n} from \"../../services/api\";\r\nimport styles from \"./index.less\";\r\n\r\nconst { Sider, Content, Header } = Layout;\r\nconst { Option } = Select;\r\nconst { Dragger } = Upload;\r\n\r\nconst TRUONG = [\r\n  { id: \"UNI_PTIT\", name: \"Học viện Công nghệ Bưu chính Viễn thông\" },\r\n  { id: \"UNI_GTVT\", name: \"Đại học Giao thông Vận tải\" },\r\n  { id: \"UNI_KT\", name: \"Đại học Kiến Trúc\" },\r\n  { id: \"UNI_XD\", name: \"Đại học Xây dựng\" },\r\n  { id: \"UNI_QGHN\", name: \"Đại học Quốc gia Hà Nội\" },\r\n  { id: \"UNI_NEU\", name: \"Đại học Kinh tế Quốc dân\" },\r\n  { id: \"UNI_FTU\", name: \"Đại học Ngoại thương\" },\r\n  { id: \"UNI_YHN\", name: \"Đại học Y Hà Nội\" },\r\n  { id: \"UNI_BKHCM\", name: \"Đại học Bách Khoa TP.HCM\" },\r\n  { id: \"UNI_BKHN\", name: \"Đại học Bách Khoa Hà Nội\" },\r\n];\r\n\r\nconst NGANH = [\r\n  { id: \"MAJ_IT\", name: \"Công nghệ thông tin\" },\r\n  { id: \"MAJ_SE\", name: \"Kỹ thuật phần mềm\" },\r\n  { id: \"MAJ_CS\", name: \"Khoa học máy tính\" },\r\n  { id: \"MAJ_IS\", name: \"An toàn thông tin\" },\r\n  { id: \"MAJ_BA\", name: \"Quản trị kinh doanh\" },\r\n  { id: \"MAJ_MKT\", name: \"Marketing\" },\r\n];\r\n\r\nconst TO_HOP = [\r\n  { id: \"A00\", name: \"A00 (Toán, Lý, Hóa)\" },\r\n  { id: \"A01\", name: \"A01 (Toán, Lý, Anh)\" },\r\n  { id: \"B00\", name: \"B00 (Toán, Hóa, Sinh)\" },\r\n  { id: \"D01\", name: \"D01 (Toán, Văn, Anh)\" },\r\n];\r\n\r\nconst LOAI_GIAY_TO = [\r\n  { id: \"CCCD\", name: \"Căn cước công dân\" },\r\n  { id: \"HOC_BA\", name: \"Học bạ THPT\" },\r\n  { id: \"GIAY_UU_TIEN\", name: \"Giấy tờ ưu tiên\" },\r\n  { id: \"OTHER\", name: \"Khác\" },\r\n];\r\n\r\nconst DOI_TUONG = [\r\n  { id: \"NONE\", name: \"Không có ưu tiên\" },\r\n  { id: \"KV1\", name: \"Ưu tiên 1 (Khu vực 1)\" },\r\n  { id: \"KV2\", name: \"Ưu tiên 2 (Khu vực 2)\" },\r\n];\r\n\r\nconst STATUS: Record<string, { color: string; icon: any; label: string }> = {\r\n  pending: {\r\n    color: \"warning\",\r\n    icon: <ClockCircleOutlined />,\r\n    label: \"Chờ duyệt\",\r\n  },\r\n  PENDING: {\r\n    color: \"warning\",\r\n    icon: <ClockCircleOutlined />,\r\n    label: \"Chờ duyệt\",\r\n  },\r\n  approved: {\r\n    color: \"success\",\r\n    icon: <CheckCircleOutlined />,\r\n    label: \"Đã duyệt\",\r\n  },\r\n  APPROVED: {\r\n    color: \"success\",\r\n    icon: <CheckCircleOutlined />,\r\n    label: \"Đã duyệt\",\r\n  },\r\n  rejected: { color: \"error\", icon: <CloseCircleOutlined />, label: \"Từ chối\" },\r\n  REJECTED: { color: \"error\", icon: <CloseCircleOutlined />, label: \"Từ chối\" },\r\n};\r\n\r\nexport default function DashboardPage() {\r\n  const navigate = useNavigate();\r\n  const [tab, setTab] = useState(\"overview\");\r\n  const [apps, setApps] = useState<any[]>([]);\r\n  const [loading, setLoading] = useState(false);\r\n  const [submitLoading, setSubmitLoading] = useState(false);\r\n  const [uploadedFiles, setUploadedFiles] = useState<any[]>([]);\r\n  const [uploadLoading, setUploadLoading] = useState(false);\r\n  const [form] = Form.useForm();\r\n\r\n  const user = (() => {\r\n    try {\r\n      return JSON.parse(localStorage.getItem(\"user\") || \"{}\");\r\n    } catch {\r\n      return {};\r\n    }\r\n  })();\r\n\r\n  const fetchApps = async () => {\r\n    setLoading(true);\r\n    try {\r\n      const res = await getMyApplications();\r\n      if (res.status === \"success\") setApps(res.data || []);\r\n      else setApps([]);\r\n    } catch {\r\n      setApps([]);\r\n    } finally {\r\n      setLoading(false);\r\n    }\r\n  };\r\n\r\n  useEffect(() => {\r\n    fetchApps();\r\n  }, []);\r\n\r\n  const handleUpload = async (file: File) => {\r\n    setUploadLoading(true);\r\n    try {\r\n      const res = await uploadDocument(file);\r\n      if (res.status === \"success\") {\r\n        setUploadedFiles((prev) => [\r\n          ...prev,\r\n          {\r\n            originalName: res.data.originalName,\r\n            fileUrl: res.data.fileUrl,\r\n            mimeType: file.type,\r\n            fileSize: file.size,\r\n            fileType: \"OTHER\",\r\n          },\r\n        ]);\r\n        message.success(`Tải lên \"${file.name}\" thành công!`);\r\n      } else {\r\n        message.error(res.message || \"Tải file thất bại.\");\r\n      }\r\n    } catch {\r\n      message.error(\"Lỗi kết nối.\");\r\n    } finally {\r\n      setUploadLoading(false);\r\n    }\r\n    return false;\r\n  };\r\n\r\n  const handleSubmit = async (values: any) => {\r\n    if (uploadedFiles.length === 0) {\r\n      message.warning(\"Vui lòng tải lên ít nhất 1 minh chứng!\");\r\n      return;\r\n    }\r\n    setSubmitLoading(true);\r\n    try {\r\n      const totalScore =\r\n        parseFloat(values.score1 || 0) +\r\n        parseFloat(values.score2 || 0) +\r\n        parseFloat(values.score3 || 0);\r\n\r\n      const res = await submitApplication({\r\n        universityId: values.university,\r\n        majorId: values.major,\r\n        combinationId: values.combination,\r\n        roundId: values.priority,\r\n        scoreSubject1: parseFloat(values.score1),\r\n        scoreSubject2: parseFloat(values.score2),\r\n        scoreSubject3: parseFloat(values.score3),\r\n        totalScore: totalScore,\r\n        priorityObject: values.priorityType || \"Không có ưu tiên\",\r\n        priorityScore: 0,\r\n        files: uploadedFiles,\r\n      });\r\n\r\n      if (res.status === \"success\") {\r\n        message.success(\"Nộp hồ sơ thành công!\");\r\n        form.resetFields();\r\n        setUploadedFiles([]);\r\n        fetchApps();\r\n        setTab(\"history\");\r\n      } else {\r\n        message.error(res.message || \"Nộp hồ sơ thất bại.\");\r\n      }\r\n    } catch {\r\n      message.error(\"Lỗi kết nối.\");\r\n    } finally {\r\n      setSubmitLoading(false);\r\n    }\r\n  };\r\n\r\n  const handleFileTypeChange = (index: number, newType: string) => {\r\n    setUploadedFiles((prev) => {\r\n      const updatedFiles = [...prev];\r\n      updatedFiles[index].fileType = newType;\r\n      return updatedFiles;\r\n    });\r\n  };\r\n\r\n  const approved = apps.filter(\r\n    (a) => a.status === \"approved\" || a.status === \"APPROVED\",\r\n  ).length;\r\n  const pending = apps.filter(\r\n    (a) => a.status === \"pending\" || a.status === \"PENDING\",\r\n  ).length;\r\n  const rejected = apps.filter(\r\n    (a) => a.status === \"rejected\" || a.status === \"REJECTED\",\r\n  ).length;\r\n\r\n  const columns = [\r\n    {\r\n      title: \"STT\",\r\n      width: 60,\r\n      render: (_: any, __: any, i: number) => (\r\n        <span className={styles.muted}>{i + 1}</span>\r\n      ),\r\n    },\r\n    {\r\n      title: \"Trường\",\r\n      dataIndex: \"university_id\",\r\n      render: (v: string) => (\r\n        <span style={{ color: \"#fff\" }}>{v || \"---\"}</span>\r\n      ),\r\n    },\r\n    {\r\n      title: \"Ngành đăng ký\",\r\n      dataIndex: \"major_id\",\r\n      render: (v: string) => <strong style={{ color: \"#fff\" }}>{v}</strong>,\r\n    },\r\n    {\r\n      title: \"Ngày nộp\",\r\n      dataIndex: \"createdAt\",\r\n      render: (v: string) => (\r\n        <span className={styles.muted}>\r\n          {v ? new Date(v).toLocaleDateString(\"vi-VN\") : \"---\"}\r\n        </span>\r\n      ),\r\n    },\r\n    {\r\n      title: \"Trạng thái\",\r\n      dataIndex: \"status\",\r\n      render: (s: string) => {\r\n        const c = STATUS[s] || STATUS.PENDING;\r\n        return (\r\n          <Tag icon={c.icon} color={c.color}>\r\n            {c.label}\r\n          </Tag>\r\n        );\r\n      },\r\n    },\r\n    // Gộp cột Hồ sơ từ nhánh Admin vào đây:\r\n    {\r\n      title: \"Hồ sơ\",\r\n      dataIndex: \"application_files\",\r\n      render: (_: any, record: any) => {\r\n        const files = record.application_files || record.applicationFiles;\r\n        return files && files.length > 0 ? (\r\n          <a\r\n            href={`http://localhost:5000${files[0].file_url || files[0].fileUrl}`}\r\n            target=\"_blank\"\r\n            rel=\"noreferrer\"\r\n            className={styles.link}\r\n          >\r\n            Xem ↗\r\n          </a>\r\n        ) : (\r\n          <span className={styles.muted}>—</span>\r\n        );\r\n      },\r\n    },\r\n  ];\r\n\r\n  return (\r\n    <Layout className={styles.layout}>\r\n      <Sider width={240} className={styles.sider}>\r\n        <div className={styles.brand}>\r\n          <div className={styles.brandIcon}>\r\n            <svg viewBox=\"0 0 36 36\" fill=\"none\">\r\n              <rect width=\"36\" height=\"36\" rx=\"10\" fill=\"url(#dg)\" />\r\n              <path\r\n                d=\"M10 26L18 10L26 26\"\r\n                stroke=\"white\"\r\n                strokeWidth=\"2.5\"\r\n                strokeLinecap=\"round\"\r\n                strokeLinejoin=\"round\"\r\n              />\r\n              <path\r\n                d=\"M13 20.5H23\"\r\n                stroke=\"white\"\r\n                strokeWidth=\"2.5\"\r\n                strokeLinecap=\"round\"\r\n              />\r\n              <defs>\r\n                <linearGradient\r\n                  id=\"dg\"\r\n                  x1=\"0\"\r\n                  y1=\"0\"\r\n                  x2=\"36\"\r\n                  y2=\"36\"\r\n                  gradientUnits=\"userSpaceOnUse\"\r\n                >\r\n                  <stop stopColor=\"#667eea\" />\r\n                  <stop offset=\"1\" stopColor=\"#764ba2\" />\r\n                </linearGradient>\r\n              </defs>\r\n            </svg>\r\n          </div>\r\n          <div>\r\n            <div className={styles.brandName}>Tuyển Sinh</div>\r\n            <div className={styles.brandSub}>Cổng thông tin</div>\r\n          </div>\r\n        </div>\r\n\r\n        <Divider className={styles.divider} />\r\n\r\n        <div className={styles.userInfo}>\r\n          <Avatar size={40} icon={<UserOutlined />} className={styles.avatar} />\r\n          <div>\r\n            <div className={styles.userName}>\r\n              {user.fullName || \"Sinh viên\"}\r\n            </div>\r\n            <div className={styles.userId}>{user.email || \"---\"}</div>\r\n          </div>\r\n        </div>\r\n\r\n        <Menu\r\n          mode=\"inline\"\r\n          selectedKeys={[tab]}\r\n          onClick={({ key }) => setTab(key)}\r\n          className={styles.menu}\r\n          items={[\r\n            { key: \"overview\", icon: <HomeOutlined />, label: \"Tổng quan\" },\r\n            { key: \"apply\", icon: <PlusOutlined />, label: \"Nộp hồ sơ\" },\r\n            {\r\n              key: \"history\",\r\n              icon: <FileTextOutlined />,\r\n              label: \"Lịch sử nộp\",\r\n            },\r\n            { key: \"profile\", icon: <UserOutlined />, label: \"Hồ sơ cá nhân\" },\r\n          ]}\r\n        />\r\n\r\n        <div className={styles.logout}>\r\n          <Button\r\n            icon={<LogoutOutlined />}\r\n            block\r\n            className={styles.logoutBtn}\r\n            onClick={() => {\r\n              removeToken();\r\n              navigate(\"/login\");\r\n            }}\r\n          >\r\n            Đăng xuất\r\n          </Button>\r\n        </div>\r\n      </Sider>\r\n\r\n      <Layout>\r\n        <Header className={styles.header}>\r\n          <span className={styles.pageTitle}>\r\n            {\r\n              {\r\n                overview: \"Tổng quan\",\r\n                apply: \"Nộp hồ sơ xét tuyển\",\r\n                history: \"Lịch sử nộp hồ sơ\",\r\n                profile: \"Hồ sơ cá nhân\",\r\n              }[tab]\r\n            }\r\n          </span>\r\n          <div className={styles.headerRight}>\r\n            <Badge count={pending} size=\"small\">\r\n              <Button icon={<BellOutlined />} className={styles.iconBtn} />\r\n            </Badge>\r\n            <Avatar icon={<UserOutlined />} className={styles.avatar} />\r\n          </div>\r\n        </Header>\r\n\r\n        <Content className={styles.content}>\r\n          {/* OVERVIEW */}\r\n          {tab === \"overview\" && (\r\n            <>\r\n              <div className={styles.banner}>\r\n                <div>\r\n                  <h2 className={styles.bannerTitle}>\r\n                    Xin chào, {user.fullName || \"bạn\"}! 👋\r\n                  </h2>\r\n                  <p className={styles.bannerSub}>\r\n                    Theo dõi tình trạng hồ sơ xét tuyển của bạn tại đây.\r\n                  </p>\r\n                </div>\r\n                <Button\r\n                  type=\"primary\"\r\n                  icon={<PlusOutlined />}\r\n                  className={styles.bannerBtn}\r\n                  onClick={() => setTab(\"apply\")}\r\n                >\r\n                  Nộp hồ sơ mới\r\n                </Button>\r\n              </div>\r\n\r\n              <Row gutter={[20, 20]} style={{ marginBottom: 24 }}>\r\n                {[\r\n                  {\r\n                    label: \"Tổng hồ sơ\",\r\n                    val: apps.length,\r\n                    icon: <FileDoneOutlined />,\r\n                    color: \"#fff\",\r\n                  },\r\n                  {\r\n                    label: \"Đã duyệt\",\r\n                    val: approved,\r\n                    icon: <CheckCircleOutlined />,\r\n                    color: \"#4ade80\",\r\n                  },\r\n                  {\r\n                    label: \"Chờ duyệt\",\r\n                    val: pending,\r\n                    icon: <ClockCircleOutlined />,\r\n                    color: \"#fbbf24\",\r\n                  },\r\n                  {\r\n                    label: \"Từ chối\",\r\n                    val: rejected,\r\n                    icon: <CloseCircleOutlined />,\r\n                    color: \"#f87171\",\r\n                  },\r\n                ].map((s) => (\r\n                  <Col xs={24} sm={12} lg={6} key={s.label}>\r\n                    <Card className={styles.statCard}>\r\n                      <div className={styles.statIconWrap}>{s.icon}</div>\r\n                      <Statistic\r\n                        title={s.label}\r\n                        value={s.val}\r\n                        valueStyle={{\r\n                          color: s.color,\r\n                          fontSize: 30,\r\n                          fontWeight: 700,\r\n                        }}\r\n                      />\r\n                    </Card>\r\n                  </Col>\r\n                ))}\r\n              </Row>\r\n\r\n              <Card\r\n                className={styles.card}\r\n                title={<span className={styles.cardTitle}>Hồ sơ gần đây</span>}\r\n              >\r\n                {loading ? (\r\n                  <div className={styles.center}>\r\n                    <Spin />\r\n                  </div>\r\n                ) : (\r\n                  <Table\r\n                    dataSource={apps.slice(0, 3)}\r\n                    columns={columns}\r\n                    pagination={false}\r\n                    rowKey=\"id\"\r\n                    className={styles.table}\r\n                    locale={{\r\n                      emptyText: (\r\n                        <Empty\r\n                          description={\r\n                            <span className={styles.muted}>\r\n                              Chưa có hồ sơ. Hãy nộp hồ sơ đầu tiên!\r\n                            </span>\r\n                          }\r\n                        />\r\n                      ),\r\n                    }}\r\n                  />\r\n                )}\r\n              </Card>\r\n            </>\r\n          )}\r\n\r\n          {/* APPLY */}\r\n          {tab === \"apply\" && (\r\n            <Card\r\n              className={styles.card}\r\n              title={\r\n                <span className={styles.cardTitle}>📋 Nộp hồ sơ xét tuyển</span>\r\n              }\r\n            >\r\n              <Form\r\n                form={form}\r\n                layout=\"vertical\"\r\n                onFinish={handleSubmit}\r\n                className={styles.applyForm}\r\n              >\r\n                <div className={styles.sectionTitle}>\r\n                  🏫 Thông tin xét tuyển\r\n                </div>\r\n                <Row gutter={24}>\r\n                  <Col xs={24} md={12}>\r\n                    <Form.Item\r\n                      name=\"university\"\r\n                      label=\"Trường đăng ký\"\r\n                      rules={[\r\n                        { required: true, message: \"Vui lòng chọn trường!\" },\r\n                      ]}\r\n                    >\r\n                      <Select\r\n                        placeholder=\"Chọn trường đại học\"\r\n                        className={styles.formSelect}\r\n                        showSearch\r\n                      >\r\n                        {TRUONG.map((t) => (\r\n                          <Option key={t.id} value={t.id}>\r\n                            {t.name}\r\n                          </Option>\r\n                        ))}\r\n                      </Select>\r\n                    </Form.Item>\r\n                  </Col>\r\n                  <Col xs={24} md={12}>\r\n                    <Form.Item\r\n                      name=\"major\"\r\n                      label=\"Ngành đăng ký\"\r\n                      rules={[\r\n                        { required: true, message: \"Vui lòng chọn ngành!\" },\r\n                      ]}\r\n                    >\r\n                      <Select\r\n                        placeholder=\"Chọn ngành học\"\r\n                        className={styles.formSelect}\r\n                        showSearch\r\n                      >\r\n                        {NGANH.map((n) => (\r\n                          <Option key={n.id} value={n.id}>\r\n                            {n.name}\r\n                          </Option>\r\n                        ))}\r\n                      </Select>\r\n                    </Form.Item>\r\n                  </Col>\r\n                </Row>\r\n\r\n                <Row gutter={24}>\r\n                  <Col xs={24} md={12}>\r\n                    <Form.Item\r\n                      name=\"combination\"\r\n                      label=\"Tổ hợp xét tuyển\"\r\n                      rules={[\r\n                        { required: true, message: \"Vui lòng chọn tổ hợp!\" },\r\n                      ]}\r\n                    >\r\n                      <Select\r\n                        placeholder=\"Chọn tổ hợp môn\"\r\n                        className={styles.formSelect}\r\n                      >\r\n                        {TO_HOP.map((t) => (\r\n                          <Option key={t.id} value={t.id}>\r\n                            {t.name}\r\n                          </Option>\r\n                        ))}\r\n                      </Select>\r\n                    </Form.Item>\r\n                  </Col>\r\n                  <Col xs={24} md={12}>\r\n                    <Form.Item\r\n                      name=\"priority\"\r\n                      label=\"Nguyện vọng\"\r\n                      rules={[{ required: true, message: \"Vui lòng chọn!\" }]}\r\n                    >\r\n                      <Select\r\n                        placeholder=\"Chọn nguyện vọng\"\r\n                        className={styles.formSelect}\r\n                      >\r\n                        <Option value=\"1\">Nguyện vọng 1</Option>\r\n                        <Option value=\"2\">Nguyện vọng 2</Option>\r\n                        <Option value=\"3\">Nguyện vọng 3</Option>\r\n                      </Select>\r\n                    </Form.Item>\r\n                  </Col>\r\n                </Row>\r\n\r\n                <div className={styles.sectionTitle}>📊 Thông tin điểm thi</div>\r\n                <Row gutter={24}>\r\n                  <Col xs={24} md={8}>\r\n                    <Form.Item\r\n                      name=\"score1\"\r\n                      label=\"Điểm môn 1\"\r\n                      rules={[{ required: true, message: \"Nhập điểm!\" }]}\r\n                    >\r\n                      <Input\r\n                        placeholder=\"VD: 8.5\"\r\n                        className={styles.formInput}\r\n                        type=\"number\"\r\n                        min={0}\r\n                        max={10}\r\n                        step={0.1}\r\n                      />\r\n                    </Form.Item>\r\n                  </Col>\r\n                  <Col xs={24} md={8}>\r\n                    <Form.Item\r\n                      name=\"score2\"\r\n                      label=\"Điểm môn 2\"\r\n                      rules={[{ required: true, message: \"Nhập điểm!\" }]}\r\n                    >\r\n                      <Input\r\n                        placeholder=\"VD: 7.0\"\r\n                        className={styles.formInput}\r\n                        type=\"number\"\r\n                        min={0}\r\n                        max={10}\r\n                        step={0.1}\r\n                      />\r\n                    </Form.Item>\r\n                  </Col>\r\n                  <Col xs={24} md={8}>\r\n                    <Form.Item\r\n                      name=\"score3\"\r\n                      label=\"Điểm môn 3\"\r\n                      rules={[{ required: true, message: \"Nhập điểm!\" }]}\r\n                    >\r\n                      <Input\r\n                        placeholder=\"VD: 9.0\"\r\n                        className={styles.formInput}\r\n                        type=\"number\"\r\n                        min={0}\r\n                        max={10}\r\n                        step={0.1}\r\n                      />\r\n                    </Form.Item>\r\n                  </Col>\r\n                </Row>\r\n\r\n                <Row gutter={24}>\r\n                  <Col xs={24} md={12}>\r\n                    <Form.Item name=\"priorityType\" label=\"Đối tượng ưu tiên\">\r\n                      <Select\r\n                        placeholder=\"Chọn đối tượng ưu tiên\"\r\n                        className={styles.formSelect}\r\n                      >\r\n                        {DOI_TUONG.map((d) => (\r\n                          <Option key={d.id} value={d.id}>\r\n                            {d.name}\r\n                          </Option>\r\n                        ))}\r\n                      </Select>\r\n                    </Form.Item>\r\n                  </Col>\r\n                  <Col xs={24} md={12}>\r\n                    <Form.Item name=\"gpa\" label=\"Điểm học bạ THPT (GPA)\">\r\n                      <Input\r\n                        placeholder=\"VD: 8.5\"\r\n                        className={styles.formInput}\r\n                      />\r\n                    </Form.Item>\r\n                  </Col>\r\n                </Row>\r\n\r\n                <Form.Item name=\"note\" label=\"Ghi chú thêm\">\r\n                  <Input.TextArea\r\n                    rows={2}\r\n                    placeholder=\"Thông tin bổ sung (nếu có)...\"\r\n                    className={styles.formInput}\r\n                  />\r\n                </Form.Item>\r\n\r\n                <div className={styles.sectionTitle}>📎 Tải lên minh chứng</div>\r\n                <p className={styles.uploadHint}>\r\n                  Chấp nhận: PDF, JPEG, PNG — Ảnh chụp học bạ, CCCD, chứng\r\n                  chỉ...\r\n                </p>\r\n\r\n                <Form.Item>\r\n                  <Dragger\r\n                    accept=\".pdf,.jpg,.jpeg,.png\"\r\n                    beforeUpload={handleUpload}\r\n                    showUploadList={false}\r\n                    multiple\r\n                    className={styles.dragger}\r\n                    disabled={uploadLoading}\r\n                  >\r\n                    <p className=\"ant-upload-drag-icon\">\r\n                      <InboxOutlined\r\n                        style={{ color: \"#667eea\", fontSize: 40 }}\r\n                      />\r\n                    </p>\r\n                    <p style={{ color: \"rgba(255,255,255,0.7)\", fontSize: 14 }}>\r\n                      Kéo thả file vào đây hoặc{\" \"}\r\n                      <span style={{ color: \"#a78bfa\" }}>click để chọn</span>\r\n                    </p>\r\n                    <p style={{ color: \"rgba(255,255,255,0.4)\", fontSize: 12 }}>\r\n                      PDF, JPEG, PNG — Học bạ, CCCD, minh chứng ưu tiên\r\n                    </p>\r\n                  </Dragger>\r\n                </Form.Item>\r\n\r\n                {uploadedFiles.length > 0 && (\r\n                  <div className={styles.fileList}>\r\n                    {uploadedFiles.map((f, i) => (\r\n                      <div key={i} className={styles.fileItem}>\r\n                        <CheckCircleOutlined style={{ color: \"#4ade80\" }} />\r\n\r\n                        {/* 1. Tên file gốc */}\r\n                        <span\r\n                          style={{\r\n                            flex: 1,\r\n                            color: \"rgba(255,255,255,0.7)\",\r\n                            fontSize: 13,\r\n                            whiteSpace: \"nowrap\",\r\n                            overflow: \"hidden\",\r\n                            textOverflow: \"ellipsis\",\r\n                            paddingRight: \"8px\",\r\n                          }}\r\n                          title={f.originalName}\r\n                        >\r\n                          {f.originalName}\r\n                        </span>\r\n\r\n                        {/* 2. Dropdown phân loại giấy tờ */}\r\n                        <Select\r\n                          value={f.fileType}\r\n                          onChange={(val) => handleFileTypeChange(i, val)}\r\n                          size=\"small\"\r\n                          style={{ width: 160 }}\r\n                          className={styles.formSelect}\r\n                        >\r\n                          {LOAI_GIAY_TO.map((type) => (\r\n                            <Option key={type.id} value={type.id}>\r\n                              {type.name}\r\n                            </Option>\r\n                          ))}\r\n                        </Select>\r\n\r\n                        {/* 3. Nút Xem file */}\r\n                        <a\r\n                          href={`http://localhost:5000${f.fileUrl}`}\r\n                          target=\"_blank\"\r\n                          rel=\"noreferrer\"\r\n                          className={styles.link}\r\n                        >\r\n                          Xem\r\n                        </a>\r\n\r\n                        {/* 4. Nút Xóa file */}\r\n                        <span\r\n                          className={styles.removeFile}\r\n                          onClick={() =>\r\n                            setUploadedFiles((prev) =>\r\n                              prev.filter((_, idx) => idx !== i),\r\n                            )\r\n                          }\r\n                        >\r\n                          ✕\r\n                        </span>\r\n                      </div>\r\n                    ))}\r\n                  </div>\r\n                )}\r\n\r\n                <Button\r\n                  type=\"primary\"\r\n                  htmlType=\"submit\"\r\n                  loading={submitLoading}\r\n                  className={styles.submitBtn}\r\n                  block\r\n                >\r\n                  {submitLoading ? \"Đang gửi hồ sơ...\" : \"📤 Gửi hồ sơ đăng ký\"}\r\n                </Button>\r\n              </Form>\r\n            </Card>\r\n          )}\r\n\r\n          {/* HISTORY */}\r\n          {tab === \"history\" && (\r\n            <Card\r\n              className={styles.card}\r\n              title={\r\n                <span className={styles.cardTitle}>📁 Lịch sử nộp hồ sơ</span>\r\n              }\r\n              extra={\r\n                <Button\r\n                  type=\"primary\"\r\n                  icon={<PlusOutlined />}\r\n                  className={styles.addBtn}\r\n                  onClick={() => setTab(\"apply\")}\r\n                >\r\n                  Nộp thêm\r\n                </Button>\r\n              }\r\n            >\r\n              {loading ? (\r\n                <div className={styles.center}>\r\n                  <Spin />\r\n                </div>\r\n              ) : (\r\n                <Table\r\n                  dataSource={apps}\r\n                  columns={columns}\r\n                  rowKey=\"id\"\r\n                  className={styles.table}\r\n                  pagination={{\r\n                    pageSize: 8,\r\n                    showTotal: (t) => `Tổng ${t} hồ sơ`,\r\n                  }}\r\n                  locale={{\r\n                    emptyText: (\r\n                      <Empty\r\n                        description={\r\n                          <span className={styles.muted}>\r\n                            Chưa có hồ sơ nào\r\n                          </span>\r\n                        }\r\n                      />\r\n                    ),\r\n                  }}\r\n                />\r\n              )}\r\n            </Card>\r\n          )}\r\n\r\n          {/* PROFILE */}\r\n          {tab === \"profile\" && (\r\n            <Card\r\n              className={styles.card}\r\n              title={<span className={styles.cardTitle}>👤 Hồ sơ cá nhân</span>}\r\n            >\r\n              <div className={styles.profileTop}>\r\n                <Avatar\r\n                  size={80}\r\n                  icon={<UserOutlined />}\r\n                  className={styles.profileAvatar}\r\n                />\r\n                <div>\r\n                  <h2 className={styles.profileName}>\r\n                    {user.fullName || \"Sinh viên\"}\r\n                  </h2>\r\n                  <p className={styles.profileId}>{user.email || \"---\"}</p>\r\n                  {user.role === \"ADMIN\" ? (\r\n                    <Tag color=\"red\">Quản trị viên</Tag>\r\n                  ) : (\r\n                    <Tag color=\"purple\">Thí sinh</Tag>\r\n                  )}\r\n                </div>\r\n              </div>\r\n              <Divider className={styles.divider} />\r\n              <Row gutter={[20, 16]}>\r\n                {[\r\n                  { label: \"Họ và tên\", val: user.fullName || \"---\" },\r\n                  { label: \"Email\", val: user.email || \"---\" },\r\n                  { label: \"SĐT\", val: user.phone || \"---\" },\r\n                  { label: \"Ngày sinh\", val: user.dateOfBirth || \"---\" },\r\n                ].map((f) => (\r\n                  <Col xs={24} md={12} key={f.label}>\r\n                    <div className={styles.profileField}>\r\n                      <span className={styles.fieldLabel}>{f.label}</span>\r\n                      <span className={styles.fieldVal}>{f.val}</span>\r\n                    </div>\r\n                  </Col>\r\n                ))}\r\n              </Row>\r\n              <Divider className={styles.divider} />\r\n              <Row gutter={[16, 16]}>\r\n                {[\r\n                  { label: \"Tổng hồ sơ\", val: apps.length, cls: \"\" },\r\n                  { label: \"Đã duyệt\", val: approved, cls: styles.green },\r\n                  { label: \"Chờ duyệt\", val: pending, cls: styles.yellow },\r\n                  { label: \"Từ chối\", val: rejected, cls: styles.red },\r\n                ].map((s) => (\r\n                  <Col xs={12} md={6} key={s.label}>\r\n                    <div className={styles.pStat}>\r\n                      <span className={`${styles.pNum} ${s.cls}`}>{s.val}</span>\r\n                      <span className={styles.pLabel}>{s.label}</span>\r\n                    </div>\r\n                  </Col>\r\n                ))}\r\n              </Row>\r\n            </Card>\r\n          )}\r\n        </Content>\r\n      </Layout>\r\n    </Layout>\r\n  );\r\n}\r\n",
+      "__content": "import { useState, useEffect } from \"react\";\r\nimport {\r\n  Layout,\r\n  Menu,\r\n  Card,\r\n  Table,\r\n  Tag,\r\n  Button,\r\n  Form,\r\n  Input,\r\n  Select,\r\n  Upload,\r\n  message,\r\n  Statistic,\r\n  Row,\r\n  Col,\r\n  Avatar,\r\n  Badge,\r\n  Divider,\r\n  Empty,\r\n  Spin,\r\n  Popover,\r\n  List,\r\n} from \"antd\";\r\nimport {\r\n  UserOutlined,\r\n  FileTextOutlined,\r\n  LogoutOutlined,\r\n  CheckCircleOutlined,\r\n  ClockCircleOutlined,\r\n  CloseCircleOutlined,\r\n  BellOutlined,\r\n  HomeOutlined,\r\n  PlusOutlined,\r\n  FileDoneOutlined,\r\n  InboxOutlined,\r\n} from \"@ant-design/icons\";\r\nimport { useNavigate } from \"react-router-dom\";\r\nimport {\r\n  submitApplication,\r\n  getMyApplications,\r\n  uploadDocument,\r\n  removeToken,\r\n  // 🔹 THÊM CÁC HÀM GỌI API THẬT VÀO ĐÂY\r\n  getUniversities,\r\n  getMajors,\r\n  getCombinations,\r\n  getDashboardStats,\r\n} from \"../../services/api\";\r\nimport styles from \"./index.less\";\r\n\r\nconst { Sider, Content, Header } = Layout;\r\nconst { Option } = Select;\r\nconst { Dragger } = Upload;\r\n\r\nconst LOAI_GIAY_TO = [\r\n  { id: \"CCCD\", name: \"Căn cước công dân\" },\r\n  { id: \"HOC_BA\", name: \"Học bạ THPT\" },\r\n  { id: \"GIAY_UU_TIEN\", name: \"Giấy tờ ưu tiên\" },\r\n  { id: \"OTHER\", name: \"Khác\" },\r\n];\r\n\r\nconst DOI_TUONG = [\r\n  { id: \"NONE\", name: \"Không có ưu tiên\" },\r\n  { id: \"KV1\", name: \"Ưu tiên 1 (Khu vực 1)\" },\r\n  { id: \"KV2\", name: \"Ưu tiên 2 (Khu vực 2)\" },\r\n];\r\n\r\nconst STATUS: Record<string, { color: string; icon: any; label: string }> = {\r\n  pending: { color: \"warning\", icon: <ClockCircleOutlined />, label: \"Chờ duyệt\" },\r\n  PENDING: { color: \"warning\", icon: <ClockCircleOutlined />, label: \"Chờ duyệt\" },\r\n  approved: { color: \"success\", icon: <CheckCircleOutlined />, label: \"Đã duyệt\" },\r\n  APPROVED: { color: \"success\", icon: <CheckCircleOutlined />, label: \"Đã duyệt\" },\r\n  rejected: { color: \"error\", icon: <CloseCircleOutlined />, label: \"Từ chối\" },\r\n  REJECTED: { color: \"error\", icon: <CloseCircleOutlined />, label: \"Từ chối\" },\r\n};\r\n\r\nexport default function DashboardPage() {\r\n  const navigate = useNavigate();\r\n  const [tab, setTab] = useState(\"overview\");\r\n  const [apps, setApps] = useState<any[]>([]);\r\n  const [loading, setLoading] = useState(false);\r\n  const [submitLoading, setSubmitLoading] = useState(false);\r\n  const [uploadedFiles, setUploadedFiles] = useState<any[]>([]);\r\n  const [uploadLoading, setUploadLoading] = useState(false);\r\n  const [form] = Form.useForm();\r\n\r\n  // 🔹 1. CÁC STATE LƯU TRỮ DỮ LIỆU ĐỘNG TỪ DATABASE THẬT\r\n  const [stats, setStats] = useState<any>({\r\n    totalApplications: 0,\r\n    pendingApplications: 0,\r\n    approvedApplications: 0,\r\n    rejectedApplications: 0,\r\n  });\r\n  const [universities, setUniversities] = useState<any[]>([]);\r\n  const [majors, setMajors] = useState<any[]>([]);\r\n  const [combinations, setCombinations] = useState<any[]>([]);\r\n\r\n  const user = (() => {\r\n    try {\r\n      return JSON.parse(localStorage.getItem(\"user\") || \"{}\");\r\n    } catch {\r\n      return {};\r\n    }\r\n  })();\r\n\r\n  // Hàm lấy lịch sử nộp hồ sơ\r\n  const fetchApps = async () => {\r\n    setLoading(true);\r\n    try {\r\n      const res = await getMyApplications();\r\n      if (res.status === \"success\") setApps(res.data || []);\r\n      else setApps([]);\r\n    } catch {\r\n      setApps([]);\r\n    } finally {\r\n      setLoading(false);\r\n    }\r\n  };\r\n\r\n  // 🔹 2. HÀM LẤY SỐ LIỆU THỐNG KÊ 4 Ô TỪ API DASHBOARD\r\n  const fetchStats = async () => {\r\n    try {\r\n      const res = await getDashboardStats();\r\n      if (res.status === \"success\") {\r\n        setStats(res.data);\r\n      }\r\n    } catch (err) {\r\n      console.error(\"Không lấy được thống kê hệ thống\", err);\r\n    }\r\n  };\r\n\r\n  // 🔹 3. HÀM LẤY DANH MỤC TRƯỜNG/NGÀNH/TỔ HỢP TỪ DB ĐỂ ĐỔ VÀO DROPDOWN SELECT\r\n  const fetchEducationData = async () => {\r\n    try {\r\n      const [resUni, resMajor, resCombo] = await Promise.all([\r\n        getUniversities(),\r\n        getMajors(),\r\n        getCombinations(),\r\n      ]);\r\n      setUniversities(Array.isArray(resUni) ? resUni : resUni?.data || []);\r\n      setMajors(Array.isArray(resMajor) ? resMajor : resMajor?.data || []);\r\n      setCombinations(Array.isArray(resCombo) ? resCombo : resCombo?.data || []);\r\n    } catch (err) {\r\n      console.error(\"Lỗi đồng bộ danh mục giáo dục\", err);\r\n    }\r\n  };\r\n\r\n  // Kích hoạt nạp dữ liệu động khi mở trang lên\r\n  useEffect(() => {\r\n    fetchApps();\r\n    fetchStats();\r\n    fetchEducationData();\r\n  }, []);\r\n\r\n  const handleUpload = async (file: File) => {\r\n    setUploadLoading(true);\r\n    try {\r\n      const res = await uploadDocument(file);\r\n      if (res.status === \"success\") {\r\n        setUploadedFiles((prev) => [\r\n          ...prev,\r\n          {\r\n            originalName: res.data.originalName,\r\n            fileUrl: res.data.fileUrl,\r\n            mimeType: file.type,\r\n            fileSize: file.size,\r\n            fileType: \"OTHER\",\r\n          },\r\n        ]);\r\n        message.success(`Tải lên \"${file.name}\" thành công!`);\r\n      } else {\r\n        message.error(res.message || \"Tải file thất bại.\");\r\n      }\r\n    } catch {\r\n      message.error(\"Lỗi kết nối.\");\r\n    } finally {\r\n      setUploadLoading(false);\r\n    }\r\n    return false;\r\n  };\r\n\r\n  const handleSubmit = async (values: any) => {\r\n    if (uploadedFiles.length === 0) {\r\n      message.warning(\"Vui lòng tải lên ít nhất 1 minh chứng!\");\r\n      return;\r\n    }\r\n    setSubmitLoading(true);\r\n    try {\r\n      const totalScore =\r\n        parseFloat(values.score1 || 0) +\r\n        parseFloat(values.score2 || 0) +\r\n        parseFloat(values.score3 || 0);\r\n\r\n      const res = await submitApplication({\r\n        universityId: values.university,\r\n        majorId: values.major,\r\n        combinationId: values.combination,\r\n        roundId: values.priority,\r\n        scoreSubject1: parseFloat(values.score1),\r\n        scoreSubject2: parseFloat(values.score2),\r\n        scoreSubject3: parseFloat(values.score3),\r\n        totalScore: totalScore,\r\n        priorityObject: values.priorityType || \"NONE\",\r\n        priorityScore: 0,\r\n        files: uploadedFiles,\r\n      });\r\n\r\n      if (res.status === \"success\") {\r\n        message.success(\"Nộp hồ sơ thành công!\");\r\n        form.resetFields();\r\n        setUploadedFiles([]);\r\n        fetchApps();\r\n        fetchStats(); // Làm mới luôn số liệu thống kê ở màn hình chính\r\n        setTab(\"history\");\r\n      } else {\r\n        message.error(res.message || \"Nộp hồ sơ thất bại.\");\r\n      }\r\n    } catch {\r\n      message.error(\"Lỗi kết nối.\");\r\n    } finally {\r\n      setSubmitLoading(false);\r\n    }\r\n  };\r\n\r\n  const handleFileTypeChange = (index: number, newType: string) => {\r\n    setUploadedFiles((prev) => {\r\n      const updatedFiles = [...prev];\r\n      updatedFiles[index].fileType = newType;\r\n      return updatedFiles;\r\n    });\r\n  };\r\n\r\n  // 🔹 4. ĐỊNH NGHĨA CỘT BẢNG: TỰ ĐỘNG MAP TÊN TRƯỜNG/NGÀNH TỪ ID DƯỚI DB LÊN\r\n  const columns = [\r\n    {\r\n      title: \"STT\",\r\n      width: 60,\r\n      render: (_: any, __: any, i: number) => <span className={styles.muted}>{i + 1}</span>,\r\n    },\r\n    {\r\n      title: \"Trường\",\r\n      dataIndex: \"university_id\",\r\n      render: (v: string) => {\r\n        const item = universities.find((u) => u.id === v || u.code === v);\r\n        return <span style={{ color: \"#fff\" }}>{item ? item.name : v || \"---\"}</span>;\r\n      },\r\n    },\r\n    {\r\n      title: \"Ngành đăng ký\",\r\n      dataIndex: \"major_id\",\r\n      render: (v: string) => {\r\n        const item = majors.find((m) => m.id === v || m.code === v);\r\n        return <strong style={{ color: \"#fff\" }}>{item ? item.name : v}</strong>;\r\n      },\r\n    },\r\n    {\r\n      title: \"Ngày nộp\",\r\n      dataIndex: \"createdAt\",\r\n      render: (v: string) => (\r\n        <span className={styles.muted}>\r\n          {v ? new Date(v).toLocaleDateString(\"vi-VN\") : \"---\"}\r\n        </span>\r\n      ),\r\n    },\r\n    {\r\n      title: \"Trạng thái\",\r\n      dataIndex: \"status\",\r\n      render: (s: string) => {\r\n        const c = STATUS[s] || STATUS.PENDING;\r\n        return (\r\n          <Tag icon={c.icon} color={c.color}>\r\n            {c.label}\r\n          </Tag>\r\n        );\r\n      },\r\n    },\r\n    {\r\n      title: \"Hồ sơ\",\r\n      dataIndex: \"application_files\",\r\n      render: (_: any, record: any) => {\r\n        const files = record.application_files || record.applicationFiles;\r\n        return files && files.length > 0 ? (\r\n          <a\r\n            href={`http://localhost:5000${files[0].file_url || files[0].fileUrl}`}\r\n            target=\"_blank\"\r\n            rel=\"noreferrer\"\r\n            className={styles.link}\r\n          >\r\n            Xem ↗\r\n          </a>\r\n        ) : (\r\n          <span className={styles.muted}>—</span>\r\n        );\r\n      },\r\n    },\r\n  ];\r\n\r\n  const notificationContent = (\r\n    <div style={{ width: 320, maxHeight: 400, overflowY: \"auto\" }}>\r\n      {apps.length === 0 ? (\r\n        <Empty description=\"Bạn chưa có thông báo nào\" image={Empty.PRESENTED_IMAGE_SIMPLE} />\r\n      ) : (\r\n        <List\r\n          itemLayout=\"horizontal\"\r\n          dataSource={apps}\r\n          renderItem={(app) => {\r\n            let statusText = \"\";\r\n            let color = \"\";\r\n            if (app.status === \"APPROVED\" || app.status === \"approved\") {\r\n              statusText = \"đã được duyệt thành công\";\r\n              color = \"#4ade80\";\r\n            } else if (app.status === \"REJECTED\" || app.status === \"rejected\") {\r\n              statusText = \"đã bị từ chối\";\r\n              color = \"#f87171\";\r\n            } else {\r\n              statusText = \"đang trong quá trình chờ duyệt\";\r\n              color = \"#fbbf24\";\r\n            }\r\n\r\n            return (\r\n              <List.Item style={{ padding: \"12px 16px\", cursor: \"pointer\", borderBottom: \"1px solid #f0f0f0\" }}>\r\n                <List.Item.Meta\r\n                  avatar={<BellOutlined style={{ color, fontSize: 18, marginTop: 4 }} />}\r\n                  title={<span style={{ fontSize: 14, fontWeight: 600, color: \"#1f2937\" }}>Cập nhật hồ sơ</span>}\r\n                  description={\r\n                    <span style={{ fontSize: 13, color: \"#4b5563\" }}>\r\n                      Hồ sơ xét tuyển vào ngành <strong>{app.major_id || app.majorId}</strong> của bạn {statusText}.\r\n                    </span>\r\n                  }\r\n                />\r\n              </List.Item>\r\n            );\r\n          }}\r\n        />\r\n      )}\r\n    </div>\r\n  );\r\n\r\n  return (\r\n    <Layout className={styles.layout}>\r\n      <Sider width={240} className={styles.sider}>\r\n        <div className={styles.brand}>\r\n          <div className={styles.brandIcon}>\r\n            <svg viewBox=\"0 0 36 36\" fill=\"none\">\r\n              <rect width=\"36\" height=\"36\" rx=\"10\" fill=\"url(#dg)\" />\r\n              <path d=\"M10 26L18 10L26 26\" stroke=\"white\" strokeWidth=\"2.5\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\r\n              <path d=\"M13 20.5H23\" stroke=\"white\" strokeWidth=\"2.5\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\r\n              <defs>\r\n                <linearGradient id=\"dg\" x1=\"0\" y1=\"0\" x2=\"36\" y2=\"36\" gradientUnits=\"userSpaceOnUse\">\r\n                  <stop stopColor=\"#667eea\" />\r\n                  <stop offset=\"1\" stopColor=\"#764ba2\" />\r\n                </linearGradient>\r\n              </defs>\r\n            </svg>\r\n          </div>\r\n          <div>\r\n            <div className={styles.brandName}>Tuyển Sinh</div>\r\n            <div className={styles.brandSub}>Cổng thông tin</div>\r\n          </div>\r\n        </div>\r\n\r\n        <Divider className={styles.divider} />\r\n\r\n        <div className={styles.userInfo}>\r\n          <Avatar size={40} icon={<UserOutlined />} className={styles.avatar} />\r\n          <div>\r\n            <div className={styles.userName}>{user.fullName || \"Sinh viên\"}</div>\r\n            <div className={styles.userId}>{user.email || \"---\"}</div>\r\n          </div>\r\n        </div>\r\n\r\n        <Menu\r\n          mode=\"inline\"\r\n          selectedKeys={[tab]}\r\n          onClick={({ key }) => setTab(key)}\r\n          className={styles.menu}\r\n          items={[\r\n            { key: \"overview\", icon: <HomeOutlined />, label: \"Tổng quan\" },\r\n            { key: \"apply\", icon: <PlusOutlined />, label: \"Nộp hồ sơ\" },\r\n            { key: \"history\", icon: <FileTextOutlined />, label: \"Lịch sử nộp\" },\r\n            { key: \"profile\", icon: <UserOutlined />, label: \"Hồ sơ cá nhân\" },\r\n          ]}\r\n        />\r\n\r\n        <div className={styles.logout}>\r\n          <Button\r\n            icon={<LogoutOutlined />}\r\n            block\r\n            className={styles.logoutBtn}\r\n            onClick={() => {\r\n              removeToken();\r\n              navigate(\"/login\");\r\n            }}\r\n          >\r\n            Đăng xuất\r\n          </Button>\r\n        </div>\r\n      </Sider>\r\n\r\n      <Layout>\r\n        <Header className={styles.header}>\r\n          <span className={styles.pageTitle}>\r\n            {{ overview: \"Tổng quan\", apply: \"Nộp hồ sơ xét tuyển\", history: \"Lịch sử nộp hồ sơ\", profile: \"Hồ sơ cá nhân\" }[tab]}\r\n          </span>\r\n          <div className={styles.headerRight}>\r\n            <Popover placement=\"bottomRight\" title={<span style={{ fontWeight: \"bold\" }}>🔔 Thông báo của bạn</span>} content={notificationContent} trigger=\"click\">\r\n              <Badge count={apps.length} size=\"small\" style={{ cursor: \"pointer\" }}>\r\n                <Button icon={<BellOutlined />} className={styles.iconBtn} />\r\n              </Badge>\r\n            </Popover>\r\n            <Avatar icon={<UserOutlined />} className={styles.avatar} />\r\n          </div>\r\n        </Header>\r\n\r\n        <Content className={styles.content}>\r\n          {/* OVERVIEW */}\r\n          {tab === \"overview\" && (\r\n            <>\r\n              <div className={styles.banner}>\r\n                <div>\r\n                  <h2 className={styles.bannerTitle}>Xin chào, {user.fullName || \"bạn\"}! 👋</h2>\r\n                  <p className={styles.bannerSub}>Theo dõi tình trạng hồ sơ xét tuyển của bạn tại đây.</p>\r\n                </div>\r\n                <Button type=\"primary\" icon={<PlusOutlined />} className={styles.bannerBtn} onClick={() => setTab(\"apply\")}>\r\n                  Nộp hồ sơ mới\r\n                </Button>\r\n              </div>\r\n\r\n              {/* 🔹 5. HIỂN THỊ DỮ LIỆU 4 Ô CARD DỰA VÀO ĐÚNG ĐẦU DATA TỪ API BACKEND */}\r\n              <Row gutter={[20, 20]} style={{ marginBottom: 24 }}>\r\n                {[\r\n                  { label: \"Tổng hồ sơ\", val: stats.totalApplications || 0, icon: <FileDoneOutlined />, color: \"#fff\" },\r\n                  { label: \"Đã duyệt\", val: stats.approvedApplications || 0, icon: <CheckCircleOutlined />, color: \"#4ade80\" },\r\n                  { label: \"Chờ duyệt\", val: stats.pendingApplications || 0, icon: <ClockCircleOutlined />, color: \"#fbbf24\" },\r\n                  { label: \"Từ chối\", val: stats.rejectedApplications || 0, icon: <CloseCircleOutlined />, color: \"#f87171\" },\r\n                ].map((s) => (\r\n                  <Col xs={24} sm={12} lg={6} key={s.label}>\r\n                    <Card className={styles.statCard}>\r\n                      <div className={styles.statIconWrap}>{s.icon}</div>\r\n                      <Statistic title={s.label} value={s.val} valueStyle={{ color: s.color, fontSize: 30, fontWeight: 700 }} />\r\n                    </Card>\r\n                  </Col>\r\n                ))}\r\n              </Row>\r\n\r\n              <Card className={styles.card} title={<span className={styles.cardTitle}>Hồ sơ gần đây</span>}>\r\n                {loading ? (\r\n                  <div className={styles.center}><Spin /></div>\r\n                ) : (\r\n                  <Table dataSource={apps.slice(0, 3)} columns={columns} pagination={false} rowKey=\"id\" className={styles.table} locale={{ emptyText: <Empty description={<span className={styles.muted}>Chưa có hồ sơ. Hãy nộp hồ sơ đầu tiên!</span>} /> }} />\r\n                )}\r\n              </Card>\r\n            </>\r\n          )}\r\n\r\n          {/* APPLY */}\r\n          {tab === \"apply\" && (\r\n            <Card className={styles.card} title={<span className={styles.cardTitle}>📋 Nộp hồ sơ xét tuyển</span>}>\r\n              <Form form={form} layout=\"vertical\" onFinish={handleSubmit} className={styles.applyForm}>\r\n                <div className={styles.sectionTitle}>🏫 Thông tin xét tuyển</div>\r\n                <Row gutter={24}>\r\n                  <Col xs={24} md={12}>\r\n                    <Form.Item name=\"university\" label=\"Trường đăng ký\" rules={[{ required: true, message: \"Vui lòng chọn trường!\" }]}>\r\n                      {/* ĐỔ DỮ LIỆU ĐỘNG TỪ DB */}\r\n                      <Select placeholder=\"Chọn trường đại học\" className={styles.formSelect} showSearch filterOption={(input, option) => (option?.children as any ?? '').toLowerCase().includes(input.toLowerCase())}>\r\n                        {universities.map((t) => (\r\n                          <Option key={t.id} value={t.id || t.code}>{t.name}</Option>\r\n                        ))}\r\n                      </Select>\r\n                    </Form.Item>\r\n                  </Col>\r\n                  <Col xs={24} md={12}>\r\n                    <Form.Item name=\"major\" label=\"Ngành đăng ký\" rules={[{ required: true, message: \"Vui lòng chọn ngành!\" }]}>\r\n                      {/* ĐỔ DỮ LIỆU ĐỘNG TỪ DB */}\r\n                      <Select placeholder=\"Chọn ngành học\" className={styles.formSelect} showSearch filterOption={(input, option) => (option?.children as any ?? '').toLowerCase().includes(input.toLowerCase())}>\r\n                        {majors.map((n) => (\r\n                          <Option key={n.id} value={n.id || n.code}>{n.name}</Option>\r\n                        ))}\r\n                      </Select>\r\n                    </Form.Item>\r\n                  </Col>\r\n                </Row>\r\n\r\n                <Row gutter={24}>\r\n                  <Col xs={24} md={12}>\r\n                    <Form.Item name=\"combination\" label=\"Tổ hợp xét tuyển\" rules={[{ required: true, message: \"Vui lòng chọn tổ hợp!\" }]}>\r\n                      {/* ĐỔ DỮ LIỆU ĐỘNG TỪ DB */}\r\n                      <Select placeholder=\"Chọn tổ hợp môn\" className={styles.formSelect}>\r\n                        {combinations.map((t) => (\r\n                          <Option key={t.id} value={t.id || t.code}>{t.name || t.code}</Option>\r\n                        ))}\r\n                      </Select>\r\n                    </Form.Item>\r\n                  </Col>\r\n                  <Col xs={24} md={12}>\r\n                    <Form.Item name=\"priority\" label=\"Nguyện vọng\" rules={[{ required: true, message: \"Vui lòng chọn!\" }]}>\r\n                      <Select placeholder=\"Chọn nguyện vọng\" className={styles.formSelect}>\r\n                        <Option value=\"1\">Nguyện vọng 1</Option>\r\n                        <Option value=\"2\">Nguyện vọng 2</Option>\r\n                        <Option value=\"3\">Nguyện vọng 3</Option>\r\n                      </Select>\r\n                    </Form",
       "__isJSFile": true,
       "__absFile": "C:/Users/Kien-PC/OneDrive/Desktop/Dự Án LTW_2026/HTQLTS_2026_2/RIPT1307-04-2026-Nh-m12-KTHP/frontend/src/pages/dashboard/index.tsx"
     },
@@ -2447,9 +2311,7 @@
     ]
   },
   "mfsuBundleStatus": {
-    "done": true,
-    "percent": 1,
-    "status": ""
+    "done": true
   },
   "react": {
     "version": "18.3.1",
@@ -3759,7 +3621,7 @@
             "format": "esm"
           },
           "src/services/api.ts": {
-            "bytes": 3570,
+            "bytes": 4196,
             "imports": [],
             "format": "esm"
           },
@@ -3836,7 +3698,7 @@
             "format": "esm"
           },
           "src/pages/dashboard/index.tsx": {
-            "bytes": 34036,
+            "bytes": 34540,
             "imports": [
               {
                 "path": "react",
@@ -5522,7 +5384,7 @@
                 "bytesInOutput": 381
               },
               "src/services/api.ts": {
-                "bytesInOutput": 3017
+                "bytesInOutput": 3796
               },
               "src/pages/login/index.tsx": {
                 "bytesInOutput": 6088
@@ -5531,7 +5393,7 @@
                 "bytesInOutput": 9551
               },
               "src/pages/dashboard/index.tsx": {
-                "bytesInOutput": 32724
+                "bytesInOutput": 32793
               },
               "src/pages/admin/_layout.tsx": {
                 "bytesInOutput": 3727
@@ -5558,7 +5420,7 @@
                 "bytesInOutput": 2074
               }
             },
-            "bytes": 135209
+            "bytes": 136057
           }
         }
       }
@@ -8782,7 +8644,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 324,
+          "end": 285,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -8896,7 +8758,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 601,
+          "end": 543,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -8908,11 +8770,6 @@
             {
               "imported": "FileTextOutlined",
               "local": "FileTextOutlined",
-              "type": "ImportSpecifier"
-            },
-            {
-              "imported": "UploadOutlined",
-              "local": "UploadOutlined",
               "type": "ImportSpecifier"
             },
             {
@@ -8961,11 +8818,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 326,
+          "start": 287,
           "type": "ImportDeclaration"
         },
         {
-          "end": 650,
+          "end": 592,
           "importKind": "value",
           "source": "react-router-dom",
           "specifiers": [
@@ -8975,11 +8832,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 603,
+          "start": 545,
           "type": "ImportDeclaration"
         },
         {
-          "end": 769,
+          "end": 787,
           "importKind": "value",
           "source": "../../services/api",
           "specifiers": [
@@ -9002,13 +8859,33 @@
               "imported": "removeToken",
               "local": "removeToken",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "getUniversities",
+              "local": "getUniversities",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "getMajors",
+              "local": "getMajors",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "getCombinations",
+              "local": "getCombinations",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "getDashboardStats",
+              "local": "getDashboardStats",
+              "type": "ImportSpecifier"
             }
           ],
-          "start": 652,
+          "start": 594,
           "type": "ImportDeclaration"
         },
         {
-          "end": 805,
+          "end": 823,
           "importKind": "value",
           "source": "./index.less",
           "specifiers": [
@@ -9017,7 +8894,7 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 771,
+          "start": 789,
           "type": "ImportDeclaration"
         }
       ],
