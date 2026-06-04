@@ -6,17 +6,14 @@ import {
 import {
   UserOutlined, FileTextOutlined, UploadOutlined, LogoutOutlined,
   CheckCircleOutlined, ClockCircleOutlined, CloseCircleOutlined,
-  BellOutlined, HomeOutlined, PlusOutlined, FileDoneOutlined,
-  InboxOutlined, ArrowRightOutlined, ArrowLeftOutlined,
+  BellOutlined, HomeOutlined, PlusOutlined, FileDoneOutlined, ArrowRightOutlined, ArrowLeftOutlined
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-// Các hàm này backend sẽ viết thực tế ở file services/api
 import { submitApplication, getMyApplications, uploadDocument, removeToken } from '../../services/api';
 import styles from './index.less';
 
 const { Sider, Content, Header } = Layout;
 const { Option } = Select;
-const { Dragger } = Upload;
 
 const STATUS: Record<string, { color: string; icon: any; label: string }> = {
   pending:  { color: 'warning', icon: <ClockCircleOutlined />, label: 'Chờ duyệt' },
@@ -27,18 +24,23 @@ const STATUS: Record<string, { color: string; icon: any; label: string }> = {
   REJECTED: { color: 'error',   icon: <CloseCircleOutlined />, label: 'Từ chối' },
 };
 
+// Cấu hình các loại giấy tờ cần tải lên
+const DOC_CATEGORIES = [
+  { code: 'CCCD', name: 'Căn cước công dân (Mặt trước & sau)', required: true },
+  { code: 'HOC_BA', name: 'Học bạ THPT', required: true },
+  { code: 'UU_TIEN', name: 'Giấy tờ chứng minh ưu tiên', required: false },
+  { code: 'KHAC', name: 'Các giấy tờ khác (Bằng khen, IELTS...)', required: false },
+];
+
 const formatDisplayDate = (value?: string) => {
   if (!value) return '---';
-
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
-
   return date.toLocaleDateString('vi-VN');
 };
 
 // =====================================================================
 // PHẦN 1: GIAO DIỆN THUẦN (UI COMPONENT)
-// Frontend (Bạn) chỉ làm việc ở nửa này, tự do chỉnh sửa UI/CSS
 // =====================================================================
 
 interface DashboardUIProps {
@@ -58,7 +60,7 @@ interface DashboardUIProps {
   majors: any[];
   combinations: any[];
   priorities: any[];
-  handleUpload: (file: File) => Promise<boolean>;
+  handleUpload: (file: File, categoryCode: string) => Promise<boolean>;
   handleSubmit: (values: any) => void;
   handleLogout: () => void;
 }
@@ -86,7 +88,7 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
     {
       title: 'Hồ sơ', dataIndex: 'applicationFiles',
       render: (files: any[]) => files && files.length > 0
-        ? <a href={`http://localhost:3000${files[0].fileUrl}`} target="_blank" rel="noreferrer">Xem ↗</a>
+        ? <a href={`http://localhost:5000${files[0].fileUrl}`} target="_blank" rel="noreferrer">Xem ↗</a>
         : <span>—</span>,
     },
   ];
@@ -203,7 +205,7 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                 items={[
                   { title: 'Thông tin cá nhân', description: 'Đối tượng ưu tiên' },
                   { title: 'Xét tuyển', description: 'Chọn trường, ngành, điểm' },
-                  { title: 'Minh chứng & Gửi', description: 'Tải file & xác nhận' },
+                  { title: 'Minh chứng & Gửi', description: 'Phân loại tài liệu' },
                 ]}
                 style={{ marginBottom: 32 }}
               />
@@ -236,7 +238,7 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                       <Col xs={24} md={12}>
                         <Form.Item name="priorityType" label="Đối tượng ưu tiên">
                           <Select placeholder="Chọn đối tượng ưu tiên" showSearch>
-                            {priorities.map(p => <Option key={p.id || p} value={p.code || p}>{p.name || p}</Option>)}
+                            {priorities.map(p => <Option key={p.id} value={p.id}>{p.name}</Option>)}
                           </Select>
                         </Form.Item>
                       </Col>
@@ -263,14 +265,14 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                       <Col xs={24} md={12}>
                         <Form.Item name="university" label="Trường đăng ký" rules={[{ required: true, message: 'Vui lòng chọn trường!' }]}>
                           <Select placeholder="Chọn trường đại học" showSearch>
-                            {universities.map(t => <Option key={t.id || t} value={t.code || t}>{t.name || t}</Option>)}
+                            {universities.map(t => <Option key={t.id} value={t.id}>{t.name}</Option>)}
                           </Select>
                         </Form.Item>
                       </Col>
                       <Col xs={24} md={12}>
                         <Form.Item name="major" label="Ngành đăng ký" rules={[{ required: true, message: 'Vui lòng chọn ngành!' }]}>
                           <Select placeholder="Chọn ngành học" showSearch>
-                            {majors.map(n => <Option key={n.id || n} value={n.code || n}>{n.name || n}</Option>)}
+                            {majors.map(n => <Option key={n.id} value={n.id}>{n.name}</Option>)}
                           </Select>
                         </Form.Item>
                       </Col>
@@ -281,7 +283,7 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                       <Col xs={24} md={12}>
                         <Form.Item name="combination" label="Tổ hợp xét tuyển" rules={[{ required: true, message: 'Vui lòng chọn tổ hợp!' }]}>
                           <Select placeholder="Chọn tổ hợp môn" showSearch>
-                            {combinations.map(t => <Option key={t.id || t} value={t.code || t}>{t.name || t}</Option>)}
+                            {combinations.map(t => <Option key={t.id} value={t.id}>{t.id} ({t.subjects})</Option>)}
                           </Select>
                         </Form.Item>
                       </Col>
@@ -333,49 +335,60 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                 {/* STEP 3: Tải lên minh chứng & Xác nhận */}
                 {currentStep === 2 && (
                   <div>
-                    <div className={styles.sectionTitle}>📎 Tải lên minh chứng</div>
-                    <p style={{ marginBottom: 16 }}>Chấp nhận: PDF, JPEG, PNG — Ảnh chụp học bạ, CCCD, chứng chỉ...</p>
+                    <div className={styles.sectionTitle}>📎 Phân loại & Tải lên minh chứng</div>
+                    <p style={{ marginBottom: 16 }}>Vui lòng tải lên đúng loại giấy tờ vào từng mục. Chấp nhận: PDF, JPEG, PNG.</p>
 
-                    <Form.Item>
-                      <Dragger
-                        accept=".pdf,.jpg,.jpeg,.png"
-                        beforeUpload={handleUpload}
-                        showUploadList={false}
-                        multiple
-                        disabled={uploadLoading}
-                      >
-                        <p className="ant-upload-drag-icon">
-                          <InboxOutlined style={{ fontSize: 40, color: '#1890ff' }} />
-                        </p>
-                        <p style={{ fontSize: 14 }}>
-                          Kéo thả file vào đây hoặc <span style={{ color: '#1890ff', fontWeight: 500 }}>click để chọn</span>
-                        </p>
-                        <p style={{ fontSize: 12, color: 'rgba(0,0,0,0.45)' }}>
-                          PDF, JPEG, PNG — Học bạ, CCCD, minh chứng ưu tiên
-                        </p>
-                      </Dragger>
-                    </Form.Item>
+                    <Row gutter={[16, 16]}>
+                      {DOC_CATEGORIES.map(cat => {
+                        // Lọc các file thuộc category hiện tại để hiển thị
+                        const currentFiles = uploadedFiles.filter(f => f.documentCategory === cat.code);
+                        
+                        return (
+                          <Col xs={24} md={12} key={cat.code}>
+                            <Card 
+                              size="small" 
+                              title={<span style={{ fontSize: 14 }}>{cat.name} {cat.required && <span style={{color: 'red'}}>*</span>}</span>}
+                              style={{ height: '100%' }}
+                            >
+                              <Upload
+                                accept=".pdf,.jpg,.jpeg,.png"
+                                beforeUpload={(file) => handleUpload(file, cat.code)} // Truyền mã category vào hàm upload
+                                showUploadList={false}
+                                multiple
+                                disabled={uploadLoading}
+                              >
+                                <Button icon={<UploadOutlined />} disabled={uploadLoading}>
+                                  Chọn file
+                                </Button>
+                              </Upload>
 
-                    {uploadedFiles.length > 0 && (
-                      <div style={{ marginTop: 16 }}>
-                        <h4>Tệp đã tải lên:</h4>
-                        {uploadedFiles.map((f, i) => (
-                          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', borderRadius: 8, background: '#fafafa', marginBottom: 8 }}>
-                            <CheckCircleOutlined style={{ color: '#52c41a', fontSize: 16 }} />
-                            <span style={{ flex: 1, fontSize: 13 }}>{f.originalName}</span>
-                            <a href={`http://localhost:3000${f.fileUrl}`} target="_blank" rel="noreferrer">Xem</a>
-                            <a onClick={() => setUploadedFiles(prev => prev.filter((_, idx) => idx !== i))} style={{ color: '#f5222d', cursor: 'pointer' }}>Xóa</a>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                              {/* Danh sách file đã tải lên cho danh mục này */}
+                              {currentFiles.length > 0 && (
+                                <div style={{ marginTop: 12 }}>
+                                  {currentFiles.map((f, i) => (
+                                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 8px', borderRadius: 4, background: '#f5f5f5', marginBottom: 6 }}>
+                                      <CheckCircleOutlined style={{ color: '#52c41a', fontSize: 14 }} />
+                                      <span style={{ flex: 1, fontSize: 13, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={f.originalName}>
+                                        {f.originalName}
+                                      </span>
+                                      <a href={`http://localhost:5000${f.fileUrl}`} target="_blank" rel="noreferrer" style={{ fontSize: 13 }}>Xem</a>
+                                      <a onClick={() => setUploadedFiles(prev => prev.filter(item => item.fileUrl !== f.fileUrl))} style={{ color: '#f5222d', fontSize: 13, cursor: 'pointer' }}>Xóa</a>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </Card>
+                          </Col>
+                        );
+                      })}
+                    </Row>
 
-                    <div style={{ display: 'flex', gap: 12, justifyContent: 'space-between', marginTop: 24 }}>
+                    <div style={{ display: 'flex', gap: 12, justifyContent: 'space-between', marginTop: 32 }}>
                       <Button icon={<ArrowLeftOutlined />} onClick={() => setCurrentStep(1)}>
                         Quay lại
                       </Button>
                       <Button type="primary" htmlType="submit" loading={submitLoading} icon={<UploadOutlined />}>
-                        {submitLoading ? 'Đang gửi...' : '📤 Gửi hồ sơ'}
+                        {submitLoading ? 'Đang gửi...' : '📤 Gửi hồ sơ xét tuyển'}
                       </Button>
                     </div>
                   </div>
@@ -452,48 +465,94 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
 
 // =====================================================================
 // PHẦN 2: XỬ LÝ LOGIC (LOGIC/CONTAINER COMPONENT)
-// Backend sẽ vào phần này để viết các hàm fetch, logic submit...
 // =====================================================================
 
-// Hàm gọi API lấy dữ liệu (Backend sửa link ở đây)
 async function getUniversities() {
   try {
-    const res = await fetch('http://localhost:3000/api/v1/universities');
+    const token = localStorage.getItem('token');
+    const res = await fetch('http://localhost:5000/api/v1/education/universities', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token ? `Bearer ${token}` : '',
+      },
+    });
+    if (!res.ok) throw new Error(`Lỗi Server: ${res.status}`);
     const data = await res.json();
-    return data.data || [];
-  } catch {
-    return ['Đại học Bách Khoa Hà Nội', 'Đại học Quốc gia Hà Nội', 'Đại học Kinh tế Quốc dân',
-            'Đại học Ngoại thương', 'Đại học Y Hà Nội', 'Đại học Bách Khoa TP.HCM'];
+    return data || [];
+  } catch (error) {
+    console.error('Lỗi khi tải danh sách Trường:', error);
+    return [
+      { id: 'UNI_BKHN', code: 'BKHN', name: 'Đại học Bách Khoa Hà Nội' },
+      { id: 'UNI_GTVT', code: 'GTVT', name: 'Đại học Giao thông Vận tải' }
+    ];
   }
 }
+
 async function getMajors() {
   try {
-    const res = await fetch('http://localhost:3000/api/v1/majors');
+    const token = localStorage.getItem('token');
+    const res = await fetch('http://localhost:5000/api/v1/education/majors', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token ? `Bearer ${token}` : '',
+      },
+    });
+    if (!res.ok) throw new Error(`Lỗi Server: ${res.status}`);
     const data = await res.json();
-    return data.data || [];
-  } catch {
-    return ['Công nghệ thông tin', 'Kỹ thuật phần mềm', 'Khoa học máy tính',
-            'An toàn thông tin', 'Hệ thống thông tin'];
+    return data || [];
+  } catch (error) {
+    console.error('Lỗi khi tải danh sách Ngành:', error);
+    return [
+      { id: 'MAJ_BA', code: 'BA', name: 'Kỹ sư phân tích nghiệp vụ' },
+      { id: 'MAJ_EE1', code: 'EE1', name: 'Kỹ thuật Điện' }
+    ];
   }
 }
+
 async function getCombinations() {
   try {
-    const res = await fetch('http://localhost:3000/api/v1/combinations');
+    const token = localStorage.getItem('token');
+    const res = await fetch('http://localhost:5000/api/v1/education/combinations', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token ? `Bearer ${token}` : '',
+      },
+    });
+    if (!res.ok) throw new Error(`Lỗi Server: ${res.status}`);
     const data = await res.json();
-    return data.data || [];
-  } catch {
-    return ['A00 (Toán, Lý, Hóa)', 'A01 (Toán, Lý, Anh)', 'B00 (Toán, Hóa, Sinh)',
-            'C00 (Văn, Sử, Địa)', 'D01 (Toán, Văn, Anh)', 'D07 (Toán, Hóa, Anh)'];
+    return data || [];
+  } catch (error) {
+    console.error('Lỗi khi tải danh sách Tổ hợp:', error);
+    return [
+      { id: 'A00', code: 'A00', subjects: 'Toán, Lý, Hóa' },
+      { id: 'A01', code: 'A01', subjects: 'Toán, Lý, Anh' }
+    ];
   }
 }
+
 async function getPriorities() {
   try {
-    const res = await fetch('http://localhost:3000/api/v1/priorities');
+    const token = localStorage.getItem('token');
+    const res = await fetch('http://localhost:5000/api/v1/education/priorities', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token ? `Bearer ${token}` : '',
+      },
+    });
+    if (!res.ok) throw new Error(`Lỗi Server: ${res.status}`);
     const data = await res.json();
-    return data.data || [];
-  } catch {
-    return ['Không có ưu tiên', 'Ưu tiên 1 (Khu vực 1)', 'Ưu tiên 2 (Khu vực 2)',
-            'Ưu tiên 3 (Khu vực 3)', 'Đối tượng ưu tiên 1', 'Đối tượng ưu tiên 2'];
+    return data || [];
+  } catch (error) {
+    console.error('Lỗi khi tải danh sách Ưu tiên:', error);
+    return [
+      { id: 'KV1', name: 'Ưu tiên 1 (Khu vực 1)' },
+      { id: 'KV2', name: 'Ưu tiên 2 (Khu vực 2)' },
+      { id: 'KV3', name: 'Không ưu tiên (KV3)' }
+    ];
   }
 }
 
@@ -501,7 +560,6 @@ export default function DashboardPage() {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   
-  // State quản lý UI và dữ liệu
   const [tab, setTab] = useState('overview');
   const [apps, setApps] = useState<any[]>([]);
   const [universities, setUniversities] = useState<any[]>([]);
@@ -563,7 +621,8 @@ export default function DashboardPage() {
     fetchMetadata();
   }, []);
 
-  const handleUpload = async (file: File) => {
+  // Cập nhật hàm handleUpload để nhận thêm mã phân loại giấy tờ (categoryCode)
+  const handleUpload = async (file: File, categoryCode: string) => {
     setUploadLoading(true);
     try {
       const res = await uploadDocument(file);
@@ -574,6 +633,7 @@ export default function DashboardPage() {
           mimeType: file.type,
           fileSize: file.size,
           fileType: file.type.includes('pdf') ? 'PDF' : 'IMAGE',
+          documentCategory: categoryCode, // <--- THÊM NHÃN PHÂN LOẠI VÀO ĐÂY
         }]);
         message.success(`Tải lên "${file.name}" thành công!`);
       } else {
@@ -584,14 +644,19 @@ export default function DashboardPage() {
     } finally {
       setUploadLoading(false);
     }
-    return false;
+    return false; // Ngăn chặn Ant Design tự động upload
   };
 
   const handleSubmit = async (values: any) => {
-    if (uploadedFiles.length === 0) {
-      message.warning('Vui lòng tải lên ít nhất 1 minh chứng!');
+    // Ép buộc phải có CCCD và Học bạ
+    const hasCCCD = uploadedFiles.some(f => f.documentCategory === 'CCCD');
+    const hasHocBa = uploadedFiles.some(f => f.documentCategory === 'HOC_BA');
+
+    if (!hasCCCD || !hasHocBa) {
+      message.error('Vui lòng tải lên đầy đủ Căn cước công dân và Học bạ THPT!');
       return;
     }
+
     setSubmitLoading(true);
     try {
       const totalScore = parseFloat(values.score1 || 0) + parseFloat(values.score2 || 0) + parseFloat(values.score3 || 0);
@@ -606,7 +671,7 @@ export default function DashboardPage() {
         totalScore: totalScore,
         priorityObject: values.priorityType || 'Không có ưu tiên',
         priorityScore: 0,
-        files: uploadedFiles,
+        files: uploadedFiles, // Cục mảng file này giờ đã có sẵn 'documentCategory' bên trong
       });
 
       if (res.status === 'success') {
@@ -631,7 +696,6 @@ export default function DashboardPage() {
     navigate('/login');
   };
 
-  // Render ra UI và ném hết dữ liệu vào
   return (
     <DashboardUI 
       user={user}
