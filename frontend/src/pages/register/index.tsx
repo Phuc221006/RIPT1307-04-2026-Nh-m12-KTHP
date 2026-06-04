@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from "react";
 import { Form, Input, Button, message, Steps } from "antd";
 import {
@@ -10,6 +11,190 @@ import {
 import { useNavigate } from "react-router-dom";
 import { register } from "../../services/api";
 import styles from "./index.less";
+=======
+import { useState } from 'react';
+import { Form, Input, Button, message, Steps, Tabs, DatePicker } from 'antd';
+import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined, CalendarOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+import { register } from '../../services/api';
+import styles from './index.less';
+
+
+type RegisterUIProps = {
+  form: any;
+  currentStep: number;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  nextStep: () => Promise<void>;
+  onFinish: (values: any) => Promise<void>;
+  loading: boolean;
+  Maps: (path: string) => void;
+};
+
+function RegisterUI({
+  form,
+  currentStep,
+  setCurrentStep,
+  nextStep,
+  onFinish,
+  loading,
+  Maps,
+}: RegisterUIProps) {
+  return (
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <div className={styles.headerBox}>
+          <div className={styles.eyebrow}>Cổng tuyển sinh quốc gia</div>
+          <h1 className={styles.title}>Xác thực - Cổng tuyển sinh Quốc gia</h1>
+          <p className={styles.subtitle}>Tạo tài khoản thí sinh để tiếp tục hồ sơ tuyển sinh của bạn.</p>
+        </div>
+
+        <Tabs
+          activeKey="register"
+          className={styles.tabs}
+          onChange={(key) => {
+            if (key === 'login') Maps('/login');
+          }}
+          items={[
+            { key: 'login', label: 'Đăng nhập' },
+            { key: 'register', label: 'Đăng ký' },
+          ]}
+        />
+
+        <Steps
+          current={currentStep}
+          size="small"
+          className={styles.steps}
+          items={[{ title: 'Cá nhân' }, { title: 'Liên hệ' }, { title: 'Bảo mật' }]}
+        />
+
+        <Form form={form} onFinish={onFinish} layout="vertical" size="large" className={styles.form}>
+          <div style={{ display: currentStep === 0 ? 'block' : 'none' }}>
+            <Form.Item
+              name="fullName"
+              label="Họ và tên"
+              rules={[{ required: true, message: 'Vui lòng nhập họ tên!' }]}
+            >
+              <Input
+                prefix={<UserOutlined className={styles.inputIcon} />}
+                placeholder="Nguyễn Văn A"
+                className={styles.input}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name="dob"
+              label="Ngày sinh"
+              rules={[{ required: true, message: 'Vui lòng nhập ngày sinh!' }]}
+            >
+              <DatePicker
+                placeholder="Chọn ngày sinh"
+                className={styles.datePicker}
+                format="DD/MM/YYYY"
+                suffixIcon={<CalendarOutlined className={styles.inputIcon} />}
+              />
+            </Form.Item>
+          </div>
+
+          <div style={{ display: currentStep === 1 ? 'block' : 'none' }}>
+            <Form.Item
+              name="email"
+              label="Email"
+              rules={[
+                { required: true, message: 'Vui lòng nhập email!' },
+                { type: 'email', message: 'Email không hợp lệ!' },
+              ]}
+            >
+              <Input
+                prefix={<MailOutlined className={styles.inputIcon} />}
+                placeholder="example@email.com"
+                className={styles.input}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name="phone"
+              label="Số điện thoại"
+              rules={[
+                { required: true, message: 'Vui lòng nhập SĐT!' },
+                { pattern: /^[0-9]{10,11}$/, message: 'SĐT không hợp lệ!' },
+              ]}
+            >
+              <Input
+                prefix={<PhoneOutlined className={styles.inputIcon} />}
+                placeholder="0912345678"
+                className={styles.input}
+              />
+            </Form.Item>
+          </div>
+
+          <div style={{ display: currentStep === 2 ? 'block' : 'none' }}>
+            <Form.Item
+              name="password"
+              label="Mật khẩu"
+              rules={[
+                { required: true, message: 'Vui lòng nhập mật khẩu!' },
+                { min: 6, message: 'Tối thiểu 6 ký tự!' },
+              ]}
+            >
+              <Input.Password
+                prefix={<LockOutlined className={styles.inputIcon} />}
+                placeholder="Tối thiểu 6 ký tự"
+                className={styles.input}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name="confirmPassword"
+              label="Xác nhận mật khẩu"
+              dependencies={['password']}
+              rules={[
+                { required: true, message: 'Vui lòng xác nhận mật khẩu!' },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue('password') === value) return Promise.resolve();
+                    return Promise.reject(new Error('Mật khẩu không khớp!'));
+                  },
+                }),
+              ]}
+            >
+              <Input.Password
+                prefix={<LockOutlined className={styles.inputIcon} />}
+                placeholder="Nhập lại mật khẩu"
+                className={styles.input}
+              />
+            </Form.Item>
+          </div>
+
+          <div className={styles.btnGroup}>
+            {currentStep > 0 && (
+              <Button onClick={() => setCurrentStep((s) => s - 1)} className={styles.backBtn}>
+                ← Quay lại
+              </Button>
+            )}
+
+            {currentStep < 2 ? (
+              <Button onClick={nextStep} className={styles.nextBtn}>
+                Tiếp theo →
+              </Button>
+            ) : (
+              <Button type="primary" htmlType="submit" loading={loading} className={styles.submitBtn}>
+                {loading ? 'Đang đăng ký...' : '✓ Hoàn tất đăng ký'}
+              </Button>
+            )}
+          </div>
+        </Form>
+
+        <div className={styles.footer}>
+          <span>Đã có tài khoản?</span>
+          <a onClick={() => Maps('/login')} className={styles.loginLink}>
+            Đăng nhập
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+>>>>>>> fbce2b8ae4ea56640057ae1ca968c085bd5513d9
 
 export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
@@ -17,6 +202,19 @@ export default function RegisterPage() {
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
+<<<<<<< HEAD
+=======
+  const nextStep = async () => {
+    try {
+      if (currentStep === 0) await form.validateFields(['fullName', 'dob']);
+      if (currentStep === 1) await form.validateFields(['email', 'phone']);
+      setCurrentStep((step) => step + 1);
+    } catch {
+      // Validation errors are handled by Ant Design.
+    }
+  };
+
+>>>>>>> fbce2b8ae4ea56640057ae1ca968c085bd5513d9
   const onFinish = async (values: any) => {
     setLoading(true);
     try {
@@ -25,6 +223,7 @@ export default function RegisterPage() {
         email: values.email,
         password: values.password,
         phone: values.phone,
+<<<<<<< HEAD
         studentId: "", // Giữ nguyên logic tự động sinh mã ngẫu nhiên của bạn!
         dateOfBirth: values.dateOfBirth,
       } as any);
@@ -32,6 +231,14 @@ export default function RegisterPage() {
       if (res.status === "success") {
         message.success("Đăng ký thành công! Vui lòng đăng nhập.");
         navigate("/login");
+=======
+        dob: values.dob?.format?.('YYYY-MM-DD') || values.dob,
+      });
+
+      if (res.status === 'success') {
+        message.success('Đăng ký thành công! Vui lòng đăng nhập.');
+        navigate('/login');
+>>>>>>> fbce2b8ae4ea56640057ae1ca968c085bd5513d9
       } else {
         message.error(res.message || "Đăng ký thất bại.");
       }
@@ -42,6 +249,7 @@ export default function RegisterPage() {
     }
   };
 
+<<<<<<< HEAD
   const nextStep = async () => {
     try {
       if (currentStep === 0)
@@ -253,5 +461,17 @@ export default function RegisterPage() {
         </div>
       </div>
     </div>
+=======
+  return (
+    <RegisterUI
+      form={form}
+      currentStep={currentStep}
+      setCurrentStep={setCurrentStep}
+      nextStep={nextStep}
+      onFinish={onFinish}
+      loading={loading}
+      Maps={navigate}
+    />
+>>>>>>> fbce2b8ae4ea56640057ae1ca968c085bd5513d9
   );
 }

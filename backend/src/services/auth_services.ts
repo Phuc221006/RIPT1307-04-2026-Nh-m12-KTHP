@@ -5,7 +5,7 @@ import crypto from "crypto"; // Thêm thư viện này để tạo ID chuẩn UU
 
 class AuthService {
   async registerUser(data: any) {
-    const { email, password, fullName, phone } = data;
+    const { email, password, fullName, phone, dob } = data;
 
     // 1. Gọi đúng tên model là 'users' theo schema của bạn
     const existingUser = await prisma.users.findUnique({ where: { email } });
@@ -24,14 +24,17 @@ class AuthService {
         id: crypto.randomUUID(),
         email: email,
         password: hashedPassword,
-        full_name: fullName, // Map biến fullName từ request sang cột full_name trong DB
+        full_name: fullName,
         phone: phone,
+        dob: dob ? new Date(dob) : null,
         role: "CANDIDATE",
       },
       select: {
         id: true,
         email: true,
         full_name: true,
+        dob: true,
+        phone: true,
         role: true,
         created_at: true,
       },
@@ -84,6 +87,8 @@ class AuthService {
         id: user.id,
         email: user.email,
         fullName: user.full_name,
+        dob: user.dob,
+        phone: user.phone,
         role: user.role,
       },
       accessToken: token,

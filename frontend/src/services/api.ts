@@ -13,11 +13,17 @@ export function removeToken() {
   localStorage.removeItem("user");
 }
 
-export async function login(email: string, password: string) {
+export async function login(email: string, password: string, role?: 'candidate' | 'admin') {
   const res = await fetch(`${BASE_URL}/auth/login`, {
+<<<<<<< HEAD
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
+=======
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password, role: role || 'candidate' }),
+>>>>>>> fbce2b8ae4ea56640057ae1ca968c085bd5513d9
   });
   return res.json();
 }
@@ -26,8 +32,14 @@ export async function register(data: {
   fullName: string;
   email: string;
   password: string;
+<<<<<<< HEAD
   studentId: string;
+=======
+>>>>>>> fbce2b8ae4ea56640057ae1ca968c085bd5513d9
   phone: string;
+  studentId?: string;
+  major?: string;
+  dob?: string;
 }) {
   // 1. Tự sinh mã sinh viên ngẫu nhiên
   const year = new Date().getFullYear();
