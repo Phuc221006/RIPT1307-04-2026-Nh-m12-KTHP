@@ -73,17 +73,6 @@ export async function getMyApplications() {
   return res.json();
 }
 
-export async function uploadDocument(file: File) {
-  const formData = new FormData();
-  formData.append("file", file);
-  const res = await fetch(`${BASE_URL}/uploads/documents`, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${getToken()}` },
-    body: formData,
-  });
-  return res.json();
-}
-
 export async function loginService(payload: any) {
   const response = await fetch(`${BASE_URL}/auth/login`, {
     method: "POST",
@@ -159,3 +148,37 @@ export async function addMajor(payload: any) {
   });
   return await res.json();
 }
+
+// frontend/src/services/api.ts
+
+export const uploadDocument = async (file: File) => {
+  try {
+    // 1. Gói file vào FormData với key là "file" (khớp với upload.single("file") ở BE)
+    const formData = new FormData();
+    formData.append("file", file);
+
+    // 2. Lấy token để vượt qua cửa ải 'authenticate'
+    const token =
+      localStorage.getItem("token") || sessionStorage.getItem("token"); // Tùy cách ông đang lưu token
+
+    // 3. Gửi Request
+    // Nhớ đổi cái URL cho khớp với router của ông (VD: /api/v1/upload/documents)
+    const response = await fetch(
+      "http://localhost:5000/api/v1/upload/documents",
+      {
+        method: "POST",
+        headers: {
+          // TUYỆT ĐỐI KHÔNG xét 'Content-Type': 'multipart/form-data' bằng tay, trình duyệt sẽ tự làm
+          Authorization: `Bearer ${token}`, // Đính kèm thẻ bài
+        },
+        body: formData,
+      },
+    );
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Lỗi upload file:", error);
+    throw error;
+  }
+};

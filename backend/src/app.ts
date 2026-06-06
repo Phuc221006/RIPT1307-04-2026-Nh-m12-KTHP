@@ -21,7 +21,7 @@ app.get("/health", (req: Request, res: Response) => {
 
 // Cắm Module Auth vào hệ thống
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/uploads", uploadRoutes);
+app.use("/api/v1/upload", uploadRoutes);
 app.use("/api/v1/applications", applicationRoutes);
 app.use("/api/v1/education", educationRoutes);
 app.use("/api/v1/admin", adminRoutes);
