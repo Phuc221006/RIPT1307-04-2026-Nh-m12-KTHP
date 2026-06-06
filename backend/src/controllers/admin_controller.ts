@@ -48,6 +48,37 @@ class AdminController {
       res.status(400).json({ status: "error", message: error.message });
     }
   }
+  async getUniversities(req: Request, res: Response) {
+    try {
+      const data = await AdminService.getUniversities();
+
+      res.status(200).json({
+        status: "success",
+        data,
+      });
+    } catch (error: any) {
+      res.status(400).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+  }
+
+  async getMajors(req: Request, res: Response) {
+    try {
+      const data = await AdminService.getMajors();
+
+      res.status(200).json({
+        status: "success",
+        data,
+      });
+    } catch (error: any) {
+      res.status(400).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+  }
 
   // SỬA Ở ĐÂY: Đã xóa chữ "static" để đồng bộ với các hàm khác
   async getEmailLogs(req: Request, res: Response, next: NextFunction) {
@@ -60,6 +91,21 @@ class AdminController {
     }
   }
 
+  async getCombinations(req: Request, res: Response) {
+    try {
+      const data = await AdminService.getCombinations();
+
+      res.status(200).json({
+        status: "success",
+        data,
+      });
+    } catch (error: any) {
+      res.status(400).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+  }
 }
 
 export default new AdminController();

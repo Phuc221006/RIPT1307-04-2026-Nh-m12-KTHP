@@ -38,4 +38,11 @@ router.get(
   AdminController.getEmailLogs,
 );
 
+// Các route danh mục (Education)
+// Lưu ý: Nếu các route này đã có ở education_routes.ts,
+// ông không nên khai báo trùng ở đây.
+router.get("/universities", AdminController.getUniversities);
+router.get("/majors", AdminController.getMajors);
+router.get("/combinations", AdminController.getCombinations);
+
 export default router;

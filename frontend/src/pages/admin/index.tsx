@@ -122,7 +122,7 @@ const AdminPage: React.FC = () => {
   const [filterPeriod, setFilterPeriod] = useState<string>("");
   const [autoEmailEnabled, setAutoEmailEnabled] = useState(true);
 
-  // States lưu trữ danh mục động từ Backend cổng 3000
+  // States lưu trữ danh mục động từ Backend cổng 5000
   const [universities, setUniversities] = useState<University[]>([]);
   const [majors, setMajors] = useState<Major[]>([]);
   const [subjectCombos, setSubjectCombos] = useState<SubjectCombo[]>([]);
@@ -155,7 +155,7 @@ const AdminPage: React.FC = () => {
   const [editingMajor, setEditingMajor] = useState<Major | null>(null);
   const [editingCombo, setEditingCombo] = useState<SubjectCombo | null>(null);
 
-  const API_BASE = "http://localhost:3000/api/v1";
+  const API_BASE = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000/api/v1";
 
   // Luồng fetch đồng bộ hóa dữ liệu từ MySQL thật lên UI
   const fetchData = useCallback(async () => {
@@ -367,7 +367,7 @@ const AdminPage: React.FC = () => {
     } catch (error) {
       console.error("Lỗi khi tải dữ liệu:", error);
       message.error(
-        "Không thể tải dữ liệu đồng bộ từ máy chủ Backend cổng 3000!",
+        "Không thể tải dữ liệu đồng bộ từ máy chủ Backend cổng 5000!",
       );
     } finally {
       setLoadingData(false);
@@ -1905,7 +1905,7 @@ const AdminPage: React.FC = () => {
                                         <FileTextOutlined />
                                         <span>{doc.name}</span>
                                         <a
-                                          href={`http://localhost:3000${doc.url}`}
+                                          href={`${process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"}${doc.url}`}
                                           target="_blank"
                                           rel="noreferrer"
                                         >
@@ -1953,7 +1953,7 @@ const AdminPage: React.FC = () => {
                               }}
                             >
                               <img
-                                src={`http://localhost:3000${selectedApplication.documents[0].url}`}
+                                src={`${process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"}${selectedApplication.documents[0].url}`}
                                 alt="minh_chung"
                                 style={{
                                   width: "100%",

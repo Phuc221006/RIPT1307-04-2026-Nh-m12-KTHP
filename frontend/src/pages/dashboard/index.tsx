@@ -180,7 +180,7 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
       render: (files: any[]) =>
         files && files.length > 0 ? (
           <a
-            href={`http://localhost:3000${files[0].fileUrl}`}
+            href={`${process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"}${files[0].fileUrl}`}
             target="_blank"
             rel="noreferrer"
           >
@@ -424,413 +424,404 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                 style={{ marginBottom: 32 }}
               />
 
-              <Form form={form} layout="vertical" onFinish={handleSubmit}>
+              {/* THÊM preserve={true} VÀO THẺ FORM ĐỂ GIỮ DATA */}
+              <Form
+                form={form}
+                layout="vertical"
+                onFinish={handleSubmit}
+                preserve={true}
+              >
                 {/* STEP 1: Thông tin cá nhân & Đối tượng ưu tiên */}
-                {currentStep === 0 && (
-                  <div>
-                    <div className={styles.sectionTitle}>
-                      👤 Thông tin cá nhân
-                    </div>
-                    <Row gutter={24}>
-                      <Col xs={24} md={12}>
-                        <Form.Item
-                          name="fullName"
-                          label="Họ và tên"
-                          initialValue={user.fullName || ""}
-                          rules={[{ required: false }]}
-                        >
-                          <Input placeholder="Họ và tên" disabled />
-                        </Form.Item>
-                      </Col>
-                      <Col xs={24} md={12}>
-                        <Form.Item
-                          name="email"
-                          label="Email"
-                          initialValue={user.email || ""}
-                          rules={[{ required: false }]}
-                        >
-                          <Input placeholder="Email" disabled />
-                        </Form.Item>
-                      </Col>
-                      <Col xs={24} md={12}>
-                        <Form.Item
-                          name="dateOfBirth"
-                          label="Ngày sinh"
-                          rules={[{ required: false }]}
-                        >
-                          <Input
-                            placeholder="Ngày sinh"
-                            disabled
-                            value={formatDisplayDate(
-                              user.dateOfBirth || user.dob,
-                            )}
-                          />
-                        </Form.Item>
-                      </Col>
-                    </Row>
-
-                    <div className={styles.sectionTitle}>
-                      🎯 Đối tượng ưu tiên
-                    </div>
-                    <Row gutter={24}>
-                      <Col xs={24} md={12}>
-                        <Form.Item
-                          name="priorityType"
-                          label="Đối tượng ưu tiên"
-                        >
-                          <Select
-                            placeholder="Chọn đối tượng ưu tiên"
-                            showSearch
-                          >
-                            {priorities.map((p) => (
-                              <Option key={p.id} value={p.id}>
-                                {p.name}
-                              </Option>
-                            ))}
-                          </Select>
-                        </Form.Item>
-                      </Col>
-                      <Col xs={24} md={12}>
-                        <Form.Item name="gpa" label="Điểm học bạ THPT (GPA)">
-                          <Input
-                            placeholder="VD: 8.5"
-                            type="number"
-                            min={0}
-                            max={10}
-                            step={0.1}
-                          />
-                        </Form.Item>
-                      </Col>
-                    </Row>
-
-                    <div style={{ textAlign: "right", marginTop: 24 }}>
-                      <Button
-                        type="primary"
-                        icon={<ArrowRightOutlined />}
-                        onClick={() => setCurrentStep(1)}
-                      >
-                        Tiếp tục
-                      </Button>
-                    </div>
+                {/* THAY VÌ DÙNG &&, TA DÙNG display: none ĐỂ ẨN ĐI CHỨ KHÔNG XÓA */}
+                <div style={{ display: currentStep === 0 ? "block" : "none" }}>
+                  <div className={styles.sectionTitle}>
+                    👤 Thông tin cá nhân
                   </div>
-                )}
+                  <Row gutter={24}>
+                    <Col xs={24} md={12}>
+                      <Form.Item
+                        name="fullName"
+                        label="Họ và tên"
+                        initialValue={user.fullName || ""}
+                        rules={[{ required: false }]}
+                      >
+                        <Input placeholder="Họ và tên" disabled />
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} md={12}>
+                      <Form.Item
+                        name="email"
+                        label="Email"
+                        initialValue={user.email || ""}
+                        rules={[{ required: false }]}
+                      >
+                        <Input placeholder="Email" disabled />
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} md={12}>
+                      <Form.Item
+                        name="dateOfBirth"
+                        label="Ngày sinh"
+                        rules={[{ required: false }]}
+                      >
+                        <Input
+                          placeholder="Ngày sinh"
+                          disabled
+                          value={formatDisplayDate(
+                            user.dateOfBirth || user.dob,
+                          )}
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+
+                  <div className={styles.sectionTitle}>
+                    🎯 Đối tượng ưu tiên
+                  </div>
+                  <Row gutter={24}>
+                    <Col xs={24} md={12}>
+                      <Form.Item name="priorityType" label="Đối tượng ưu tiên">
+                        <Select placeholder="Chọn đối tượng ưu tiên" showSearch>
+                          {priorities.map((p) => (
+                            <Option key={p.id} value={p.id}>
+                              {p.name}
+                            </Option>
+                          ))}
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} md={12}>
+                      <Form.Item name="gpa" label="Điểm học bạ THPT (GPA)">
+                        <Input
+                          placeholder="VD: 8.5"
+                          type="number"
+                          min={0}
+                          max={10}
+                          step={0.1}
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+
+                  <div style={{ textAlign: "right", marginTop: 24 }}>
+                    <Button
+                      type="primary"
+                      icon={<ArrowRightOutlined />}
+                      onClick={() => setCurrentStep(1)}
+                    >
+                      Tiếp tục
+                    </Button>
+                  </div>
+                </div>
 
                 {/* STEP 2: Thông tin xét tuyển */}
-                {currentStep === 1 && (
-                  <div>
-                    <div className={styles.sectionTitle}>
-                      🏫 Chọn trường đại học
-                    </div>
-                    <Row gutter={24}>
-                      <Col xs={24} md={12}>
-                        <Form.Item
-                          name="university"
-                          label="Trường đăng ký"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Vui lòng chọn trường!",
-                            },
-                          ]}
-                        >
-                          <Select placeholder="Chọn trường đại học" showSearch>
-                            {universities.map((t) => (
-                              <Option key={t.id} value={t.id}>
-                                {t.name}
-                              </Option>
-                            ))}
-                          </Select>
-                        </Form.Item>
-                      </Col>
-                      <Col xs={24} md={12}>
-                        <Form.Item
-                          name="major"
-                          label="Ngành đăng ký"
-                          rules={[
-                            { required: true, message: "Vui lòng chọn ngành!" },
-                          ]}
-                        >
-                          <Select placeholder="Chọn ngành học" showSearch>
-                            {majors.map((n) => (
-                              <Option key={n.id} value={n.id}>
-                                {n.name}
-                              </Option>
-                            ))}
-                          </Select>
-                        </Form.Item>
-                      </Col>
-                    </Row>
-
-                    <div className={styles.sectionTitle}>
-                      📊 Thông tin xét tuyển
-                    </div>
-                    <Row gutter={24}>
-                      <Col xs={24} md={12}>
-                        <Form.Item
-                          name="combination"
-                          label="Tổ hợp xét tuyển"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Vui lòng chọn tổ hợp!",
-                            },
-                          ]}
-                        >
-                          <Select placeholder="Chọn tổ hợp môn" showSearch>
-                            {combinations.map((t) => (
-                              <Option key={t.id} value={t.id}>
-                                {t.id} ({t.subjects})
-                              </Option>
-                            ))}
-                          </Select>
-                        </Form.Item>
-                      </Col>
-                      <Col xs={24} md={12}>
-                        <Form.Item
-                          name="priority"
-                          label="Nguyện vọng"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Vui lòng chọn nguyện vọng!",
-                            },
-                          ]}
-                        >
-                          <Select placeholder="Chọn nguyện vọng">
-                            <Option value="1">Nguyện vọng 1</Option>
-                            <Option value="2">Nguyện vọng 2</Option>
-                            <Option value="3">Nguyện vọng 3</Option>
-                          </Select>
-                        </Form.Item>
-                      </Col>
-                    </Row>
-
-                    <div className={styles.sectionTitle}>📈 Điểm thi</div>
-                    <Row gutter={24}>
-                      <Col xs={24} md={8}>
-                        <Form.Item
-                          name="score1"
-                          label="Điểm môn 1"
-                          rules={[{ required: true, message: "Nhập điểm!" }]}
-                        >
-                          <Input
-                            placeholder="VD: 8.5"
-                            type="number"
-                            min={0}
-                            max={10}
-                            step={0.1}
-                          />
-                        </Form.Item>
-                      </Col>
-                      <Col xs={24} md={8}>
-                        <Form.Item
-                          name="score2"
-                          label="Điểm môn 2"
-                          rules={[{ required: true, message: "Nhập điểm!" }]}
-                        >
-                          <Input
-                            placeholder="VD: 7.0"
-                            type="number"
-                            min={0}
-                            max={10}
-                            step={0.1}
-                          />
-                        </Form.Item>
-                      </Col>
-                      <Col xs={24} md={8}>
-                        <Form.Item
-                          name="score3"
-                          label="Điểm môn 3"
-                          rules={[{ required: true, message: "Nhập điểm!" }]}
-                        >
-                          <Input
-                            placeholder="VD: 9.0"
-                            type="number"
-                            min={0}
-                            max={10}
-                            step={0.1}
-                          />
-                        </Form.Item>
-                      </Col>
-                    </Row>
-
-                    <Form.Item name="note" label="Ghi chú thêm">
-                      <Input.TextArea
-                        rows={2}
-                        placeholder="Thông tin bổ sung (nếu có)..."
-                      />
-                    </Form.Item>
-
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: 12,
-                        justifyContent: "space-between",
-                        marginTop: 24,
-                      }}
-                    >
-                      <Button
-                        icon={<ArrowLeftOutlined />}
-                        onClick={() => setCurrentStep(0)}
-                      >
-                        Quay lại
-                      </Button>
-                      <Button
-                        type="primary"
-                        icon={<ArrowRightOutlined />}
-                        onClick={() => setCurrentStep(2)}
-                      >
-                        Tiếp tục
-                      </Button>
-                    </div>
+                <div style={{ display: currentStep === 1 ? "block" : "none" }}>
+                  <div className={styles.sectionTitle}>
+                    🏫 Chọn trường đại học
                   </div>
-                )}
+                  <Row gutter={24}>
+                    <Col xs={24} md={12}>
+                      <Form.Item
+                        name="university"
+                        label="Trường đăng ký"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Vui lòng chọn trường!",
+                          },
+                        ]}
+                      >
+                        <Select placeholder="Chọn trường đại học" showSearch>
+                          {universities.map((t) => (
+                            <Option key={t.id} value={t.id}>
+                              {t.name}
+                            </Option>
+                          ))}
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} md={12}>
+                      <Form.Item
+                        name="major"
+                        label="Ngành đăng ký"
+                        rules={[
+                          { required: true, message: "Vui lòng chọn ngành!" },
+                        ]}
+                      >
+                        <Select placeholder="Chọn ngành học" showSearch>
+                          {majors.map((n) => (
+                            <Option key={n.id} value={n.id}>
+                              {n.name}
+                            </Option>
+                          ))}
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                  </Row>
+
+                  <div className={styles.sectionTitle}>
+                    📊 Thông tin xét tuyển
+                  </div>
+                  <Row gutter={24}>
+                    <Col xs={24} md={12}>
+                      <Form.Item
+                        name="combination"
+                        label="Tổ hợp xét tuyển"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Vui lòng chọn tổ hợp!",
+                          },
+                        ]}
+                      >
+                        <Select placeholder="Chọn tổ hợp môn" showSearch>
+                          {combinations.map((t) => (
+                            <Option key={t.id} value={t.id}>
+                              {t.code} ({t.subjects})
+                            </Option>
+                          ))}
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} md={12}>
+                      <Form.Item
+                        name="priority"
+                        label="Nguyện vọng"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Vui lòng chọn nguyện vọng!",
+                          },
+                        ]}
+                      >
+                        <Select placeholder="Chọn nguyện vọng">
+                          <Option value="1">Nguyện vọng 1</Option>
+                          <Option value="2">Nguyện vọng 2</Option>
+                          <Option value="3">Nguyện vọng 3</Option>
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                  </Row>
+
+                  <div className={styles.sectionTitle}>📈 Điểm thi</div>
+                  <Row gutter={24}>
+                    <Col xs={24} md={8}>
+                      <Form.Item
+                        name="score1"
+                        label="Điểm môn 1"
+                        rules={[{ required: true, message: "Nhập điểm!" }]}
+                      >
+                        <Input
+                          placeholder="VD: 8.5"
+                          type="number"
+                          min={0}
+                          max={10}
+                          step={0.1}
+                        />
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} md={8}>
+                      <Form.Item
+                        name="score2"
+                        label="Điểm môn 2"
+                        rules={[{ required: true, message: "Nhập điểm!" }]}
+                      >
+                        <Input
+                          placeholder="VD: 7.0"
+                          type="number"
+                          min={0}
+                          max={10}
+                          step={0.1}
+                        />
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} md={8}>
+                      <Form.Item
+                        name="score3"
+                        label="Điểm môn 3"
+                        rules={[{ required: true, message: "Nhập điểm!" }]}
+                      >
+                        <Input
+                          placeholder="VD: 9.0"
+                          type="number"
+                          min={0}
+                          max={10}
+                          step={0.1}
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+
+                  <Form.Item name="note" label="Ghi chú thêm">
+                    <Input.TextArea
+                      rows={2}
+                      placeholder="Thông tin bổ sung (nếu có)..."
+                    />
+                  </Form.Item>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 12,
+                      justifyContent: "space-between",
+                      marginTop: 24,
+                    }}
+                  >
+                    <Button
+                      icon={<ArrowLeftOutlined />}
+                      onClick={() => setCurrentStep(0)}
+                    >
+                      Quay lại
+                    </Button>
+                    <Button
+                      type="primary"
+                      icon={<ArrowRightOutlined />}
+                      onClick={() => setCurrentStep(2)}
+                    >
+                      Tiếp tục
+                    </Button>
+                  </div>
+                </div>
 
                 {/* STEP 3: Tải lên minh chứng & Xác nhận */}
-                {currentStep === 2 && (
-                  <div>
-                    <div className={styles.sectionTitle}>
-                      📎 Phân loại & Tải lên minh chứng
-                    </div>
-                    <p style={{ marginBottom: 16 }}>
-                      Vui lòng tải lên đúng loại giấy tờ vào từng mục. Chấp
-                      nhận: PDF, JPEG, PNG.
-                    </p>
+                <div style={{ display: currentStep === 2 ? "block" : "none" }}>
+                  <div className={styles.sectionTitle}>
+                    📎 Phân loại & Tải lên minh chứng
+                  </div>
+                  <p style={{ marginBottom: 16 }}>
+                    Vui lòng tải lên đúng loại giấy tờ vào từng mục. Chấp nhận:
+                    PDF, JPEG, PNG.
+                  </p>
 
-                    <Row gutter={[16, 16]}>
-                      {DOC_CATEGORIES.map((cat) => {
-                        // Lọc các file thuộc category hiện tại để hiển thị
-                        const currentFiles = uploadedFiles.filter(
-                          (f) => f.documentCategory === cat.code,
-                        );
+                  <Row gutter={[16, 16]}>
+                    {DOC_CATEGORIES.map((cat) => {
+                      const currentFiles = uploadedFiles.filter(
+                        (f) => f.documentCategory === cat.code,
+                      );
 
-                        return (
-                          <Col xs={24} md={12} key={cat.code}>
-                            <Card
-                              size="small"
-                              title={
-                                <span style={{ fontSize: 14 }}>
-                                  {cat.name}{" "}
-                                  {cat.required && (
-                                    <span style={{ color: "red" }}>*</span>
-                                  )}
-                                </span>
+                      return (
+                        <Col xs={24} md={12} key={cat.code}>
+                          <Card
+                            size="small"
+                            title={
+                              <span style={{ fontSize: 14 }}>
+                                {cat.name}{" "}
+                                {cat.required && (
+                                  <span style={{ color: "red" }}>*</span>
+                                )}
+                              </span>
+                            }
+                            style={{ height: "100%" }}
+                          >
+                            <Upload
+                              accept=".pdf,.jpg,.jpeg,.png"
+                              beforeUpload={(file) =>
+                                handleUpload(file, cat.code)
                               }
-                              style={{ height: "100%" }}
+                              showUploadList={false}
+                              multiple
+                              disabled={uploadLoading}
                             >
-                              <Upload
-                                accept=".pdf,.jpg,.jpeg,.png"
-                                beforeUpload={(file) =>
-                                  handleUpload(file, cat.code)
-                                } // Truyền mã category vào hàm upload
-                                showUploadList={false}
-                                multiple
+                              <Button
+                                icon={<UploadOutlined />}
                                 disabled={uploadLoading}
                               >
-                                <Button
-                                  icon={<UploadOutlined />}
-                                  disabled={uploadLoading}
-                                >
-                                  Chọn file
-                                </Button>
-                              </Upload>
+                                Chọn file
+                              </Button>
+                            </Upload>
 
-                              {/* Danh sách file đã tải lên cho danh mục này */}
-                              {currentFiles.length > 0 && (
-                                <div style={{ marginTop: 12 }}>
-                                  {currentFiles.map((f, i) => (
-                                    <div
-                                      key={i}
+                            {currentFiles.length > 0 && (
+                              <div style={{ marginTop: 12 }}>
+                                {currentFiles.map((f, i) => (
+                                  <div
+                                    key={i}
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                      gap: 8,
+                                      padding: "6px 8px",
+                                      borderRadius: 4,
+                                      background: "#f5f5f5",
+                                      marginBottom: 6,
+                                    }}
+                                  >
+                                    <CheckCircleOutlined
                                       style={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        gap: 8,
-                                        padding: "6px 8px",
-                                        borderRadius: 4,
-                                        background: "#f5f5f5",
-                                        marginBottom: 6,
+                                        color: "#52c41a",
+                                        fontSize: 14,
+                                      }}
+                                    />
+                                    <span
+                                      style={{
+                                        flex: 1,
+                                        fontSize: 13,
+                                        overflow: "hidden",
+                                        textOverflow: "ellipsis",
+                                        whiteSpace: "nowrap",
+                                      }}
+                                      title={f.originalName}
+                                    >
+                                      {f.originalName}
+                                    </span>
+                                    <a
+                                      href={`${process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"}${f.fileUrl}`}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      style={{ fontSize: 13 }}
+                                    >
+                                      Xem
+                                    </a>
+                                    <a
+                                      onClick={() =>
+                                        setUploadedFiles((prev) =>
+                                          prev.filter(
+                                            (item) =>
+                                              item.fileUrl !== f.fileUrl,
+                                          ),
+                                        )
+                                      }
+                                      style={{
+                                        color: "#f5222d",
+                                        fontSize: 13,
+                                        cursor: "pointer",
                                       }}
                                     >
-                                      <CheckCircleOutlined
-                                        style={{
-                                          color: "#52c41a",
-                                          fontSize: 14,
-                                        }}
-                                      />
-                                      <span
-                                        style={{
-                                          flex: 1,
-                                          fontSize: 13,
-                                          overflow: "hidden",
-                                          textOverflow: "ellipsis",
-                                          whiteSpace: "nowrap",
-                                        }}
-                                        title={f.originalName}
-                                      >
-                                        {f.originalName}
-                                      </span>
-                                      <a
-                                        href={`http://localhost:3000${f.fileUrl}`}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        style={{ fontSize: 13 }}
-                                      >
-                                        Xem
-                                      </a>
-                                      <a
-                                        onClick={() =>
-                                          setUploadedFiles((prev) =>
-                                            prev.filter(
-                                              (item) =>
-                                                item.fileUrl !== f.fileUrl,
-                                            ),
-                                          )
-                                        }
-                                        style={{
-                                          color: "#f5222d",
-                                          fontSize: 13,
-                                          cursor: "pointer",
-                                        }}
-                                      >
-                                        Xóa
-                                      </a>
-                                    </div>
-                                  ))}
-                                </div>
-                              )}
-                            </Card>
-                          </Col>
-                        );
-                      })}
-                    </Row>
+                                      Xóa
+                                    </a>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </Card>
+                        </Col>
+                      );
+                    })}
+                  </Row>
 
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: 12,
-                        justifyContent: "space-between",
-                        marginTop: 32,
-                      }}
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 12,
+                      justifyContent: "space-between",
+                      marginTop: 32,
+                    }}
+                  >
+                    <Button
+                      icon={<ArrowLeftOutlined />}
+                      onClick={() => setCurrentStep(1)}
                     >
-                      <Button
-                        icon={<ArrowLeftOutlined />}
-                        onClick={() => setCurrentStep(1)}
-                      >
-                        Quay lại
-                      </Button>
-                      <Button
-                        type="primary"
-                        htmlType="submit"
-                        loading={submitLoading}
-                        icon={<UploadOutlined />}
-                      >
-                        {submitLoading
-                          ? "Đang gửi..."
-                          : "📤 Gửi hồ sơ xét tuyển"}
-                      </Button>
-                    </div>
+                      Quay lại
+                    </Button>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      loading={submitLoading}
+                      icon={<UploadOutlined />}
+                    >
+                      {submitLoading ? "Đang gửi..." : "📤 Gửi hồ sơ xét tuyển"}
+                    </Button>
                   </div>
-                )}
+                </div>
               </Form>
             </Card>
           )}
@@ -954,7 +945,7 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
 // PHẦN 2: XỬ LÝ LOGIC (LOGIC/CONTAINER COMPONENT) - BỘ LỌC ĐA CẤP THEO MÃ CODE
 // =====================================================================
 
-const API_BASE_URL = "http://localhost:3000/api/v1";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000/api/v1";
 
 // 🏫 Nạp danh mục Trường học
 async function getUniversities() {

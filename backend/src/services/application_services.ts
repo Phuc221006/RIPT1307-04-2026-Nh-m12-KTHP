@@ -25,9 +25,30 @@ class ApplicationService {
   }
 
   // 1. Luồng nộp hồ sơ xét tuyển
+  // 1. Luồng nộp hồ sơ xét tuyển
   async submitApplication(userId: string, data: any) {
     return await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-      // Ép kiểu điểm 3 môn thi
+      // 🚀 BƯỚC 1: TÌM HOẶC TẠO ĐỢT TUYỂN SINH ĐỂ CHỐNG LỖI KHÓA NGOẠI
+      let activeRound = await tx.admission_rounds.findFirst({
+        where: { is_active: true },
+      });
+
+      // Nếu trong DB trắng trơn chưa có đợt nào, tự động tạo 1 đợt chuẩn UUID
+      if (!activeRound) {
+        activeRound = await tx.admission_rounds.create({
+          data: {
+            id: crypto.randomUUID(),
+            title: "Đợt xét tuyển 2026 (Mặc định)",
+            start_date: new Date(),
+            end_date: new Date(
+              new Date().setFullYear(new Date().getFullYear() + 1),
+            ), // Hạn 1 năm
+            is_active: true,
+          },
+        });
+      }
+
+      // 🚀 BƯỚC 2: TÍNH TOÁN ĐIỂM
       const score1 =
         data.scoreSubject1 !== undefined ? Number(data.scoreSubject1) : 0;
       const score2 =
@@ -36,68 +57,65 @@ class ApplicationService {
         data.scoreSubject3 !== undefined ? Number(data.scoreSubject3) : 0;
       const examScore = score1 + score2 + score3;
 
-      // Xử lý logic điểm ưu tiên tự động ở Backend
       const priorityObjType =
         data.priorityObject || data.priority_object || "NONE";
       const calculatedPriorityScore = this.calculatePriority(
         priorityObjType,
         examScore,
       );
-
-      // Tổng điểm xét tuyển cuối cùng = Điểm thi + Điểm ưu tiên đã qua xử lý tuyến tính
       const finalTotalScore =
         Math.round((examScore + calculatedPriorityScore) * 100) / 100;
 
-      // 🔹 XỬ LÝ GPA: Gom điểm GPA của Phúc gửi lên nối chung vào cột notes dưới DB để tránh lỗi thiếu cột
       const frontendGpa = data.gpa ? `[GPA Học bạ: ${data.gpa}] ` : "";
       const userNotes = data.notes || data.note || "";
-      const combinedNotes = `${frontendGpa}${userNotes}`.trim();
 
+      // Ghi nhận Nguyện vọng (1, 2, 3) vào note luôn vì DB không có cột nguyện vọng
+      const nguyenVong = data.roundId ? `[Nguyện vọng ${data.roundId}] ` : "";
+      const combinedNotes = `${nguyenVong}${frontendGpa}${userNotes}`.trim();
+
+      // 🚀 BƯỚC 3: LƯU HỒ SƠ VÀO DB
       const application = await tx.applications.create({
         data: {
           id: crypto.randomUUID(),
-          user_id: userId,
+          user_id: userId, // Bắt buộc phải có userId từ token
 
-          // Hỗ trợ linh hoạt mọi kiểu đặt tên trường từ FE của Phúc
-          university_id: data.universityId || data.university_id || "UNI_01",
-          major_id: data.majorId || data.major_id || data.major || "MAJOR_01",
+          // Lấy đúng ID Trường, Ngành, Tổ hợp từ FE gửi lên
+          university_id: data.universityId || data.university_id,
+          major_id: data.majorId || data.major_id || data.major,
           combination_id:
-            data.combinationId ||
-            data.combination_id ||
-            data.combination ||
-            "A00",
-          round_id: data.roundId || data.round_id || "ROUND_1",
+            data.combinationId || data.combination_id || data.combination,
+
+          // Gắn ID Đợt tuyển sinh chuẩn UUID (Không dùng số "1" của FE nữa)
+          round_id: activeRound.id,
 
           score_subject_1: score1,
           score_subject_2: score2,
           score_subject_3: score3,
-          total_score: finalTotalScore, // Điểm tổng cuối cùng bảo mật tuyệt đối
+          total_score: finalTotalScore,
 
           priority_object: priorityObjType,
-          priority_score: calculatedPriorityScore, // Điểm cộng chính xác do server tự tính
+          priority_score: calculatedPriorityScore,
           notes: combinedNotes || null,
           status: "PENDING",
         },
       });
 
-      // Hỗ trợ lưu thông tin tệp minh chứng (Đã đồng bộ sạch theo đúng schema.prisma của nhóm)
+      // 🚀 BƯỚC 4: LƯU FILE MINH CHỨNG
       if (data.files && data.files.length > 0) {
-        const fileData = data.files.map((file: any) => {
-          // Gác cổng: Chỉ cho phép 4 chữ chuẩn, nếu sai ép hết về OTHER
-          const validTypes = ["CCCD", "HOC_BA", "GIAY_UU_TIEN", "OTHER"];
-          const finalFileType = validTypes.includes(file.fileType) ? file.fileType : "OTHER";
-
-          return {
-            id: crypto.randomUUID(),
-            application_id: application.id,
-            file_type: finalFileType as any,
-            original_name: file.originalName,
-            file_url: file.fileUrl,
-            mime_type: file.mimeType,
-            file_size: file.fileSize,
-          };
-        });
-        
+        const fileData = data.files.map((file: any) => ({
+          id: crypto.randomUUID(),
+          application_id: application.id,
+          // Chỉ cho phép các giá trị chuẩn của Database, nếu sai tự động đưa về "OTHER"
+          file_type: ["CCCD", "HOC_BA", "GIAY_UU_TIEN", "OTHER"].includes(
+            file.fileType,
+          )
+            ? file.fileType
+            : "OTHER",
+          original_name: file.originalName || "Tài liệu",
+          file_url: file.fileUrl,
+          mime_type: file.mimeType || "application/pdf",
+          file_size: file.fileSize || 0,
+        }));
         await tx.application_files.createMany({ data: fileData });
       } else if (data.documentUrl || data.document_url) {
         await tx.application_files.create({
@@ -116,7 +134,6 @@ class ApplicationService {
       return application;
     });
   }
-
   // 2. Hàm lấy danh sách hồ sơ
   async getMyApplications(userId: string) {
     return await prisma.applications.findMany({

@@ -4,6 +4,7 @@ import { updateStatus } from "../controllers/status_controller.js";
 import { authenticate, authorize } from "../middlewares/auth_middleware.js";
 
 const router = Router();
+
 // API tạo hồ sơ (Yêu cầu đăng nhập)
 router.post("/", authenticate, ApplicationController.create);
 

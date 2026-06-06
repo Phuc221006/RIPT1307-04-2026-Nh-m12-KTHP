@@ -42,31 +42,39 @@ class AuthService {
 
     return newUser;
   }
-
   async loginUser(data: any) {
-  const { email, password } = data;
+    // 1. LẤY THÊM BIẾN `role` MÀ FRONTEND GỬI LÊN
+    const { email, password, role } = data;
 
-  const user = await prisma.users.findUnique({
-    where: { email },
-  });
+    const user = await prisma.users.findUnique({
+      where: { email },
+    });
 
-  console.log("========== LOGIN ==========");
-  console.log("EMAIL:", email);
-  console.log("USER FOUND:", user);
+    console.log("========== LOGIN ==========");
+    console.log("EMAIL:", email);
+    console.log("USER FOUND:", user);
 
-  if (!user) {
-    throw new Error("Không tìm thấy tài khoản.");
-  }
+    if (!user) {
+      throw new Error("Không tìm thấy tài khoản.");
+    }
 
-  const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
 
-  console.log("PASSWORD INPUT:", password);
-  console.log("PASSWORD DB:", user.password);
-  console.log("MATCH:", isMatch);
+    console.log("PASSWORD INPUT:", password);
+    console.log("PASSWORD DB:", user.password);
+    console.log("MATCH:", isMatch);
 
-  if (!isMatch) {
-    throw new Error("Sai mật khẩu.");
-  }
+    if (!isMatch) {
+      throw new Error("Sai mật khẩu.");
+    }
+
+    // 🚀 CHỐT CHẶN BẢO MẬT: KIỂM TRA QUYỀN (ROLE)
+    // So sánh role yêu cầu (từ FE) với role thật trong Database
+    if (role && role.toUpperCase() !== user.role) {
+      throw new Error(
+        "Tài khoản của bạn không có quyền truy cập với vai trò này!",
+      );
+    }
 
     /// 3. Ký phát Token JWT
     const secretKey: Secret = process.env.JWT_SECRET || "fallback_secret_key";
@@ -89,7 +97,7 @@ class AuthService {
         fullName: user.full_name,
         dob: user.dob,
         phone: user.phone,
-        role: user.role,
+        role: user.role, // Trả về role THẬT để Frontend dùng
       },
       accessToken: token,
     };
