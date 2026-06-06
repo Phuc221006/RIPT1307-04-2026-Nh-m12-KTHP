@@ -42,20 +42,38 @@ class AuthService {
 
     return newUser;
   }
-
   async loginUser(data: any) {
-    const { email, password } = data;
+    // 1. LẤY THÊM BIẾN `role` MÀ FRONTEND GỬI LÊN
+    const { email, password, role } = data;
 
-    // Tìm user trong bảng 'users'
-    const user = await prisma.users.findUnique({ where: { email } });
+    const user = await prisma.users.findUnique({
+      where: { email },
+    });
+
+    console.log("========== LOGIN ==========");
+    console.log("EMAIL:", email);
+    console.log("USER FOUND:", user);
+
     if (!user) {
-      throw new Error("Tài khoản hoặc mật khẩu không chính xác.");
+      throw new Error("Không tìm thấy tài khoản.");
     }
 
-    // So sánh mật khẩu
     const isMatch = await bcrypt.compare(password, user.password);
+
+    console.log("PASSWORD INPUT:", password);
+    console.log("PASSWORD DB:", user.password);
+    console.log("MATCH:", isMatch);
+
     if (!isMatch) {
-      throw new Error("Tài khoản hoặc mật khẩu không chính xác.");
+      throw new Error("Sai mật khẩu.");
+    }
+
+    // 🚀 CHỐT CHẶN BẢO MẬT: KIỂM TRA QUYỀN (ROLE)
+    // So sánh role yêu cầu (từ FE) với role thật trong Database
+    if (role && role.toUpperCase() !== user.role) {
+      throw new Error(
+        "Tài khoản của bạn không có quyền truy cập với vai trò này!",
+      );
     }
 
     /// 3. Ký phát Token JWT
@@ -79,7 +97,7 @@ class AuthService {
         fullName: user.full_name,
         dob: user.dob,
         phone: user.phone,
-        role: user.role,
+        role: user.role, // Trả về role THẬT để Frontend dùng
       },
       accessToken: token,
     };
