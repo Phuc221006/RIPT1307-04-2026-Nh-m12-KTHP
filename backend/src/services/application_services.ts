@@ -117,6 +117,18 @@ class ApplicationService {
           file_size: file.fileSize || 0,
         }));
         await tx.application_files.createMany({ data: fileData });
+      } else if (data.documentUrl || data.document_url) {
+        await tx.application_files.create({
+          data: {
+            id: crypto.randomUUID(),
+            application_id: application.id,
+            file_type: "OTHER" as any,
+            original_name: "Ho_So_Minh_Chung",
+            file_url: data.documentUrl || data.document_url,
+            mime_type: "application/octet-stream",
+            file_size: 0,
+          },
+        });
       }
 
       return application;

@@ -180,7 +180,7 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
       render: (files: any[]) =>
         files && files.length > 0 ? (
           <a
-            href={`http://localhost:5000${files[0].fileUrl}`}
+            href={`${process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"}${files[0].fileUrl}`}
             target="_blank"
             rel="noreferrer"
           >
@@ -764,7 +764,7 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                                       {f.originalName}
                                     </span>
                                     <a
-                                      href={`http://localhost:5000${f.fileUrl}`}
+                                      href={`${process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"}${f.fileUrl}`}
                                       target="_blank"
                                       rel="noreferrer"
                                       style={{ fontSize: 13 }}
@@ -945,7 +945,7 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
 // PHẦN 2: XỬ LÝ LOGIC (LOGIC/CONTAINER COMPONENT) - BỘ LỌC ĐA CẤP THEO MÃ CODE
 // =====================================================================
 
-const API_BASE_URL = "http://localhost:5000/api/v1";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000/api/v1";
 
 // 🏫 Nạp danh mục Trường học
 async function getUniversities() {

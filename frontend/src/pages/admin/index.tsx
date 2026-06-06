@@ -155,7 +155,7 @@ const AdminPage: React.FC = () => {
   const [editingMajor, setEditingMajor] = useState<Major | null>(null);
   const [editingCombo, setEditingCombo] = useState<SubjectCombo | null>(null);
 
-  const API_BASE = "http://localhost:5000/api/v1";
+  const API_BASE = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000/api/v1";
 
   // Luồng fetch đồng bộ hóa dữ liệu từ MySQL thật lên UI
   const fetchData = useCallback(async () => {
@@ -1905,7 +1905,7 @@ const AdminPage: React.FC = () => {
                                         <FileTextOutlined />
                                         <span>{doc.name}</span>
                                         <a
-                                          href={`http://localhost:5000${doc.url}`}
+                                          href={`${process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"}${doc.url}`}
                                           target="_blank"
                                           rel="noreferrer"
                                         >
@@ -1953,7 +1953,7 @@ const AdminPage: React.FC = () => {
                               }}
                             >
                               <img
-                                src={`http://localhost:5000${selectedApplication.documents[0].url}`}
+                                src={`${process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"}${selectedApplication.documents[0].url}`}
                                 alt="minh_chung"
                                 style={{
                                   width: "100%",

@@ -3,15 +3,19 @@ import { EducationController } from "../controllers/education_controller.js";
 
 const router = Router();
 
-// 3 Cổng API Public để Phúc gọi lấy dữ liệu đổ lên giao diện:
 router.get("/universities", EducationController.getAllUnis);
-router.get("/majors", EducationController.getAllMajors);
-router.get("/combinations", EducationController.getAllCombos);
-
-// Các API nghiệp vụ Quản trị (Thêm/Xóa) của ông giữ nguyên
 router.post("/universities", EducationController.createUni);
+router.put("/universities/:id", EducationController.updateUni);
 router.delete("/universities/:id", EducationController.deleteUni);
+
+router.get("/majors", EducationController.getAllMajors);
 router.post("/majors", EducationController.createMajor);
+router.put("/majors/:id", EducationController.updateMajor);
+router.delete("/majors/:id", EducationController.deleteMajor);
+
+router.get("/combinations", EducationController.getAllCombos);
 router.post("/combinations", EducationController.createCombo);
+router.put("/combinations/:id", EducationController.updateCombo);
+router.delete("/combinations/:id", EducationController.deleteCombo);
 
 export default router;

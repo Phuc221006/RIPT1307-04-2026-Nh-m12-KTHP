@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000/api/v1";
+const BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000/api/v1";
 
 function getToken() {
   return localStorage.getItem("token");
@@ -162,18 +162,14 @@ export const uploadDocument = async (file: File) => {
       localStorage.getItem("token") || sessionStorage.getItem("token"); // Tùy cách ông đang lưu token
 
     // 3. Gửi Request
-    // Nhớ đổi cái URL cho khớp với router của ông (VD: /api/v1/upload/documents)
-    const response = await fetch(
-      "http://localhost:5000/api/v1/upload/documents",
-      {
-        method: "POST",
-        headers: {
-          // TUYỆT ĐỐI KHÔNG xét 'Content-Type': 'multipart/form-data' bằng tay, trình duyệt sẽ tự làm
-          Authorization: `Bearer ${token}`, // Đính kèm thẻ bài
-        },
-        body: formData,
+    const response = await fetch(`${BASE_URL}/uploads/documents`, {
+      method: "POST",
+      headers: {
+        // TUYỆT ĐỐI KHÔNG xét 'Content-Type': 'multipart/form-data' bằng tay, trình duyệt sẽ tự làm
+        Authorization: `Bearer ${token}`, // Đính kèm thẻ bài
       },
-    );
+      body: formData,
+    });
 
     const result = await response.json();
     return result;
