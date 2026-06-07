@@ -1,16 +1,16 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import cors from "cors";
 import authRoutes from "./routes/auth_routes.js";
-import path from "path";
 import uploadRoutes from "./routes/upload_routes.js";
 import applicationRoutes from "./routes/application_routes.js";
 import educationRoutes from "./routes/education_routes.js";
 import adminRoutes from "./routes/admin_routes.js";
 import notificationRoutes from "./routes/notification_routes.js";
+import fileRoutes from "./routes/file_routes.js";
+import filesApiRoutes from "./routes/files_api_routes.js";
 
 const app: Application = express();
-const __dirname = path.resolve();
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", fileRoutes);
 app.use(cors());
 app.use(cors({ origin: "*" }));
 app.use(express.json());
@@ -23,6 +23,7 @@ app.get("/health", (req: Request, res: Response) => {
 // Cắm Module Auth vào hệ thống
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/upload", uploadRoutes);
+app.use("/api/v1/files", filesApiRoutes);
 app.use("/api/v1/applications", applicationRoutes);
 app.use("/api/v1/education", educationRoutes);
 app.use("/api/v1/admin", adminRoutes);

@@ -42,6 +42,7 @@ import {
   removeToken,
 } from "../../services/api";
 import NotificationBell from "../../components/NotificationBell";
+import { getFileUrlFromRecord, resolveFileUrl } from "../../utils/fileUrl";
 import styles from "./index.less";
 
 const { Sider, Content, Header } = Layout;
@@ -176,18 +177,16 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
     {
       title: "Hồ sơ",
       dataIndex: "applicationFiles",
-      render: (files: any[]) =>
-        files && files.length > 0 ? (
-          <a
-            href={`${process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"}${files[0].fileUrl}`}
-            target="_blank"
-            rel="noreferrer"
-          >
+      render: (files: any[]) => {
+        const url = getFileUrlFromRecord(files?.[0]);
+        return url ? (
+          <a href={url} target="_blank" rel="noreferrer">
             Xem ↗
           </a>
         ) : (
           <span>—</span>
-        ),
+        );
+      },
     },
   ];
 
@@ -754,7 +753,10 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                                       {f.originalName}
                                     </span>
                                     <a
-                                      href={`${process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"}${f.fileUrl}`}
+                                      href={resolveFileUrl(
+                                        f.fileUrl || f.file_url,
+                                        f.originalName || f.original_name,
+                                      )}
                                       target="_blank"
                                       rel="noreferrer"
                                       style={{ fontSize: 13 }}
@@ -1103,8 +1105,13 @@ export default function DashboardPage() {
             majorId: majorObj ? majorObj.name : String(mId) || "---",
             createdAt:
               app.created_at || app.createdAt || new Date().toISOString(),
-            applicationFiles:
-              app.application_files || app.applicationFiles || [],
+            applicationFiles: (app.application_files || app.applicationFiles || []).map(
+              (f: any) => ({
+                ...f,
+                fileUrl: f.fileUrl || f.file_url,
+                originalName: f.originalName || f.original_name,
+              }),
+            ),
           };
         });
         setApps(mappedData);
