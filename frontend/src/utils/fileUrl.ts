@@ -2,27 +2,10 @@ const API_ORIGIN = (
   process.env.REACT_APP_API_BASE_URL || "http://localhost:3000/api/v1"
 ).replace(/\/api\/v1\/?$/, "");
 
-const API_BASE =
-  process.env.REACT_APP_API_BASE_URL || "http://localhost:3000/api/v1";
-
-function isCloudinaryUrl(url: string): boolean {
-  return url.includes("res.cloudinary.com");
-}
-
 export function isPdfFile(name?: string, url?: string): boolean {
   if (name?.toLowerCase().endsWith(".pdf")) return true;
   if (url?.toLowerCase().includes(".pdf")) return true;
   return false;
-}
-
-/**
- * Cloudinary /raw/upload/ không có đuôi .pdf trong URL nhưng vẫn force download.
- * Route qua backend proxy để ghi đè Content-Disposition: inline.
- */
-function buildPreviewProxyUrl(remoteUrl: string, fileName?: string): string {
-  const params = new URLSearchParams({ url: remoteUrl });
-  if (fileName) params.set("name", fileName);
-  return `${API_BASE}/files/preview?${params.toString()}`;
 }
 
 /**
@@ -35,9 +18,6 @@ export function resolveFileUrl(
   if (!url) return "";
 
   if (/^https?:\/\//i.test(url)) {
-    if (isCloudinaryUrl(url)) {
-      return buildPreviewProxyUrl(url, fileName);
-    }
     return url;
   }
 

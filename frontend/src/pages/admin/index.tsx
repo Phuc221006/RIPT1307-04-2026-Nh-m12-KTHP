@@ -43,6 +43,13 @@ import { useNavigate } from "react-router-dom";
 import { removeToken } from "../../services/api";
 import NotificationBell from "../../components/NotificationBell";
 import { isPdfFile, resolveFileUrl } from "../../utils/fileUrl";
+import type { ApplicationReview } from "../../types/application";
+import {
+  getFileTypeLabel,
+  getGenderLabel,
+  getPriorityObjectLabel,
+  parseNotesMeta,
+} from "../../utils/applicationHelpers";
 import "./index.less";
 
 const { Header, Sider, Content } = Layout;
@@ -69,25 +76,6 @@ interface SubjectCombo {
   code: string;
   name: string;
   subjects: string[];
-}
-
-interface Application {
-  id: string;
-  studentId: string;
-  studentName: string;
-  cccd: string;
-  birthDate: string;
-  email: string;
-  phone: string;
-  address: string;
-  university: string;
-  major: string;
-  enrollmentPeriod: string;
-  status: "submitted" | "pending" | "approved" | "rejected";
-  transcriptScore: number;
-  transcriptSubjects: string;
-  documents: Array<{ name: string; type: string; url: string }>;
-  submissionDate: string;
 }
 
 interface EmailTemplate {
@@ -126,7 +114,7 @@ const AdminPage: React.FC = () => {
   const [universities, setUniversities] = useState<University[]>([]);
   const [majors, setMajors] = useState<Major[]>([]);
   const [subjectCombos, setSubjectCombos] = useState<SubjectCombo[]>([]);
-  const [applications, setApplications] = useState<Application[]>([]);
+  const [applications, setApplications] = useState<ApplicationReview[]>([]);
   const [emailTemplates, setEmailTemplates] = useState<EmailTemplate[]>([]);
   const [emailLogs, setEmailLogs] = useState<EmailLog[]>([]);
 
@@ -141,7 +129,7 @@ const AdminPage: React.FC = () => {
   const [isApplicationDrawerVisible, setIsApplicationDrawerVisible] =
     useState(false);
   const [selectedApplication, setSelectedApplication] =
-    useState<Application | null>(null);
+    useState<ApplicationReview | null>(null);
   const [isRejectModalVisible, setIsRejectModalVisible] = useState(false);
   const [rejectReason, setRejectReason] = useState("");
   const [savingTemplate, setSavingTemplate] = useState(false);
@@ -290,38 +278,71 @@ const AdminPage: React.FC = () => {
           const uObj = loadedUnis.find((u: any) => u.id === app.university_id);
           const mObj = loadedMajors.find((m: any) => m.id === app.major_id);
           const rawStatus = String(app.status || "").toLowerCase();
+          const noteMeta = parseNotesMeta(app.notes);
+          const combo = app.subject_combinations;
+          const subjectLabels = combo?.subjects
+            ? String(combo.subjects).split(",").map((s: string) => s.trim())
+            : [];
 
           return {
             id: app.id,
-            // Ép String cho id để gọi hàm .slice() an toàn
             studentId: String(app.id || "")
               .slice(0, 8)
               .toUpperCase(),
             studentName: app.users?.full_name || "Thí sinh ẩn danh",
             cccd: app.users?.cccd || "---",
-            birthDate: app.users?.dateOfBirth
-              ? new Date(app.users.dateOfBirth).toLocaleDateString("vi-VN")
+            birthDate: app.users?.dob
+              ? new Date(app.users.dob).toLocaleDateString("vi-VN")
               : "---",
             email: app.users?.email || "---",
             phone: app.users?.phone || "---",
-            address: "Việt Nam",
+            address: app.users?.address || "---",
+            gender: getGenderLabel(noteMeta.gender),
             university: uObj ? uObj.code : app.university_id,
+            universityName: uObj ? uObj.name : app.university_id,
             major: mObj ? mObj.name : app.major_id,
+            combinationCode: combo?.code || "---",
+            combinationSubjects: combo?.subjects || "---",
+            aspiration: noteMeta.aspiration
+              ? `Nguyện vọng ${noteMeta.aspiration}`
+              : "---",
+            priorityObject: getPriorityObjectLabel(app.priority_object),
+            priorityScore: Number(app.priority_score || 0),
+            gpa: noteMeta.gpa,
             enrollmentPeriod: "Đợt 1 - 2026",
             status: ["pending", "approved", "rejected"].includes(rawStatus)
               ? rawStatus
               : "submitted",
-            transcriptScore: app.total_score || 0,
-            transcriptSubjects: `Môn 1: ${app.score_subject_1 || 0} | Môn 2: ${app.score_subject_2 || 0} | Môn 3: ${app.score_subject_3 || 0}`,
-            documents: (app.application_files || []).map((f: any) => ({
-              name: f.original_name || "Minh_chung_file",
-              type: "IMAGE",
-              url: f.file_url,
+            transcriptScore: Number(app.total_score || 0),
+            scoreSubject1: Number(app.score_subject_1 || 0),
+            scoreSubject2: Number(app.score_subject_2 || 0),
+            scoreSubject3: Number(app.score_subject_3 || 0),
+            transcriptSubjects: subjectLabels.length
+              ? subjectLabels
+                  .map(
+                    (label: string, idx: number) =>
+                      `${label}: ${
+                        [
+                          app.score_subject_1,
+                          app.score_subject_2,
+                          app.score_subject_3,
+                        ][idx] || 0
+                      }`,
+                  )
+                  .join(" | ")
+              : `Môn 1: ${app.score_subject_1 || 0} | Môn 2: ${app.score_subject_2 || 0} | Môn 3: ${app.score_subject_3 || 0}`,
+            documents: (app.application_files || app.applicationFiles || []).map((f: any) => ({
+              name: f.original_name || f.originalName || "Minh_chung_file",
+              url: f.file_url || f.fileUrl || f.url,
+              fileType: f.file_type || f.fileType || f.documentCategory,
+              label: getFileTypeLabel(f.file_type || f.fileType || f.documentCategory),
             })),
             submissionDate: app.created_at
               ? new Date(app.created_at).toLocaleDateString("vi-VN")
               : "---",
-          };
+            notes: noteMeta.userNote || app.notes || "",
+            rejectReason: noteMeta.rejectReason,
+          } as ApplicationReview;
         }),
       );
 
@@ -960,7 +981,7 @@ const AdminPage: React.FC = () => {
       title: "Thao tác",
       key: "action",
       width: 100,
-      render: (_: any, record: Application) => (
+      render: (_: any, record: ApplicationReview) => (
         <Button
           type="text"
           size="small"
@@ -1021,7 +1042,7 @@ const AdminPage: React.FC = () => {
     comboForm.resetFields();
     setIsComboModalVisible(true);
   };
-  const handleViewApplication = (record: Application) => {
+  const handleViewApplication = (record: ApplicationReview) => {
     setSelectedApplication(record);
     setIsApplicationDrawerVisible(true);
   };
@@ -1796,119 +1817,88 @@ const AdminPage: React.FC = () => {
                       <Collapse
                         defaultActiveKey={[
                           "personal",
+                          "contact",
                           "registration",
                           "documents",
+                          "history",
                         ]}
                         items={[
                           {
                             key: "personal",
                             label: "Thông tin Thí sinh",
                             children: (
-                              <Space
-                                direction="vertical"
-                                style={{ width: "100%" }}
-                                size={12}
-                              >
-                                <div>
-                                  <strong>Họ và Tên:</strong>
-                                  <p style={{ margin: "4px 0 0 0" }}>
-                                    {selectedApplication.studentName}
-                                  </p>
-                                </div>
-                                <div>
-                                  <strong>CCCD:</strong>
-                                  <p style={{ margin: "4px 0 0 0" }}>
-                                    {selectedApplication.cccd}
-                                  </p>
-                                </div>
-                                <div>
-                                  <strong>Ngày sinh:</strong>
-                                  <p style={{ margin: "4px 0 0 0" }}>
-                                    {selectedApplication.birthDate}
-                                  </p>
-                                </div>
-                                <div>
-                                  <strong>Email:</strong>
-                                  <p style={{ margin: "4px 0 0 0" }}>
-                                    {selectedApplication.email}
-                                  </p>
-                                </div>
-                                <div>
-                                  <strong>Số điện thoại:</strong>
-                                  <p style={{ margin: "4px 0 0 0" }}>
-                                    {selectedApplication.phone}
-                                  </p>
-                                </div>
+                              <Space direction="vertical" style={{ width: "100%" }} size={12}>
+                                <div><strong>Họ và Tên:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.studentName}</p></div>
+                                <div><strong>Ngày sinh:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.birthDate}</p></div>
+                                <div><strong>Giới tính:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.gender}</p></div>
+                                <div><strong>Email:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.email}</p></div>
+                              </Space>
+                            ),
+                          },
+                          {
+                            key: "contact",
+                            label: "Liên hệ & Định danh",
+                            children: (
+                              <Space direction="vertical" style={{ width: "100%" }} size={12}>
+                                <div><strong>CCCD:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.cccd}</p></div>
+                                <div><strong>Số điện thoại:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.phone}</p></div>
+                                <div><strong>Địa chỉ:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.address}</p></div>
                               </Space>
                             ),
                           },
                           {
                             key: "registration",
-                            label: "Thông tin Đăng ký",
+                            label: "Thông tin Xét tuyển",
                             children: (
-                              <Space
-                                direction="vertical"
-                                style={{ width: "100%" }}
-                                size={12}
-                              >
-                                <div>
-                                  <strong>Ngành đăng ký:</strong>
-                                  <p style={{ margin: "4px 0 0 0" }}>
-                                    {selectedApplication.major}
-                                  </p>
-                                </div>
-                                <div>
-                                  <strong>Trường:</strong>
-                                  <p style={{ margin: "4px 0 0 0" }}>
-                                    {universities.find(
-                                      (u) =>
-                                        u.code ===
-                                        selectedApplication.university,
-                                    )?.name || selectedApplication.university}
-                                  </p>
-                                </div>
-                                <div>
-                                  <strong>Điểm tuyển sinh:</strong>
-                                  <p style={{ margin: "4px 0 0 0" }}>
-                                    Tổng: {selectedApplication.transcriptScore}{" "}
-                                    ({selectedApplication.transcriptSubjects})
-                                  </p>
-                                </div>
+                              <Space direction="vertical" style={{ width: "100%" }} size={12}>
+                                <div><strong>Trường:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.universityName}</p></div>
+                                <div><strong>Ngành đăng ký:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.major}</p></div>
+                                <div><strong>Tổ hợp:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.combinationCode} ({selectedApplication.combinationSubjects})</p></div>
+                                <div><strong>Nguyện vọng:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.aspiration}</p></div>
+                                <div><strong>Đối tượng ưu tiên:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.priorityObject}</p></div>
+                                <div><strong>Điểm ưu tiên:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.priorityScore}</p></div>
+                                {selectedApplication.gpa && (
+                                  <div><strong>GPA học bạ:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.gpa}</p></div>
+                                )}
+                                <div><strong>Điểm thi:</strong><p style={{ margin: "4px 0 0 0" }}>Tổng: {selectedApplication.transcriptScore} ({selectedApplication.transcriptSubjects})</p></div>
+                                {selectedApplication.notes && (
+                                  <div><strong>Ghi chú:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.notes}</p></div>
+                                )}
                               </Space>
                             ),
                           },
                           {
                             key: "documents",
-                            label: "Tài liệu đính kèm",
+                            label: "Tài liệu minh chứng",
                             children: (
-                              <Space
-                                direction="vertical"
-                                style={{ width: "100%" }}
-                                size={12}
-                              >
-                                {(selectedApplication.documents || []).map(
-                                  (doc, idx) => (
-                                    <div
-                                      key={idx}
-                                      style={{
-                                        padding: 12,
-                                        border: "1px solid #f0f0f0",
-                                        borderRadius: 4,
-                                      }}
-                                    >
+                              <Space direction="vertical" style={{ width: "100%" }} size={12}>
+                                {(selectedApplication.documents || []).map((doc, idx) => (
+                                  <div key={idx} style={{ padding: 12, border: "1px solid #f0f0f0", borderRadius: 4 }}>
+                                    <Space direction="vertical" size={4}>
+                                      <strong>{doc.label}</strong>
                                       <Space>
                                         <FileTextOutlined />
                                         <span>{doc.name}</span>
-                                        <a
-                                          href={resolveFileUrl(doc.url, doc.name)}
-                                          target="_blank"
-                                          rel="noreferrer"
-                                        >
-                                          Xem tệp tin ↗
-                                        </a>
+                                        <a href={resolveFileUrl(doc.url, doc.name)} target="_blank" rel="noreferrer">Xem tệp tin ↗</a>
                                       </Space>
-                                    </div>
-                                  ),
+                                    </Space>
+                                  </div>
+                                ))}
+                              </Space>
+                            ),
+                          },
+                          {
+                            key: "history",
+                            label: "Lịch sử & Trạng thái",
+                            children: (
+                              <Space direction="vertical" style={{ width: "100%" }} size={12}>
+                                <div><strong>Ngày nộp:</strong><p style={{ margin: "4px 0 0 0" }}>{selectedApplication.submissionDate}</p></div>
+                                <div><strong>Trạng thái:</strong><p style={{ margin: "4px 0 0 0" }}><Tag color={selectedApplication.status === "approved" ? "green" : selectedApplication.status === "rejected" ? "red" : "orange"}>{selectedApplication.status.toUpperCase()}</Tag></p></div>
+                                {selectedApplication.rejectReason && (
+                                  <div style={{ padding: 12, background: "#fff2f0", border: "1px solid #ffccc7", borderRadius: 6 }}>
+                                    <strong style={{ color: "#cf1322" }}>Lý do từ chối:</strong>
+                                    <p style={{ margin: "4px 0 0 0" }}>{selectedApplication.rejectReason}</p>
+                                  </div>
                                 )}
                               </Space>
                             ),
@@ -1938,6 +1928,7 @@ const AdminPage: React.FC = () => {
                         selectedApplication.documents[0] ? (
                           <Card style={{ marginBottom: 16 }}>
                             <p style={{ marginBottom: 8, fontWeight: 600 }}>
+                              {selectedApplication.documents[0].label}:{" "}
                               {selectedApplication.documents[0].name}
                             </p>
                             <div
@@ -1951,18 +1942,32 @@ const AdminPage: React.FC = () => {
                                 selectedApplication.documents[0].name,
                                 selectedApplication.documents[0].url,
                               ) ? (
-                                <iframe
-                                  src={resolveFileUrl(
-                                    selectedApplication.documents[0].url,
-                                    selectedApplication.documents[0].name,
-                                  )}
-                                  title="Xem trước PDF"
+                                <div
                                   style={{
                                     width: "100%",
-                                    height: 420,
-                                    border: "none",
+                                    height: 120,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    background: "#f0f2f5",
+                                    borderRadius: 8,
+                                    border: "1px dashed #d9d9d9"
                                   }}
-                                />
+                                >
+                                  <Button
+                                    type="primary"
+                                    icon={<FileTextOutlined />}
+                                    onClick={() => {
+                                      const url = resolveFileUrl(
+                                        selectedApplication.documents![0].url,
+                                        selectedApplication.documents![0].name
+                                      );
+                                      window.open(url, "_blank");
+                                    }}
+                                  >
+                                    Mở tệp PDF trong tab mới
+                                  </Button>
+                                </div>
                               ) : (
                                 <img
                                   src={resolveFileUrl(

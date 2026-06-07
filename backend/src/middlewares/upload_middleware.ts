@@ -26,6 +26,7 @@ const storage = new CloudinaryStorage({
     return {
       folder: "htqlts/documents",
       resource_type: "auto",
+      type: "upload",
       format: isPdf
         ? "pdf"
         : ext === "jpg" || ext === "jpeg"

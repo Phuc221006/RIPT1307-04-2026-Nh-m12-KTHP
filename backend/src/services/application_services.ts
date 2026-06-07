@@ -28,7 +28,18 @@ class ApplicationService {
   // 1. Luồng nộp hồ sơ xét tuyển
   async submitApplication(userId: string, data: any) {
     return await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-      // 🚀 BƯỚC 1: TÌM HOẶC TẠO ĐỢT TUYỂN SINH ĐỂ CHỐNG LỖI KHÓA NGOẠI
+      // Cập nhật thông tin cá nhân thí sinh từ form nộp hồ sơ
+      if (data.phone || data.cccd || data.address) {
+        await tx.users.update({
+          where: { id: userId },
+          data: {
+            phone: data.phone || undefined,
+            cccd: data.cccd || undefined,
+            address: data.address || undefined,
+          },
+        });
+      }
+
       let activeRound = await tx.admission_rounds.findFirst({
         where: { is_active: true },
       });
@@ -68,10 +79,24 @@ class ApplicationService {
 
       const frontendGpa = data.gpa ? `[GPA Học bạ: ${data.gpa}] ` : "";
       const userNotes = data.notes || data.note || "";
+      const genderNote = data.gender
+        ? `[Giới tính: ${data.gender}] `
+        : "";
 
-      // Ghi nhận Nguyện vọng (1, 2, 3) vào note luôn vì DB không có cột nguyện vọng
-      const nguyenVong = data.roundId ? `[Nguyện vọng ${data.roundId}] ` : "";
-      const combinedNotes = `${nguyenVong}${frontendGpa}${userNotes}`.trim();
+      const aspiration = data.aspiration || data.roundId || "";
+      const nguyenVong = aspiration ? `[Nguyện vọng ${aspiration}] ` : "";
+      const combinedNotes =
+        `${nguyenVong}${genderNote}${frontendGpa}${userNotes}`.trim();
+
+      const mapFileType = (file: any) => {
+        const category = file.documentCategory || file.fileType || "OTHER";
+        if (category === "UU_TIEN") return "GIAY_UU_TIEN";
+        if (category === "KHAC") return "OTHER";
+        if (["CCCD", "HOC_BA", "GIAY_UU_TIEN", "OTHER"].includes(category)) {
+          return category;
+        }
+        return "OTHER";
+      };
 
       // 🚀 BƯỚC 3: LƯU HỒ SƠ VÀO DB
       const application = await tx.applications.create({
@@ -105,12 +130,7 @@ class ApplicationService {
         const fileData = data.files.map((file: any) => ({
           id: crypto.randomUUID(),
           application_id: application.id,
-          // Chỉ cho phép các giá trị chuẩn của Database, nếu sai tự động đưa về "OTHER"
-          file_type: ["CCCD", "HOC_BA", "GIAY_UU_TIEN", "OTHER"].includes(
-            file.fileType,
-          )
-            ? file.fileType
-            : "OTHER",
+          file_type: mapFileType(file) as any,
           original_name: file.originalName || "Tài liệu",
           file_url: file.fileUrl,
           mime_type: file.mimeType || "application/pdf",
