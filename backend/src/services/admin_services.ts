@@ -46,8 +46,20 @@ class AdminService {
       prisma.applications.findMany({
         where,
         include: {
-          users: { select: { full_name: true, email: true, phone: true } },
+          users: {
+            select: {
+              full_name: true,
+              email: true,
+              phone: true,
+              cccd: true,
+              dob: true,
+              address: true,
+            },
+          },
           application_files: true,
+          subject_combinations: {
+            select: { code: true, subjects: true },
+          },
         },
         orderBy: { created_at: "desc" },
         skip: skip,
@@ -86,10 +98,24 @@ class AdminService {
     });
   }
 
-  async updateApplicationStatus(id: string, status: any) {
+  async updateApplicationStatus(id: string, status: any, notes?: string) {
+    const existing = await prisma.applications.findUnique({ where: { id } });
+    let mergedNotes = existing?.notes || "";
+
+    if (notes) {
+      if (String(status).toUpperCase() === "REJECTED") {
+        mergedNotes = `${mergedNotes ? mergedNotes + " " : ""}[LÝ DO TỪ CHỐI]: ${notes}`.trim();
+      } else {
+        mergedNotes = notes;
+      }
+    }
+
     return await prisma.applications.update({
       where: { id },
-      data: { status },
+      data: {
+        status,
+        ...(notes ? { notes: mergedNotes } : {}),
+      },
     });
   }
 }

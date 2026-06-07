@@ -19,6 +19,7 @@ import {
   Empty,
   Spin,
   Steps,
+  Radio,
 } from "antd";
 import {
   UserOutlined,
@@ -43,6 +44,22 @@ import {
 } from "../../services/api";
 import NotificationBell from "../../components/NotificationBell";
 import { getFileUrlFromRecord, resolveFileUrl } from "../../utils/fileUrl";
+import {
+  ASPIRATION_OPTIONS,
+  DOC_CATEGORIES,
+  GENDER_OPTIONS,
+  PRIORITY_OBJECT_OPTIONS,
+  type CombinationOption,
+  type UploadedFilePayload,
+} from "../../types/application";
+import {
+  addressRules,
+  cccdRules,
+  createScoreRules,
+  genderRules,
+  getSubjectLabels,
+  phoneRules,
+} from "../../utils/applicationHelpers";
 import styles from "./index.less";
 
 const { Sider, Content, Header } = Layout;
@@ -73,17 +90,7 @@ const STATUS: Record<string, { color: string; icon: any; label: string }> = {
   REJECTED: { color: "error", icon: <CloseCircleOutlined />, label: "Từ chối" },
 };
 
-// Cấu hình các loại giấy tờ cần tải lên
-const DOC_CATEGORIES = [
-  { code: "CCCD", name: "Căn cước công dân (Mặt trước & sau)", required: true },
-  { code: "HOC_BA", name: "Học bạ THPT", required: true },
-  { code: "UU_TIEN", name: "Giấy tờ chứng minh ưu tiên", required: false },
-  {
-    code: "KHAC",
-    name: "Các giấy tờ khác (Bằng khen, IELTS...)",
-    required: false,
-  },
-];
+// Cấu hình các loại giấy tờ — dùng chung từ types/application.ts
 
 const formatDisplayDate = (value?: string) => {
   if (!value) return "---";
@@ -104,8 +111,8 @@ interface DashboardUIProps {
   loading: boolean;
   submitLoading: boolean;
   uploadLoading: boolean;
-  uploadedFiles: any[];
-  setUploadedFiles: React.Dispatch<React.SetStateAction<any[]>>;
+  uploadedFiles: UploadedFilePayload[];
+  setUploadedFiles: React.Dispatch<React.SetStateAction<UploadedFilePayload[]>>;
   form: any;
   currentStep: number;
   setCurrentStep: (val: number) => void;
@@ -139,6 +146,13 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
   handleSubmit,
   handleLogout,
 }) => {
+  const watchedCombination = Form.useWatch("combination", form);
+  const selectedCombination = combinations.find(
+    (c) => c.id === watchedCombination,
+  ) as CombinationOption | undefined;
+  const [scoreLabel1, scoreLabel2, scoreLabel3] =
+    getSubjectLabels(selectedCombination);
+
   const columns = [
     {
       title: "STT",
@@ -178,13 +192,19 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
       title: "Hồ sơ",
       dataIndex: "applicationFiles",
       render: (files: any[]) => {
-        const url = getFileUrlFromRecord(files?.[0]);
-        return url ? (
-          <a href={url} target="_blank" rel="noreferrer">
-            Xem ↗
-          </a>
-        ) : (
-          <span>—</span>
+        if (!files || files.length === 0) return <span>—</span>;
+        return (
+          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            {files.map((file, index) => {
+              const url = getFileUrlFromRecord(file);
+              const name = file.originalName || file.original_name || `File ${index + 1}`;
+              return url ? (
+                <a key={index} href={url} target="_blank" rel="noreferrer" title={name}>
+                  {name.length > 15 ? name.substring(0, 15) + '...' : name} ↗
+                </a>
+              ) : null;
+            })}
+          </div>
         );
       },
     },
@@ -462,6 +482,35 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                         />
                       </Form.Item>
                     </Col>
+                    <Col xs={24} md={12}>
+                      <Form.Item name="phone" label="Số điện thoại" rules={phoneRules}>
+                        <Input placeholder="VD: 0912345678" maxLength={11} />
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} md={12}>
+                      <Form.Item name="cccd" label="Số CCCD" rules={cccdRules}>
+                        <Input placeholder="9 hoặc 12 chữ số" maxLength={12} />
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} md={12}>
+                      <Form.Item name="gender" label="Giới tính" rules={genderRules}>
+                        <Radio.Group>
+                          {GENDER_OPTIONS.map((g) => (
+                            <Radio key={g.value} value={g.value}>
+                              {g.label}
+                            </Radio>
+                          ))}
+                        </Radio.Group>
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24}>
+                      <Form.Item name="address" label="Địa chỉ cụ thể" rules={addressRules}>
+                        <Input.TextArea
+                          rows={2}
+                          placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành"
+                        />
+                      </Form.Item>
+                    </Col>
                   </Row>
 
                   <div className={styles.sectionTitle}>
@@ -496,7 +545,21 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                     <Button
                       type="primary"
                       icon={<ArrowRightOutlined />}
-                      onClick={() => setCurrentStep(1)}
+                      onClick={async () => {
+                        try {
+                          await form.validateFields([
+                            "phone",
+                            "cccd",
+                            "gender",
+                            "address",
+                          ]);
+                          setCurrentStep(1);
+                        } catch {
+                          message.warning(
+                            "Vui lòng điền đầy đủ thông tin cá nhân!",
+                          );
+                        }
+                      }}
                     >
                       Tiếp tục
                     </Button>
@@ -584,9 +647,11 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                         ]}
                       >
                         <Select placeholder="Chọn nguyện vọng">
-                          <Option value="1">Nguyện vọng 1</Option>
-                          <Option value="2">Nguyện vọng 2</Option>
-                          <Option value="3">Nguyện vọng 3</Option>
+                          {ASPIRATION_OPTIONS.map((item) => (
+                            <Option key={item.value} value={item.value}>
+                              {item.label}
+                            </Option>
+                          ))}
                         </Select>
                       </Form.Item>
                     </Col>
@@ -597,8 +662,8 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                     <Col xs={24} md={8}>
                       <Form.Item
                         name="score1"
-                        label="Điểm môn 1"
-                        rules={[{ required: true, message: "Nhập điểm!" }]}
+                        label={`Điểm ${scoreLabel1}`}
+                        rules={createScoreRules(scoreLabel1)}
                       >
                         <Input
                           placeholder="VD: 8.5"
@@ -612,8 +677,8 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                     <Col xs={24} md={8}>
                       <Form.Item
                         name="score2"
-                        label="Điểm môn 2"
-                        rules={[{ required: true, message: "Nhập điểm!" }]}
+                        label={`Điểm ${scoreLabel2}`}
+                        rules={createScoreRules(scoreLabel2)}
                       >
                         <Input
                           placeholder="VD: 7.0"
@@ -627,8 +692,8 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                     <Col xs={24} md={8}>
                       <Form.Item
                         name="score3"
-                        label="Điểm môn 3"
-                        rules={[{ required: true, message: "Nhập điểm!" }]}
+                        label={`Điểm ${scoreLabel3}`}
+                        rules={createScoreRules(scoreLabel3)}
                       >
                         <Input
                           placeholder="VD: 9.0"
@@ -665,7 +730,24 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                     <Button
                       type="primary"
                       icon={<ArrowRightOutlined />}
-                      onClick={() => setCurrentStep(2)}
+                      onClick={async () => {
+                        try {
+                          await form.validateFields([
+                            "university",
+                            "major",
+                            "combination",
+                            "priority",
+                            "score1",
+                            "score2",
+                            "score3",
+                          ]);
+                          setCurrentStep(2);
+                        } catch {
+                          message.warning(
+                            "Vui lòng hoàn thiện thông tin xét tuyển!",
+                          );
+                        }
+                      }}
                     >
                       Tiếp tục
                     </Button>
@@ -754,8 +836,8 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
                                     </span>
                                     <a
                                       href={resolveFileUrl(
-                                        f.fileUrl || f.file_url,
-                                        f.originalName || f.original_name,
+                                        f.fileUrl,
+                                        f.originalName,
                                       )}
                                       target="_blank"
                                       rel="noreferrer"
@@ -1005,15 +1087,11 @@ async function getCombinations() {
 }
 
 async function getPriorities() {
-  try {
-    return [
-      { id: "NONE", code: "NONE", name: "Không có ưu tiên" },
-      { id: "KV1", code: "KV1", name: "Ưu tiên 1 (Khu vực 1)" },
-      { id: "KV2", code: "KV2", name: "Ưu tiên 2 (Khu vực 2)" },
-    ];
-  } catch {
-    return [];
-  }
+  return PRIORITY_OBJECT_OPTIONS.map((p) => ({
+    id: p.id,
+    code: p.id,
+    name: p.name,
+  }));
 }
 
 export default function DashboardPage() {
@@ -1160,9 +1238,12 @@ export default function DashboardPage() {
         fullName: user.fullName || "",
         email: user.email || "",
         dateOfBirth: birthDate,
+        phone: user.phone || "",
+        cccd: user.cccd || "",
+        address: user.address || "",
       });
     }
-  }, [tab, form, user.fullName, user.email, birthDate]);
+  }, [tab, form, user.fullName, user.email, user.phone, user.cccd, user.address, birthDate]);
 
   // ĐÃ CẬP NHẬT: Nhận categoryCode và truyền vào state
   const handleUpload = async (file: File, categoryCode: string) => {
@@ -1220,7 +1301,7 @@ export default function DashboardPage() {
         universityId: values.university,
         majorId: values.major,
         combinationId: values.combination,
-        roundId: String(values.priority), // Đã đổi thành số nguyện vọng (1, 2, 3)
+        aspiration: String(values.priority),
         scoreSubject1: score1,
         scoreSubject2: score2,
         scoreSubject3: score3,
@@ -1228,6 +1309,10 @@ export default function DashboardPage() {
         priorityObject: values.priorityType || "NONE",
         gpa: values.gpa ? parseFloat(values.gpa) : undefined,
         notes: values.note,
+        phone: values.phone,
+        cccd: values.cccd,
+        address: values.address,
+        gender: values.gender,
         files: uploadedFiles,
       });
 

@@ -35,12 +35,12 @@ class AdminController {
   ): Promise<void> {
     try {
       const { id } = req.params;
-      const { status } = req.body;
+      const { status, notes } = req.body;
 
-      // 🚀 THÊM 'as string' VÀO ĐÂY ĐỂ ÉP KIỂU
       const data = await AdminService.updateApplicationStatus(
         id as string,
         status,
+        notes,
       );
 
       res.status(200).json({ status: "success", data });

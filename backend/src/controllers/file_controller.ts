@@ -66,22 +66,54 @@ class FileController {
     }
 
     try {
-      const upstream = await fetch(fileUrl);
-
-      if (!upstream.ok || !upstream.body) {
+      let upstream;
+      try {
+        // Thêm Headers để Cloudinary hiểu đây là request từ trình duyệt/server uy tín
+        upstream = await fetch(fileUrl, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+          }
+        });
+      } catch (fetchError: any) {
+        console.error(`Fetch exception for URL ${fileUrl}:`, fetchError);
         res.status(502).json({
           status: "error",
-          message: "Không thể lấy file từ Cloudinary.",
+          message: "Lỗi kết nối tới Cloudinary: " + fetchError.message,
         });
         return;
       }
 
-      const contentType = getContentTypeByFilename(fileName);
+      if (!upstream.ok || !upstream.body) {
+        console.error(`Fetch failed for URL: ${fileUrl}`);
+        console.error(`Status: ${upstream.status} ${upstream.statusText}`);
+        res.status(502).json({
+          status: "error",
+          message: `Không thể lấy file từ Cloudinary. Status: ${upstream.status}`,
+        });
+        return;
+      }
+
+      let finalFileName = fileName;
+      if (!path.extname(finalFileName)) {
+        try {
+          const urlExt = path.extname(new URL(fileUrl).pathname);
+          if (urlExt) {
+            finalFileName += urlExt;
+          }
+        } catch (e) {
+          // Bỏ qua nếu parse URL lỗi
+        }
+      }
+
+      let contentType = upstream.headers.get("content-type") || "";
+      if (!contentType || contentType.includes("octet-stream")) {
+        contentType = getContentTypeByFilename(finalFileName);
+      }
 
       res.setHeader("Content-Type", contentType);
       res.setHeader(
         "Content-Disposition",
-        buildInlineContentDisposition(fileName),
+        buildInlineContentDisposition(finalFileName),
       );
 
       const nodeStream = Readable.fromWeb(
