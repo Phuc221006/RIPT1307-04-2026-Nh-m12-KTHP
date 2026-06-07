@@ -42,6 +42,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { removeToken } from "../../services/api";
 import NotificationBell from "../../components/NotificationBell";
+import { isPdfFile, resolveFileUrl } from "../../utils/fileUrl";
 import "./index.less";
 
 const { Header, Sider, Content } = Layout;
@@ -1899,7 +1900,7 @@ const AdminPage: React.FC = () => {
                                         <FileTextOutlined />
                                         <span>{doc.name}</span>
                                         <a
-                                          href={`${process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"}${doc.url}`}
+                                          href={resolveFileUrl(doc.url, doc.name)}
                                           target="_blank"
                                           rel="noreferrer"
                                         >
@@ -1946,19 +1947,40 @@ const AdminPage: React.FC = () => {
                                 borderRadius: 4,
                               }}
                             >
-                              <img
-                                src={`${process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"}${selectedApplication.documents[0].url}`}
-                                alt="minh_chung"
-                                style={{
-                                  width: "100%",
-                                  objectFit: "contain",
-                                  maxHeight: 400,
-                                }}
-                                onError={(e) => {
-                                  (e.target as HTMLElement).style.display =
-                                    "none";
-                                }}
-                              />
+                              {isPdfFile(
+                                selectedApplication.documents[0].name,
+                                selectedApplication.documents[0].url,
+                              ) ? (
+                                <iframe
+                                  src={resolveFileUrl(
+                                    selectedApplication.documents[0].url,
+                                    selectedApplication.documents[0].name,
+                                  )}
+                                  title="Xem trước PDF"
+                                  style={{
+                                    width: "100%",
+                                    height: 420,
+                                    border: "none",
+                                  }}
+                                />
+                              ) : (
+                                <img
+                                  src={resolveFileUrl(
+                                    selectedApplication.documents[0].url,
+                                    selectedApplication.documents[0].name,
+                                  )}
+                                  alt="minh_chung"
+                                  style={{
+                                    width: "100%",
+                                    objectFit: "contain",
+                                    maxHeight: 400,
+                                  }}
+                                  onError={(e) => {
+                                    (e.target as HTMLElement).style.display =
+                                      "none";
+                                  }}
+                                />
+                              )}
                             </div>
                           </Card>
                         ) : (

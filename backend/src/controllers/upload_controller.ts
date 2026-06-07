@@ -1,9 +1,14 @@
 import { Request, Response } from "express";
 
+type CloudinaryMulterFile = Express.Multer.File & {
+  path?: string;
+  secure_url?: string;
+  url?: string;
+};
+
 class UploadController {
   uploadFile = (req: Request, res: Response) => {
     try {
-      // Multer đã xử lý lưu file và gắn thông tin vào req.file
       if (!req.file) {
         return res.status(400).json({
           status: "error",
@@ -12,18 +17,24 @@ class UploadController {
         });
       }
 
-      // Tạo đường dẫn tĩnh để Frontend có thể hiển thị ảnh/PDF
-      // Trả về dạng: /uploads/documents/doc-12345.pdf
-      const fileUrl = `/uploads/documents/${req.file.filename}`;
+      const file = req.file as CloudinaryMulterFile;
+      const fileUrl = file.path || file.secure_url || file.url;
+
+      if (!fileUrl) {
+        return res.status(500).json({
+          status: "error",
+          message: "Upload thành công nhưng không nhận được URL từ Cloudinary.",
+        });
+      }
 
       return res.status(200).json({
         status: "success",
-        message: "Tải file thành công",
+        message: "Tải file lên Cloudinary thành công",
         data: {
-          originalName: req.file.originalname,
-          fileUrl: fileUrl,
-          mimeType: req.file.mimetype,
-          fileSize: req.file.size,
+          originalName: file.originalname,
+          fileUrl,
+          mimeType: file.mimetype,
+          fileSize: file.size,
         },
       });
     } catch (error: any) {

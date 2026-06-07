@@ -9,7 +9,17 @@ const router = Router();
 router.post(
   "/documents",
   authenticate,
-  upload.single("file"),
+  (req, res, next) => {
+    upload.single("file")(req, res, (err) => {
+      if (err) {
+        return res.status(400).json({
+          status: "error",
+          message: err.message || "Không thể upload file.",
+        });
+      }
+      next();
+    });
+  },
   UploadController.uploadFile,
 );
 
