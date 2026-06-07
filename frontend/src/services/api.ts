@@ -162,10 +162,10 @@ export const uploadDocument = async (file: File) => {
       localStorage.getItem("token") || sessionStorage.getItem("token"); // Tùy cách ông đang lưu token
 
     // 3. Gửi Request
-    const response = await fetch(`${BASE_URL}/uploads/documents`, {
+    const response = await fetch(`${BASE_URL}/upload/documents`, {
       method: "POST",
       headers: {
-        // TUYỆT ĐỐI KHÔNG xét 'Content-Type': 'multipart/form-data' bằng tay, trình duyệt sẽ tự làm
+        // TUYỆT ĐỐI KHÔNG xét 'Content-Type': 'multipart/form-data' bằy tay, trình duyệt sẽ tự làm
         Authorization: `Bearer ${token}`, // Đính kèm thẻ bài
       },
       body: formData,
