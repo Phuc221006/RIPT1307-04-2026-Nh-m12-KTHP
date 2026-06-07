@@ -43,6 +43,7 @@ import {
   removeToken,
 } from "../../services/api";
 import NotificationBell from "../../components/NotificationBell";
+import StatusDetailModal from "../../components/StatusDetailModal";
 import { getFileUrlFromRecord, resolveFileUrl } from "../../utils/fileUrl";
 import {
   ASPIRATION_OPTIONS,
@@ -152,6 +153,13 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
   ) as CombinationOption | undefined;
   const [scoreLabel1, scoreLabel2, scoreLabel3] =
     getSubjectLabels(selectedCombination);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedApp, setSelectedApp] = useState<any>(null);
+
+  const openStatusModal = (app: any) => {
+    setSelectedApp(app);
+    setModalVisible(true);
+  };
 
   const columns = [
     {
@@ -179,12 +187,14 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
     {
       title: "Trạng thái",
       dataIndex: "status",
-      render: (s: string) => {
+      render: (s: string, record: any) => {
         const c = STATUS[s] || STATUS.PENDING;
         return (
-          <Tag icon={c.icon} color={c.color}>
-            {c.label}
-          </Tag>
+          <Button type="link" onClick={() => openStatusModal(record)}>
+            <Tag icon={c.icon} color={c.color} style={{ cursor: 'pointer' }}>
+              {c.label}
+            </Tag>
+          </Button>
         );
       },
     },
@@ -1009,6 +1019,11 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
               </Row>
             </Card>
           )}
+          <StatusDetailModal
+            visible={modalVisible}
+            onClose={() => setModalVisible(false)}
+            application={selectedApp}
+          />
         </Content>
       </Layout>
     </Layout>
@@ -1264,8 +1279,8 @@ export default function DashboardPage() {
         ]);
         message.success(`Tải lên "${file.name}" thành công!`);
       }
-    } catch {
-      message.error("Lỗi kết nối.");
+    } catch (error: any) {
+      message.error(error?.message || "Lỗi kết nối. Vui lòng thử lại.");
     } finally {
       setUploadLoading(false);
     }
