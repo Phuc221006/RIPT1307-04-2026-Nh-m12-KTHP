@@ -6,6 +6,7 @@ import uploadRoutes from "./routes/upload_routes.js";
 import applicationRoutes from "./routes/application_routes.js";
 import educationRoutes from "./routes/education_routes.js";
 import adminRoutes from "./routes/admin_routes.js";
+import notificationRoutes from "./routes/notification_routes.js";
 
 const app: Application = express();
 const __dirname = path.resolve();
@@ -25,6 +26,7 @@ app.use("/api/v1/upload", uploadRoutes);
 app.use("/api/v1/applications", applicationRoutes);
 app.use("/api/v1/education", educationRoutes);
 app.use("/api/v1/admin", adminRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 // Middleware xử lý lỗi (Bắt buộc phải nằm cuối cùng)
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {

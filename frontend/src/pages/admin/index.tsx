@@ -13,7 +13,6 @@ import {
   Tabs,
   Row,
   Col,
-  Badge,
   Avatar,
   Tag,
   Statistic,
@@ -30,7 +29,6 @@ import {
   MailOutlined,
   UserOutlined,
   LogoutOutlined,
-  BellOutlined,
   MenuOutlined,
   PlusOutlined,
   SearchOutlined,
@@ -43,6 +41,7 @@ import {
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { removeToken } from "../../services/api";
+import NotificationBell from "../../components/NotificationBell";
 import "./index.less";
 
 const { Header, Sider, Content } = Layout;
@@ -1068,15 +1067,10 @@ const AdminPage: React.FC = () => {
           </h2>
         </div>
         <Space style={{ color: "white" }} size={20}>
-          <Badge
-            count={applications.filter((a) => a.status === "pending").length}
-            style={{ backgroundColor: "#ff4d4f" }}
-          >
-            <Button
-              type="text"
-              icon={<BellOutlined style={{ fontSize: 20, color: "white" }} />}
-            />
-          </Badge>
+          <NotificationBell
+            role="admin"
+            iconStyle={{ fontSize: 20, color: "white" }}
+          />
           <Dropdown
             menu={{
               items: [

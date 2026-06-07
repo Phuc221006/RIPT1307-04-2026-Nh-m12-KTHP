@@ -15,7 +15,6 @@ import {
   Row,
   Col,
   Avatar,
-  Badge,
   Divider,
   Empty,
   Spin,
@@ -29,7 +28,6 @@ import {
   CheckCircleOutlined,
   ClockCircleOutlined,
   CloseCircleOutlined,
-  BellOutlined,
   HomeOutlined,
   PlusOutlined,
   FileDoneOutlined,
@@ -43,6 +41,7 @@ import {
   uploadDocument,
   removeToken,
 } from "../../services/api";
+import NotificationBell from "../../components/NotificationBell";
 import styles from "./index.less";
 
 const { Sider, Content, Header } = Layout;
@@ -287,16 +286,7 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
             }
           </span>
           <div className={styles.headerRight}>
-            <Badge
-              count={
-                apps.filter(
-                  (a) => a.status === "pending" || a.status === "PENDING",
-                ).length
-              }
-              size="small"
-            >
-              <Button icon={<BellOutlined />} className={styles.iconBtn} />
-            </Badge>
+            <NotificationBell role="student" className={styles.iconBtn} />
             <Avatar icon={<UserOutlined />} className={styles.avatar} />
           </div>
         </Header>
