@@ -8,7 +8,7 @@ const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } =
 
 if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_API_KEY || !CLOUDINARY_API_SECRET) {
   console.warn(
-    "⚠️ [Cloudinary] Thiếu biến môi trường CLOUDINARY_*. Upload file sẽ không hoạt động.",
+    "⚠️ [Cloudinary] Thiếu biến môi trường CLOUDINARY_* — upload sẽ lưu cục bộ tại uploads/documents.",
   );
 }
 

@@ -159,7 +159,7 @@ export const uploadDocument = async (file: File) => {
 
     // 2. Lấy token để vượt qua cửa ải 'authenticate'
     const token =
-      localStorage.getItem("token") || sessionStorage.getItem("token"); // Tùy cách ông đang lưu token
+      localStorage.getItem("token") || sessionStorage.getItem("token");
 
     // 3. Gửi Request
     const response = await fetch(`${BASE_URL}/upload/documents`, {

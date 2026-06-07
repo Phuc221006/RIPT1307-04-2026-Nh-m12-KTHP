@@ -43,6 +43,7 @@ import {
   removeToken,
 } from "../../services/api";
 import NotificationBell from "../../components/NotificationBell";
+import type { NotificationItem } from "../../utils/notificationHelpers";
 import StatusDetailModal from "../../components/StatusDetailModal";
 import { getFileUrlFromRecord, resolveFileUrl } from "../../utils/fileUrl";
 import {
@@ -159,6 +160,23 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
   const openStatusModal = (app: any) => {
     setSelectedApp(app);
     setModalVisible(true);
+  };
+
+  const handleNotificationClick = (notification: NotificationItem) => {
+    setTab("history");
+
+    if (!notification.referenceId) {
+      message.info("Vui lòng xem chi tiết trong Lịch sử nộp hồ sơ.");
+      return;
+    }
+
+    const relatedApp = apps.find((app) => app.id === notification.referenceId);
+    if (relatedApp) {
+      openStatusModal(relatedApp);
+      return;
+    }
+
+    message.warning("Không tìm thấy hồ sơ liên quan. Vui lòng kiểm tra lại Lịch sử nộp.");
   };
 
   const columns = [
@@ -315,7 +333,11 @@ const DashboardUI: React.FC<DashboardUIProps> = ({
             }
           </span>
           <div className={styles.headerRight}>
-            <NotificationBell role="student" className={styles.iconBtn} />
+            <NotificationBell
+              role="student"
+              className={styles.iconBtn}
+              onNotificationClick={handleNotificationClick}
+            />
             <Avatar icon={<UserOutlined />} className={styles.avatar} />
           </div>
         </Header>

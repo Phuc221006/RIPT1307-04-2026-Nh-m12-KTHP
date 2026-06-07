@@ -1,4 +1,5 @@
 import prisma from "../configs/prisma.js";
+import NotificationService from "./notification_services.js";
 
 class AdminService {
   async getStatistics() {
@@ -110,13 +111,19 @@ class AdminService {
       }
     }
 
-    return await prisma.applications.update({
+    const updated = await prisma.applications.update({
       where: { id },
       data: {
         status,
         ...(notes ? { notes: mergedNotes } : {}),
       },
     });
+
+    if (existing && existing.status !== status) {
+      await NotificationService.notifyApplicationStatusChange(id, status);
+    }
+
+    return updated;
   }
 }
 

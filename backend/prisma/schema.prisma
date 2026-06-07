@@ -116,6 +116,21 @@ model universities {
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model notifications {
+  id           String             @id @db.VarChar(36)
+  user_id      String             @db.VarChar(36)
+  title        String             @db.VarChar(255)
+  description  String             @db.Text
+  type         notifications_type
+  reference_id String?            @db.VarChar(36)
+  is_read      Boolean            @default(false)
+  created_at   DateTime?          @default(now()) @db.Timestamp(0)
+  users        users              @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_notifications_user")
+
+  @@unique([user_id, type, reference_id], map: "uq_notification_user_type_ref")
+  @@index([user_id, is_read], map: "idx_notifications_user_read")
+}
+
 model users {
   id                      String                    @id @db.VarChar(36)
   email                   String                    @unique(map: "email") @db.VarChar(100)
@@ -130,6 +145,7 @@ model users {
   updated_at              DateTime?                 @default(now()) @db.Timestamp(0)
   application_status_logs application_status_logs[]
   applications            applications[]
+  notifications           notifications[]
 }
 
 enum application_files_file_type {
@@ -160,4 +176,11 @@ enum applications_status {
   PENDING
   APPROVED
   REJECTED
+}
+
+enum notifications_type {
+  APPLICATION_SUBMITTED
+  APPLICATION_APPROVED
+  APPLICATION_REJECTED
+  NEW_APPLICATION_ADMIN
 }

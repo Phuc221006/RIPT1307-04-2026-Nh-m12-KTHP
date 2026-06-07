@@ -1,13 +1,17 @@
-import { Request, Response } from "express";
+import { Response } from "express";
+import NotificationService from "../services/notification_services.js";
+import { AuthenticatedRequest } from "../middlewares/auth_middleware.js";
 
 class NotificationController {
-  getNotifications = (req: Request, res: Response) => {
+  getNotifications = async (req: AuthenticatedRequest, res: Response) => {
     try {
-      const { role } = req.query;
+      const userId = req.user!.id;
+      const userRole = req.user!.role;
 
-      // TODO: Implement proper notification logic from database
-      // For now, return empty list to prevent 404 errors
-      const notifications: any[] = [];
+      const notifications = await NotificationService.getUserNotifications(
+        userId,
+        userRole,
+      );
 
       return res.status(200).json({
         status: "success",
@@ -22,14 +26,34 @@ class NotificationController {
     }
   };
 
-  markAsRead = (req: Request, res: Response) => {
+  markAsRead = async (req: AuthenticatedRequest, res: Response) => {
     try {
       const { id } = req.params;
+      const userId = req.user!.id;
 
-      // TODO: Implement proper mark as read logic from database
+      const notificationId = Array.isArray(id) ? id[0] : id;
+      await NotificationService.markAsRead(notificationId, userId);
+
       return res.status(200).json({
         status: "success",
         message: "Đánh dấu đã đọc thành công",
+      });
+    } catch (error: any) {
+      return res.status(400).json({
+        status: "error",
+        message: error.message || "Không thể đánh dấu đã đọc.",
+      });
+    }
+  };
+
+  markAllAsRead = async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      const userId = req.user!.id;
+      await NotificationService.markAllAsRead(userId);
+
+      return res.status(200).json({
+        status: "success",
+        message: "Đánh dấu tất cả đã đọc thành công",
       });
     } catch (error: any) {
       return res.status(500).json({
