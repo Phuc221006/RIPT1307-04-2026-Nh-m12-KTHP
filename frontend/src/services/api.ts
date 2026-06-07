@@ -172,8 +172,14 @@ export const uploadDocument = async (file: File) => {
     });
 
     const result = await response.json();
+
+    if (!response.ok || result.status !== "success") {
+      const message = result?.message || "Không thể tải file lên. Vui lòng thử lại.";
+      throw new Error(message);
+    }
+
     return result;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Lỗi upload file:", error);
     throw error;
   }
