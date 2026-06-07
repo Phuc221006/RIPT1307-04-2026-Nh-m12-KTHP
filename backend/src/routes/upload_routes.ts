@@ -12,9 +12,14 @@ router.post(
   (req, res, next) => {
     upload.single("file")(req, res, (err) => {
       if (err) {
+        console.error("[Upload] Multer error:", err);
+        const message =
+          err.code === "LIMIT_FILE_SIZE"
+            ? "File vượt quá dung lượng cho phép (5MB)."
+            : err.message || "Không thể upload file.";
         return res.status(400).json({
           status: "error",
-          message: err.message || "Không thể upload file.",
+          message,
         });
       }
       next();

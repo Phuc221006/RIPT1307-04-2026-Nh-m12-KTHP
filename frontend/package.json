@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "umi dev",
     "build": "umi build",
-    "start": "umi dev"
+    "start": "umi dev",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
@@ -16,10 +18,16 @@
     "umi": "^4.3.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^25.9.2",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "@umijs/max": "^4.3.0",
-    "typescript": "^5.0.0"
+    "@vitejs/plugin-react": "^4.4.1",
+    "jsdom": "^26.1.0",
+    "typescript": "^5.0.0",
+    "vitest": "^3.1.3"
   }
 }

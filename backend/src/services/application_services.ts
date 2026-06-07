@@ -4,6 +4,7 @@ import crypto from "crypto";
 
 // 1. ĐÃ MỞ KHÓA: Import hàm gửi email của Trường
 import { sendStatusEmail } from "./email_service.js";
+import NotificationService from "./notification_services.js";
 
 class ApplicationService {
   // 🔹 HÀM HELPER BA: Tự động tính điểm ưu tiên chuẩn Quy chế Bộ Giáo dục (Tuyến tính hóa từ mốc 22.5)
@@ -152,6 +153,12 @@ class ApplicationService {
       }
 
       return application;
+    }).then(async (application) => {
+      await NotificationService.notifyApplicationSubmitted(
+        application.id,
+        userId,
+      );
+      return application;
     });
   }
   // 2. Hàm lấy danh sách hồ sơ
@@ -165,11 +172,17 @@ class ApplicationService {
 
   // 3. Hàm cập nhật trạng thái hồ sơ & Gửi Email (Trường phụ trách)
   async updateApplicationStatus(id: string, status: string) {
+    const existing = await prisma.applications.findUnique({ where: { id } });
+
     const application = await prisma.applications.update({
       where: { id },
       data: { status: status as any },
       include: { users: true },
     });
+
+    if (existing && existing.status !== status) {
+      await NotificationService.notifyApplicationStatusChange(id, status);
+    }
 
     // Gọi hàm gửi mail nếu lấy được email của user
     if (application.users?.email) {

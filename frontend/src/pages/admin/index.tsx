@@ -42,6 +42,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { removeToken } from "../../services/api";
 import NotificationBell from "../../components/NotificationBell";
+import type { NotificationItem } from "../../utils/notificationHelpers";
 import { isPdfFile, resolveFileUrl } from "../../utils/fileUrl";
 import type { ApplicationReview } from "../../types/application";
 import {
@@ -1046,6 +1047,28 @@ const AdminPage: React.FC = () => {
     setSelectedApplication(record);
     setIsApplicationDrawerVisible(true);
   };
+
+  const handleNotificationClick = (notification: NotificationItem) => {
+    setActiveMenu("applications");
+
+    if (!notification.referenceId) {
+      message.info("Vui lòng xem chi tiết trong mục Quản lý hồ sơ.");
+      return;
+    }
+
+    const relatedApp = applications.find(
+      (app) => app.id === notification.referenceId,
+    );
+
+    if (relatedApp) {
+      handleViewApplication(relatedApp);
+      return;
+    }
+
+    message.warning(
+      "Không tìm thấy hồ sơ liên quan. Vui lòng làm mới danh sách hồ sơ.",
+    );
+  };
   const handleLogout = () => {
     removeToken();
     navigate("/login");
@@ -1092,6 +1115,7 @@ const AdminPage: React.FC = () => {
           <NotificationBell
             role="admin"
             iconStyle={{ fontSize: 20, color: "white" }}
+            onNotificationClick={handleNotificationClick}
           />
           <Dropdown
             menu={{
