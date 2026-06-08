@@ -1,0 +1,3 @@
+Quick note: This repo uses per-table admin pages for catalogs.
+University modal adds default Major+Combination on create. If a university already exists without majors, create majors in /admin/catalogs/majors by selecting that university, then create combinations in /admin/catalogs/combinations.
+

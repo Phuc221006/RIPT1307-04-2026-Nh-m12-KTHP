@@ -8,6 +8,7 @@ import adminRoutes from "./routes/admin_routes.js";
 import notificationRoutes from "./routes/notification_routes.js";
 import fileRoutes from "./routes/file_routes.js";
 import filesApiRoutes from "./routes/files_api_routes.js";
+import catalogRoutes from "./routes/catalog_routes.js";
 
 const app: Application = express();
 app.use("/uploads", fileRoutes);
@@ -27,6 +28,7 @@ app.use("/api/v1/files", filesApiRoutes);
 app.use("/api/v1/applications", applicationRoutes);
 app.use("/api/v1/education", educationRoutes);
 app.use("/api/v1/admin", adminRoutes);
+app.use("/api/v1/catalogs", catalogRoutes);
 app.use("/api/notifications", notificationRoutes);
 
 // Middleware xử lý lỗi (Bắt buộc phải nằm cuối cùng)

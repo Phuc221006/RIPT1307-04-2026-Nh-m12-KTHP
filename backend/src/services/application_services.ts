@@ -29,6 +29,16 @@ class ApplicationService {
   // 1. Luồng nộp hồ sơ xét tuyển
   async submitApplication(userId: string, data: any) {
     return await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+      // 1. Kiểm tra xem CCCD này đã bị tài khoản khác sử dụng chưa
+      if (data.cccd) {
+        const existingCccd = await tx.users.findUnique({
+          where: { cccd: data.cccd },
+        });
+        if (existingCccd && existingCccd.id !== userId) {
+          throw new Error("Số CCCD này đã được đăng ký bởi một tài khoản khác trong hệ thống.");
+        }
+      }
+
       // Cập nhật thông tin cá nhân thí sinh từ form nộp hồ sơ
       if (data.phone || data.cccd || data.address) {
         await tx.users.update({

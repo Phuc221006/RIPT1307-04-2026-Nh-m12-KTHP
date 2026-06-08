@@ -24,6 +24,7 @@ class ApplicationController {
         data: result,
       });
     } catch (error: any) {
+      console.error("Application create error:", error);
       res.status(400).json({ status: "error", message: error.message });
     }
   }

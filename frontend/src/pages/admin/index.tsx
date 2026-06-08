@@ -513,25 +513,32 @@ const AdminPage: React.FC = () => {
 
   // Các hàm tương tác ghi nhận danh mục/tác vụ duyệt real-time
   const handleSaveUniversity = async (values: any) => {
-    if (!values.code || !values.name) {
+    if (!values?.code || !values?.name) {
       message.error("Vui lòng nhập đầy đủ thông tin");
       return;
     }
+
     setSubmitting(true);
     const token = localStorage.getItem("token");
+
+    // IMPORTANT: never rely on async state editingUniversity.
+    // Use values.id injected into the form.
+    const uniId = values?.id ? String(values.id) : null;
+
+    // Payload for backend: do not send id
+    const payload = { ...values };
+    delete payload.id;
+
     try {
-      if (editingUniversity) {
-        await fetch(
-          `${API_BASE}/education/universities/${editingUniversity.id}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(values),
+      if (uniId) {
+        await fetch(`${API_BASE}/education/universities/${uniId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
-        );
+          body: JSON.stringify(payload),
+        });
         message.success("Cập nhật trường đại học thành công");
       } else {
         await fetch(`${API_BASE}/education/universities`, {
@@ -540,12 +547,14 @@ const AdminPage: React.FC = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(values),
+          body: JSON.stringify(payload),
         });
         message.success("Thêm trường đại học thành công");
       }
+
       setIsUniversityModalVisible(false);
       universityForm.resetFields();
+      setEditingUniversity(null);
       fetchData();
     } catch {
       message.error("Có lỗi xảy ra!");
@@ -823,8 +832,15 @@ const AdminPage: React.FC = () => {
             size="small"
             icon={<EditOutlined />}
             onClick={() => {
-              setEditingUniversity(record);
-              universityForm.setFieldsValue(record);
+              const rec: University = record;
+              setEditingUniversity(rec);
+              // Inject id into form so handleSaveUniversity can use values.id (no async state dependency)
+              universityForm.setFieldsValue({
+                id: rec.id,
+                code: rec.code,
+                name: rec.name,
+                majors: rec.majors || [],
+              });
               setIsUniversityModalVisible(true);
             }}
           />
@@ -1080,7 +1096,7 @@ const AdminPage: React.FC = () => {
       icon: <DashboardOutlined />,
       label: "Thống kê tổng quan",
     },
-    // { key: "catalog", icon: <AppstoreOutlined />, label: "Quản lý danh mục" },
+    { key: "catalog", icon: <AppstoreOutlined />, label: "Quản lý danh mục" },
     { key: "applications", icon: <FileTextOutlined />, label: "Quản lý hồ sơ" },
     //{ key: "email", icon: <MailOutlined />, label: "Cấu hình Email" },
   ];
@@ -1583,7 +1599,7 @@ const AdminPage: React.FC = () => {
                 }}
                 okText={editingUniversity ? "Cập nhật" : "Thêm mới"}
                 cancelText="Hủy"
-                width={600}
+                width={800}
               >
                 <Form
                   form={universityForm}
@@ -1591,6 +1607,10 @@ const AdminPage: React.FC = () => {
                   onFinish={handleSaveUniversity}
                   autoComplete="off"
                 >
+                  <Form.Item name="id" hidden>
+                    <Input />
+                  </Form.Item>
+
                   <Form.Item
                     name="code"
                     label="Mã Trường"
@@ -1601,6 +1621,7 @@ const AdminPage: React.FC = () => {
                   >
                     <Input placeholder="VD: HUST, VNU, PTIT" />
                   </Form.Item>
+
                   <Form.Item
                     name="name"
                     label="Tên Trường"
@@ -1610,8 +1631,115 @@ const AdminPage: React.FC = () => {
                   >
                     <Input placeholder="VD: Học viện Công nghệ Bưu chính Viễn thông" />
                   </Form.Item>
+
+                  <Form.List
+                    name="majors"
+                    initialValue={[{ major_id: undefined, combination_ids: [] }]}
+                    rules={[
+                      {
+                        validator: async (_, value) => {
+                          if (!value || value.length < 1) {
+                            return Promise.reject(
+                              new Error("Vui lòng thêm ít nhất 1 ngành"),
+                            );
+                          }
+                          return Promise.resolve();
+                        },
+                      },
+                    ]}
+                  >
+                    {(fields, { add, remove }) => (
+                      <>
+                        {fields.map(({ key, name, ...restField }, index) => (
+                          <Space
+                            key={key}
+                            align="baseline"
+                            style={{ width: "100%" }}
+                            size="middle"
+                          >
+                            <Form.Item
+                              {...restField}
+                              name={[name, "major_id"]}
+                              label={index === 0 ? "Ngành" : ""}
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Vui lòng chọn ngành",
+                                },
+                              ]}
+                            >
+                              <Select
+                                placeholder="Chọn ngành"
+                                options={majors.map((m) => ({
+                                  value: m.id,
+                                  label: m.name,
+                                }))}
+                                style={{ width: 320 }}
+                              />
+                            </Form.Item>
+
+                            <Form.Item
+                              {...restField}
+                              name={[name, "combination_ids"]}
+                              label={
+                                index === 0
+                                  ? "Tổ hợp (nhiều lựa chọn)"
+                                  : ""
+                              }
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Vui lòng chọn ít nhất 1 tổ hợp",
+                                },
+                                {
+                                  validator: async (_, value) => {
+                                    if (
+                                      !value ||
+                                      (Array.isArray(value) && value.length === 0)
+                                    ) {
+                                      return Promise.reject(
+                                        new Error(
+                                          "Vui lòng chọn ít nhất 1 tổ hợp",
+                                        ),
+                                      );
+                                    }
+                                    return Promise.resolve();
+                                  },
+                                },
+                              ]}
+                              style={{ flex: 1 }}
+                            >
+                              <Select
+                                mode="multiple"
+                                placeholder="Chọn tổ hợp"
+                                options={subjectCombos.map((c) => ({
+                                  value: c.id,
+                                  label: c.code,
+                                }))}
+                              />
+                            </Form.Item>
+
+                            <Button danger onClick={() => remove(name)}>
+                              Xóa
+                            </Button>
+                          </Space>
+                        ))}
+
+                        <Button
+                          type="dashed"
+                          onClick={() =>
+                            add({ major_id: undefined, combination_ids: [] })
+                          }
+                          block
+                        >
+                          + Thêm Ngành Tuyển Sinh
+                        </Button>
+                      </>
+                    )}
+                  </Form.List>
                 </Form>
               </Modal>
+
 
               <Modal
                 title={editingMajor ? "✏️ Sửa ngành học" : "➕ Thêm ngành học"}
