@@ -19,6 +19,7 @@ class NotificationController {
         message: "Lấy danh sách thông báo thành công",
       });
     } catch (error: any) {
+      console.error("Notification get error:", error);
       return res.status(500).json({
         status: "error",
         message: "Lỗi hệ thống khi lấy thông báo: " + error.message,

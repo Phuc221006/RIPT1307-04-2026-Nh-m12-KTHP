@@ -40,83 +40,90 @@ function LoginUI(props: {
           }}
           centered
           className={styles.tabs}
-        >
-          <Tabs.TabPane tab="Đăng nhập" key="login">
-            <Form
-              form={form}
-              onFinish={onLogin}
-              layout="vertical"
-              size="large"
-              className={styles.form}
-            >
-              <Form.Item
-                label="Email"
-                name="email"
-                rules={[
-                  { required: true, message: "Vui lòng nhập email!" },
-                  { type: "email", message: "Email không hợp lệ!" },
-                ]}
-              >
-                <Input
-                  prefix={<UserOutlined className={styles.inputIcon} />}
-                  placeholder="Nhập email..."
-                  className={styles.input}
-                />
-              </Form.Item>
-
-              <Form.Item
-                label="Mật khẩu"
-                name="password"
-                rules={[{ required: true, message: "Vui lòng nhập mật khẩu!" }]}
-              >
-                <Input.Password
-                  prefix={<LockOutlined className={styles.inputIcon} />}
-                  placeholder="Nhập mật khẩu..."
-                  className={styles.input}
-                />
-              </Form.Item>
-
-              <Form.Item label="Bạn là:" className={styles.roleField}>
-                <Radio.Group
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                  buttonStyle="solid"
-                  className={styles.radioGroup}
+          items={[
+            {
+              key: "login",
+              label: "Đăng nhập",
+              children: (
+                <Form
+                  form={form}
+                  onFinish={onLogin}
+                  layout="vertical"
+                  size="large"
+                  className={styles.form}
                 >
-                  <Radio.Button value="candidate">Thí sinh</Radio.Button>
-                  <Radio.Button value="admin">Quản trị viên</Radio.Button>
-                </Radio.Group>
-              </Form.Item>
-
-              <Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  loading={loading}
-                  className={styles.submitBtn}
-                  block
-                >
-                  {loading ? "Đang đăng nhập..." : "Đăng nhập"}
-                </Button>
-              </Form.Item>
-
-              <div className={styles.helperRow}>
-                <a className={styles.forgotLink}>Quên mật khẩu?</a>
-                <span className={styles.helperText}>
-                  Chưa có tài khoản?{" "}
-                  <a
-                    className={styles.registerLink}
-                    onClick={() => navigate("/register")}
+                  <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                      { required: true, message: "Vui lòng nhập email!" },
+                      { type: "email", message: "Email không hợp lệ!" },
+                    ]}
                   >
-                    Đăng ký ngay
-                  </a>
-                </span>
-              </div>
-            </Form>
-          </Tabs.TabPane>
+                    <Input
+                      prefix={<UserOutlined className={styles.inputIcon} />}
+                      placeholder="Nhập email..."
+                      className={styles.input}
+                    />
+                  </Form.Item>
 
-          <Tabs.TabPane tab="Đăng ký" key="register" />
-        </Tabs>
+                  <Form.Item
+                    label="Mật khẩu"
+                    name="password"
+                    rules={[{ required: true, message: "Vui lòng nhập mật khẩu!" }]}
+                  >
+                    <Input.Password
+                      prefix={<LockOutlined className={styles.inputIcon} />}
+                      placeholder="Nhập mật khẩu..."
+                      className={styles.input}
+                    />
+                  </Form.Item>
+
+                  <Form.Item label="Bạn là:" className={styles.roleField}>
+                    <Radio.Group
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
+                      buttonStyle="solid"
+                      className={styles.radioGroup}
+                    >
+                      <Radio.Button value="candidate">Thí sinh</Radio.Button>
+                      <Radio.Button value="admin">Quản trị viên</Radio.Button>
+                    </Radio.Group>
+                  </Form.Item>
+
+                  <Form.Item>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      loading={loading}
+                      className={styles.submitBtn}
+                      block
+                    >
+                      {loading ? "Đang đăng nhập..." : "Đăng nhập"}
+                    </Button>
+                  </Form.Item>
+
+                  <div className={styles.helperRow}>
+                    <a className={styles.forgotLink}>Quên mật khẩu?</a>
+                    <span className={styles.helperText}>
+                      Chưa có tài khoản?{" "}
+                      <a
+                        className={styles.registerLink}
+                        onClick={() => navigate("/register")}
+                      >
+                        Đăng ký ngay
+                      </a>
+                    </span>
+                  </div>
+                </Form>
+              ),
+            },
+            {
+              key: "register",
+              label: "Đăng ký",
+            },
+          ]}
+        />
       </div>
     </div>
   );

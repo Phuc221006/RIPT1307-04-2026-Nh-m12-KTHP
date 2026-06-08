@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import prisma from "../configs/prisma.js";
-import EmailService from "./email_service.js";
+import * as EmailService from "./email_service.js";
 import { applications_status } from "@prisma/client";
 
 class ApplicationStatusService {
@@ -55,12 +55,11 @@ class ApplicationStatusService {
 
     try {
       if (existingApplication.users?.email) {
-        const info = await EmailService.sendApplicationStatusEmail(
+        const info = await EmailService.sendStatusEmail(
           existingApplication.users.email,
-          existingApplication.users.full_name,
           updatedApplication.status,
-          note,
         );
+
         emailResult.success = true;
         emailResult.info = info;
       }

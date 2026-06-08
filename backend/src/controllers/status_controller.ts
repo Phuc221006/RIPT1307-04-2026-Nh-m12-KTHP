@@ -8,8 +8,10 @@ export const updateStatus = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { id } = req.params;
+    const idParam = (req.params as any).id;
+    const id = Array.isArray(idParam) ? idParam[0] : idParam;
     const { status } = req.body;
+
     
   
     const result = await ApplicationService.updateApplicationStatus(id, status);
