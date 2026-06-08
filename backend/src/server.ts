@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import cors from "cors"; // 1. Import thư viện cors để xử lý bảo mật tên miền
 
 dotenv.config();
 
@@ -6,6 +7,15 @@ import app from "./app.js";
 import prisma from "./configs/prisma.js";
 
 const PORT = process.env.PORT || 5000;
+
+// 2. Cấu hình CORS cho phép mọi Front-end (bao gồm cả Netlify) gọi vào Server
+app.use(
+  cors({
+    origin: "*", // Cho phép tất cả các nguồn truy cập
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 async function startServer() {
   try {
@@ -26,13 +36,13 @@ async function startServer() {
 
     app.listen(PORT, () => {
       console.log(
-        `🚀 [Server] Hệ thống Backend đang chạy tại: http://localhost:${PORT}`,
+        `🚀 [Server] Hệ thống Backend đang chạy tại link Render online`
       );
     });
   } catch (error) {
     console.error(
       "❌ [Database] Lỗi kết nối CSDL, hệ thống không thể khởi động:",
-      error,
+      error
     );
 
     await prisma.$disconnect();
