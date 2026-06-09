@@ -13,4 +13,10 @@ export default defineConfig({
   ],
   npmClient: 'npm',
   title: 'Hệ thống Tuyển sinh',
+
+  // Ép UmiJS thay thế toàn bộ biến gọi API thành link Render online khi biên dịch
+  define: {
+    'REACT_APP_API_BASE_URL': 'https://api-nhom12-kthp.onrender.com/api/v1',
+    'process.env.REACT_APP_API_BASE_URL': 'https://api-nhom12-kthp.onrender.com/api/v1'
+  }
 });
